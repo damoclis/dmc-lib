@@ -1,14 +1,12 @@
 import { StringToBytes, BytesToString } from "../lib/codec";
+import { HexToBytes } from "../lib/helper";
 
 export class Address {
 	_value: Uint8Array;
 	_len: u32 = 20;
 
 	static from(hex: string): Address {
-		if (hex.substr(0, 2) == "0x") {
-			hex = hex.substr(2);
-		}
-		return new Address(StringToBytes(hex));
+		return new Address(HexToBytes(hex));
 	}
 
 	constructor(raw: Uint8Array) {
