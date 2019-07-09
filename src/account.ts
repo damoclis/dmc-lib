@@ -7,7 +7,7 @@ export class Account {
 
     //核实合约
     public static codeStatus(account: number): string {
-       
+
     }
 
 
