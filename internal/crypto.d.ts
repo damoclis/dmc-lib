@@ -11,13 +11,13 @@ export declare function ripemd160(data: usize, size: u32, output: usize): void;
 export declare function recoverKey(sign: usize, signLen: u32, outputPub: usize, outputLen: u32): void;
 
 @external("damoclis", "assertSha256")
-export declare function assertSha256(data: usize, size: u32, msg: usize): void;
+export declare function assertSha256(data: usize, size: u32, hash: usize): void;
 
 @external("damoclis", "assertSha512")
-export declare function assertSha512(data: usize, size: u32, msg: usize): void;
+export declare function assertSha512(data: usize, size: u32, hash: usize): void;
 
 @external("damoclis", "assertRipemd160")
-export declare function assertRipemd160(data: usize, size: u32, msg: usize): void;
+export declare function assertRipemd160(data: usize, size: u32, hash: usize): void;
 
 @external("damoclis", "assertRecoverKey")
 export declare function assertRecoverKey(sign: usize, signLen: u32, pub: usize, pubLen: u32): void;
