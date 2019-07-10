@@ -124,8 +124,8 @@ export class Builtin implements Parameter {
  * like 'string[]', 'u64[]'
  */
 export class BuiltinArray implements Parameter {
-  _params: Parameter[]
-  constructor(params: Parameter[]) {
+  _params: Builtin[]
+  constructor(params: Builtin[]) {
     this._params = params;
   }
 
@@ -134,7 +134,7 @@ export class BuiltinArray implements Parameter {
     const sizeBytes = Builtin.fromU32(size).bytes();
     const out = new Array<u8>();
     WriteBytesToU8Array(sizeBytes, out)
-    this._params.forEach(function (item: Parameter): void {
+    this._params.forEach(function (item: Builtin): void {
       WriteBytesToU8Array(item.bytes(), out)
     })
 

@@ -1,8 +1,11 @@
 export function Hex(b: Bytes): string {
+  let hexTable = "0123456789abcdef".split('');
   let hex = "";
   let rb = SwapEndian(b)
   for (let i = 0; i < rb.length; i++) {
-    hex += rb[i].toString(16)
+    let byte: u8 = rb[i];
+    hex += hexTable[byte >> 4]
+    hex += hexTable[byte & 0x0f]
   }
   return "0x" + hex;
 }
