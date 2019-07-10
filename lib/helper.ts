@@ -1,9 +1,10 @@
 export function Hex(b: Bytes): string {
   let hex = "";
-  for (let i = 0; i < b.length; i++) {
-    hex += b[i].toString(16)
+  let rb = SwapEndian(b)
+  for (let i = 0; i < rb.length; i++) {
+    hex += rb[i].toString(16)
   }
-  return "0x" + hex.split('').reverse().join('');
+  return "0x" + hex;
 }
 
 export function HexToBytes(hex: string): Bytes {
@@ -14,20 +15,19 @@ export function HexToBytes(hex: string): Bytes {
   let len = hex.length % 2 == 0 ? hex.length / 2 : hex.length / 2 + 1
   let bytes = new Bytes(len);
   let i = 0;
-  hex = hex.split('').reverse().join('')
   while (hex.length) {
-    let shex = hex.substr(0, 2);
+    let shex = hex.substr(hex.length - 2, hex.length);
     bytes[i++] = parseInt(shex, 16);
-    hex = hex.substr(2);
+    hex = hex.substr(0, hex.length - 2);
   }
 
   return bytes
 }
 
-// export function SwapEndian(bytes: Bytes): Bytes {
-//   let clone = CloneBytes(bytes);
-//   return clone.reverse()
-// }
+export function SwapEndian(bytes: Bytes): Bytes {
+  let clone = CloneBytes(bytes);
+  return clone.reverse()
+}
 
 export function U8ArrayToBytes(arr: Array<u8>): Bytes {
   let bytes = new Bytes(arr.length);
