@@ -5,10 +5,10 @@ export const KUNIT = 0x1
 export const MUNIT = 0X2
 export const DOM = 0x3
 
-export class Asset {
+export class Asset implements Serializable{
 
-    amount: u64;
-    symbol: u8;
+    private amount: u64;
+    private symbol: u8;
 
     constructor(amt: u64 = 0, sy: u8 = DOM) {
         this.amount = amt;
@@ -32,15 +32,21 @@ export class Asset {
         return amount
     }
 
-    isSymbolValid(): boolean {
-    }
-
-    public static balanceOf(account: account_name): Asset {
-    }
-
-    public static transfer(from: account_name, to: account_name, value: Asset): void {
-    }
 
     //算数操作
 
+    //Serilizable interface implements
+    serialize(ds:DataStream): void{
+        ds.write<u64>(this.amount);
+        ds.write<u8>(this.symbol);
+    }
+
+    deserialize(ds:DataStream): void{
+        this.amount = ds.read<u64>();
+        this.symbol = ds.read<u8>();
+    }
+
+    key(): string{
+        return "";
+    }
 }

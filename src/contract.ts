@@ -1,33 +1,36 @@
-export class NameEx{
-    valueH: number;
-    valueL: number;
+import { Address } from "./address";
+import { getSelf, getSender, getReciver } from "../internal/account";
+import { Account } from "./account";
+import { Action } from "./action";
+import { Transaction } from "./transaction";
 
-    constructor(h: u32, l: number) {
-        this.valueH = h;
-        this.valueL = l;
-    }
-}
+export class Contract{
+    sender: Address;
+    receiver: Address;
+    contract: Address;
 
-export class Contract {
-
-    protected _receiver: number;
-    private _currentActionName: NameEx;
-
-    constructor(receiver: number) {
-        this._receiver = receiver;
-    }
-    /**
-     * The receiver of a contract, normally it's the account name which the contract deployed to.
-     */
-    public get receiver(): number {
-        return this._receiver;
+    constructor() {
+        let raw = new Bytes(20);
+        getSelf(changetype<usize>(raw.buffer));
+        this.contract = new Address(raw);
+        getSender(changetype<usize>(raw.buffer));
+        this.sender = new Address(raw);
+        getReciver(changetype<usize>(raw.buffer));
+        this.receiver = new Address(raw);
     }
 
-    public get action(): NameEx {
-        return this._currentActionName;
+    isAction(actionName: string):bool{
+        let actionNow = Action.getActionName();
+        return actionName == actionNow;
     }
 
-    public setActionName(actH: number, actL: number): void {
-        this._currentActionName = new NameEx(actH, actL);
+    getDataStream(): DataStream{
+        return Action.getActionData();
     }
+
+    // static get txHash() {
+    //     return Transaction.getTxHash();
+    // }
+
+
 }
