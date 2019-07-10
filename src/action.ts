@@ -4,6 +4,7 @@ import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
 import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData } from "../internal/action";
 import { BytesToString, DecodeSLEB128, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
 import { U8ArrayToBytes, ConcatBytes, WriteBytesToU8Array } from "../lib/helper";
+import { Asset } from "./asset";
 
 export interface Parameter {
   len(): i32;
@@ -123,8 +124,8 @@ export class Builtin implements Parameter {
  * like 'string[]', 'u64[]'
  */
 export class BuiltinArray implements Parameter {
-  _params: Array<Builtin>
-  constructor(params: Array<Builtin>) {
+  _params: Parameter[]
+  constructor(params: Parameter[]) {
     this._params = params;
   }
 
@@ -132,13 +133,12 @@ export class BuiltinArray implements Parameter {
     const size = this._params.length;
     const sizeBytes = Builtin.fromU32(size).bytes();
     const out = new Array<u8>();
-    this._params.forEach(function (item: Builtin): void {
-      item.bytes().forEach(function (byte: u8): void {
-        out.push(byte)
-      })
+    WriteBytesToU8Array(sizeBytes, out)
+    this._params.forEach(function (item: Parameter): void {
+      WriteBytesToU8Array(item.bytes(), out)
     })
 
-    return ConcatBytes(sizeBytes, U8ArrayToBytes(out));
+    return U8ArrayToBytes(out);
   }
 
   len(): i32 {
@@ -148,25 +148,17 @@ export class BuiltinArray implements Parameter {
 
 export class Action {
   _to: Address;
-  _value: u64;
+  _value: Asset;
   _method: string;
-  _payload: Array<Parameter>;
+  _payload: Parameter[];
   _extra: string;
 
-  constructor(to: Address, value: u64, method: string, payload?: Array<Parameter>, extra?: string) {
+  constructor(to: Address, value: Asset, method: string, payload?: Parameter[], extra?: string) {
     this._to = to;
     this._value = value;
     this._method = method;
-    this._payload = payload || new Array<Parameter>();
+    this._payload = payload || [];
     this._extra = extra || "";
-  }
-
-  static hasAuth(addr: Address): bool {
-    return hasAuth(addr.buffer);
-  }
-
-  static requireAuth(addr: Address): void {
-    return requireAuth(addr.buffer);
   }
 
   static getActionName(): string {
@@ -184,25 +176,8 @@ export class Action {
     return ds;
   }
 
-  static returnBytes(bytes: Bytes): void {
-    returnData(changetype<usize>(bytes.buffer), bytes.length);
-  }
-
-  static returnString(str: string): void {
-    returnData(StringToUsize(str), str.length);
-  }
-
-  static returnU64(v: u64): void {
-    returnData(changetype<usize>(Builtin.fromU64(v).bytes()), 8);
-  }
-
-  static returnU8(v: u8): void {
-    const bytes = new Bytes(1)
-    bytes[0] = v;
-    returnData(changetype<usize>(v), 1);
-  }
-
   send(): void {
+    Assert(this._method != "__DEPLOY__", "action name should not be '__DEPLOY__'");
     const ser = this.serialize();
     callAction(changetype<usize>(ser.buffer), ser.length);
   }
@@ -210,15 +185,73 @@ export class Action {
   serialize(): Bytes {
     let serialize = new Array<u8>();
     WriteBytesToU8Array(this._to.bytes(), serialize);
-    WriteBytesToU8Array(Builtin.fromU64(this._value).bytes(), serialize);
+    // fill the u64 value
+    WriteBytesToU8Array(this._value.bytes(), serialize);
+    // fill the method of action
     WriteBytesToU8Array(Builtin.fromU32(this._method.length).bytes(), serialize);
     WriteBytesToU8Array(StringToBytes(this._method), serialize);
-    // concat serialized bytes array of each parameter.
+    // fill serialized payload field
+    let params = new Array<u8>()
     this._payload.forEach(function (item: Parameter): void {
-      WriteBytesToU8Array(item.bytes(), serialize);
+      WriteBytesToU8Array(item.bytes(), params);
     })
+    WriteBytesToU8Array(Builtin.fromU32(params.length).bytes(), serialize);
+    serialize = serialize.concat(params);
+    // fill extra field
     WriteBytesToU8Array(Builtin.fromU32(this._extra.length).bytes(), serialize);
     WriteBytesToU8Array(StringToBytes(this._extra), serialize);
+    // convert u8 array to bytes
     return U8ArrayToBytes(serialize);
   }
+}
+
+/**
+ * Verifies and returns whether the address is the sender.
+ * 
+ * @param addr - address of a certain account
+ */
+export function HasAuth(addr: Address): bool {
+  return hasAuth(addr.buffer);
+}
+
+/**
+ * Verifies the given address is the sender and throw error if not.
+ * 
+ * @param addr - address of a certain account
+ */
+export function RequireAuth(addr: Address): void {
+  return requireAuth(addr.buffer);
+}
+
+/**
+ * Set bytes as return data of action.
+ * 
+ * @param bytes - bytes array
+ */
+export function ReturnBytes(bytes: Bytes): void {
+  returnData(changetype<usize>(bytes.buffer), bytes.length);
+}
+
+/**
+ * Set string as return data of action.
+ * 
+ * @param str - a string
+ */
+export function ReturnString(str: string): void {
+  returnData(StringToUsize(str), str.length);
+}
+
+/**
+ * Set uint64 value as return data of action.
+ * 
+ * @param v - u64 value
+ */
+export function ReturnU64(v: u64): void {
+  returnData(changetype<usize>(Builtin.fromU64(v).bytes()), 8);
+}
+
+export function ReturnU8(v: u8): void {
+  const bytes = new Bytes(1)
+  bytes[0] = v;
+  returnData(changetype<usize>(v), 1);
 }
