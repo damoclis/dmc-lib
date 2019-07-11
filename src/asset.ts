@@ -7,8 +7,8 @@ export const DOM = 0x3
 
 export class Asset implements Serializable {
 
-    readonly amount: u64;
-    readonly symbol: u8;
+    amount: u64;
+    symbol: u8;
 
     constructor(amt: u64 = 0, sy: u8 = DOM) {
         this.amount = amt;

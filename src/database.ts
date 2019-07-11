@@ -1,7 +1,8 @@
 import { Address } from "./address";
-import { dbGet, dbStore, dbIterator, dbUpdate, dbRemove, dbRetrieve, dbNext } from "../internal/database";
+import { dbGet, dbStore, dbIterator, dbUpdate, dbRemove, dbRetrieve, dbNext } from "../internal/database.d";
 import { StringToBytes, StringToUsize } from "../lib/codec";
 import { Assert } from "./system";
+import { CreateDataStream } from "../lib/helper";
 
 export class Iterator<T extends Serializable> {
 	_db: Database<T>
@@ -12,11 +13,10 @@ export class Iterator<T extends Serializable> {
 		this._itr = itr;
 	}
 
-	get(): T {
+	get(obj: T): T {
 		const size = dbRetrieve(this._db._contract.buffer, StringToUsize(this._db._table), this._db._table.length, this._itr, 0, 0);
 		const bytes = new Bytes(size);
 		const ds = new DataStream(changetype<usize>(bytes.buffer), size);
-		const obj = new this._db._objConstruct();
 		obj.deserialize(ds);
 		return obj;
 	}
@@ -33,39 +33,32 @@ export class Iterator<T extends Serializable> {
 export class Database<T extends Serializable> {
 	_contract: Address;
 	_table: string;
-	_objConstruct: { new(): T };
 
-	constructor(contract: Address, table: string, c: { new(): T }) {
+	constructor(contract: Address, table: string) {
 		this._contract = contract;
 		this._table = table;
-		Assert(c != null, "object constructor should be provided");
-		this._objConstruct = c;
 	}
 
-	get(key: string): T {
-		const out = new this._objConstruct()
+	get(key: string, obj: T): T {
 		const size = dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, 0, 0);
-		const bytes = new Bytes(size)
-		const ds = new DataStream(changetype<usize>(bytes.buffer), size);
+		const ds = CreateDataStream(size)
 		dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, size);
-		out.deserialize(ds);
-		return out
+		obj.deserialize(ds);
+		return obj
 	}
 
 	store(obj: T): void {
 		const key = obj.key();
 		const len = DataStream.measure<T>(obj)
-		const bytes = new Bytes(len)
-		const ds = new DataStream(changetype<usize>(bytes.buffer), len)
+		const ds = CreateDataStream(len)
 		obj.serialize(ds);
 		dbStore(StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, ds.len);
 	}
 
-	update(obj: T) {
+	update(obj: T): void {
 		const key = obj.key();
 		const len = DataStream.measure<T>(obj)
-		const bytes = new Bytes(len)
-		const ds = new DataStream(changetype<usize>(bytes.buffer), len)
+		const ds = CreateDataStream(len)
 		obj.serialize(ds);
 		dbUpdate(StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, ds.len);
 	}
