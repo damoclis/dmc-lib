@@ -7,8 +7,8 @@ export const DOM = 0x3
 
 export class Asset implements Serializable {
 
-    amount: u64;
-    symbol: u8;
+    readonly amount: u64;
+    readonly symbol: u8;
 
     constructor(amt: u64 = 0, sy: u8 = DOM) {
         this.amount = amt;
@@ -36,16 +36,20 @@ export class Asset implements Serializable {
         return this.symbol == UNIT || this.symbol == KUNIT || this.symbol == MUNIT || this.symbol == DOM;
     }
 
-    public static balanceOf(account: account_name): Asset {
-    }
-
-    public static transfer(from: account_name, to: account_name, value: Asset): void {
-    }
-
-    serialize(ds: DataStream): void {
-
-    }
-
     //算数操作
 
+    //Serilizable interface implements
+    serialize(ds: DataStream): void {
+        ds.write<u64>(this.amount);
+        ds.write<u8>(this.symbol);
+    }
+
+    deserialize(ds: DataStream): void {
+        this.amount = ds.read<u64>();
+        this.symbol = ds.read<u8>();
+    }
+
+    key(): string {
+        return "";
+    }
 }

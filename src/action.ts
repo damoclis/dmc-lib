@@ -3,7 +3,7 @@ import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
 import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64 } from "../internal/action";
 import { BytesToString, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
-import { U8ArrayToBytes, CreateDataStream, } from "../lib/helper";
+import { U8ArrayToBytes, CreateDataStream, BytesToU8Array, } from "../lib/helper";
 import { Asset } from "./asset";
 
 /**
@@ -105,13 +105,16 @@ export class Builtin implements Serializable {
     return new Builtin(bytes);
   }
 
+  bytes(): Bytes {
+    return this._val;
+  }
+
   len(): i32 {
     return this._val.length;
   }
 
   serialize(ds: DataStream): void {
-    const arr = new Array<u8>(this.len());
-    WriteBytesToU8Array(this._val, arr);
+    const arr = BytesToU8Array(this._val);
     ds.writeVector<u8>(arr);
   }
 

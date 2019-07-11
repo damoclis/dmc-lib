@@ -1,6 +1,6 @@
 import { getTxHash, getSignature } from "../internal/transaction";
 
-class Transaction {
+export class Transaction {
   static getTxHash(): Bytes {
     let bytes = new Bytes(32);
     getTxHash(changetype<usize>(bytes.buffer));
