@@ -8,20 +8,23 @@ export class Contract{
     sender: Address;
     receiver: Address;
     contract: Address;
+    actionName: string;
 
     constructor() {
-        let raw = new Bytes(20);
-        getSelf(changetype<usize>(raw.buffer));
-        this.contract = new Address(raw);
-        getSender(changetype<usize>(raw.buffer));
-        this.sender = new Address(raw);
-        getReciver(changetype<usize>(raw.buffer));
-        this.receiver = new Address(raw);
+        let _contract = new Bytes(20);
+        getSelf(changetype<usize>(_contract.buffer));
+        this.contract = new Address(_contract);
+        let _sender = new Bytes(20);
+        getSender(changetype<usize>(_sender.buffer));
+        this.sender = new Address(_sender);
+        let _receiver = new Bytes(20);
+        getReciver(changetype<usize>(_receiver.buffer));
+        this.receiver = new Address(_receiver);
+        this.actionName = Action.getActionName();
     }
 
     isAction(actionName: string):bool{
-        let actionNow = Action.getActionName();
-        return actionName == actionNow;
+        return actionName == this.actionName;
     }
 
     getDataStream(): DataStream{
