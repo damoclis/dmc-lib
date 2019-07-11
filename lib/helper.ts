@@ -48,10 +48,12 @@ export function CloneBytes(bytes: Bytes): Bytes {
   return clone;
 }
 
-export function WriteBytesToU8Array(bytes: Bytes, buffer: Array<u8>): void {
-  bytes.forEach(function (item: u8): void {
-    buffer.push(item)
-  })
+export function BytesToU8Array(bytes: Bytes): Array<u8> {
+  const arr = new Array<u8>(bytes.length)
+  for (let i = 0; i < bytes.length; i++) {
+    arr[i] = bytes[i];
+  }
+  return arr;
 }
 
 // Concat two different bytes and returns a new bytes.
@@ -64,4 +66,20 @@ export function ConcatBytes(b1: Bytes, b2: Bytes): Bytes {
     newBytes.push(b2[i])
   }
   return U8ArrayToBytes(newBytes);
+}
+
+export function CreateDataStream(size: u32): DataStream {
+  const bytes = new Bytes(size);
+  return new DataStream(changetype<usize>(bytes.buffer), size);
+}
+
+/**
+ * Wrap a bytes into a datastream.
+ * 
+ * @param bytes 
+ */
+export function WrapDataStream(bytes: Bytes): DataStream {
+  const ds = CreateDataStream(bytes.length);
+  ds.writeVector<u8>(BytesToU8Array(bytes));
+  return ds;
 }

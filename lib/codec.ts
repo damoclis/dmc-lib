@@ -1,13 +1,16 @@
 import { U8ArrayToBytes } from "./helper";
 
-export function StringToBytes(str: string): Uint8Array {
-  const enc = new TextEncoder();
-  return enc.encode(str);
+export function StringToBytes(str: string): Bytes {
+  const bytes = new Bytes(str.length)
+  const buffer = String.UTF8.encode(str)
+
+  for (let i = 0; i < buffer.byteLength; i++) {
+    bytes[i] = changetype<u8>(buffer[i]);
+  }
 }
 
 export function BytesToString(bytes: Bytes): string {
-  const dec = new TextDecoder();
-  return dec.decode(bytes);
+  return String.UTF8.decode(bytes.buffer);
 }
 
 export function StringToUsize(str: string): usize {

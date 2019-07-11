@@ -5,7 +5,7 @@ export const KUNIT = 0x1
 export const MUNIT = 0X2
 export const DOM = 0x3
 
-export class Asset {
+export class Asset implements Serializable {
 
     amount: u64;
     symbol: u8;
@@ -33,12 +33,17 @@ export class Asset {
     }
 
     isSymbolValid(): boolean {
+        return this.symbol == UNIT || this.symbol == KUNIT || this.symbol == MUNIT || this.symbol == DOM;
     }
 
     public static balanceOf(account: account_name): Asset {
     }
 
     public static transfer(from: account_name, to: account_name, value: Asset): void {
+    }
+
+    serialize(ds: DataStream): void {
+
     }
 
     //算数操作

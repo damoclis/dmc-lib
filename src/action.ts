@@ -1,22 +1,17 @@
 import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
-import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData } from "../internal/action";
-import { BytesToString, DecodeSLEB128, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
-import { U8ArrayToBytes, ConcatBytes, WriteBytesToU8Array } from "../lib/helper";
+import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64 } from "../internal/action";
+import { BytesToString, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
+import { U8ArrayToBytes, CreateDataStream, } from "../lib/helper";
 import { Asset } from "./asset";
-
-export interface Parameter {
-  len(): i32;
-  bytes(): Bytes;
-}
 
 /**
  * Builtin represents a parameter with built-in type.
  * Only support 'bool','int8','uint8','int16','uint16','int32','uint32','int64','uint64',
  * 'varint32','varuint32','address','publicKey','signature'
  */
-export class Builtin implements Parameter {
+export class Builtin implements Serializable {
   _val: Bytes;
 
   constructor(val: Bytes) { this._val = val; }
@@ -110,12 +105,23 @@ export class Builtin implements Parameter {
     return new Builtin(bytes);
   }
 
-  bytes(): Bytes {
-    return this._val;
-  }
-
   len(): i32 {
     return this._val.length;
+  }
+
+  serialize(ds: DataStream): void {
+    const arr = new Array<u8>(this.len());
+    WriteBytesToU8Array(this._val, arr);
+    ds.writeVector<u8>(arr);
+  }
+
+  deserialize(ds: DataStream): void {
+    const arr = ds.readVector<u8>();
+    this._val = U8ArrayToBytes(arr);
+  }
+
+  key(): string {
+    return "";
   }
 }
 
@@ -123,37 +129,39 @@ export class Builtin implements Parameter {
  * BuiltinArray represents an array of parameters with built-in types,
  * like 'string[]', 'u64[]'
  */
-export class BuiltinArray implements Parameter {
+export class BuiltinArray extends Builtin implements Serializable {
   _params: Builtin[]
+
   constructor(params: Builtin[]) {
+    super(new Bytes(0));
     this._params = params;
-  }
-
-  bytes(): Bytes {
-    const size = this._params.length;
-    const sizeBytes = Builtin.fromU32(size).bytes();
-    const out = new Array<u8>();
-    WriteBytesToU8Array(sizeBytes, out)
-    this._params.forEach(function (item: Builtin): void {
-      WriteBytesToU8Array(item.bytes(), out)
-    })
-
-    return U8ArrayToBytes(out);
   }
 
   len(): i32 {
     return this._params.length
   }
+
+  serialize(ds: DataStream): void {
+    ds.writeComplexVector<Builtin>(this._params);
+  }
+
+  deserialize(ds: DataStream): void {
+    this._params = ds.readComplexVector<Builtin>();
+  }
+
+  key(): string {
+    return "";
+  }
 }
 
-export class Action {
+export class Action implements Serializable {
   _to: Address;
   _value: Asset;
   _method: string;
-  _payload: Parameter[];
+  _payload: Serializable[];
   _extra: string;
 
-  constructor(to: Address, value: Asset, method: string, payload?: Parameter[], extra?: string) {
+  constructor(to: Address, value: Asset, method: string, payload?: Serializable[], extra?: string) {
     this._to = to;
     this._value = value;
     this._method = method;
@@ -178,30 +186,44 @@ export class Action {
 
   send(): void {
     Assert(this._method != "__DEPLOY__", "action name should not be '__DEPLOY__'");
-    const ser = this.serialize();
-    callAction(changetype<usize>(ser.buffer), ser.length);
+    const size = DataStream.measure<Action>(this);
+    const ds = CreateDataStream(size)
+    this.serialize(ds);
+    callAction(ds.buffer, ds.len);
   }
 
-  serialize(): Bytes {
-    let serialize = new Array<u8>();
-    WriteBytesToU8Array(this._to.bytes(), serialize);
+  serialize(ds: DataStream): void {
+    // fill _to address
+    this._to.serialize(ds);
     // fill the u64 value
-    WriteBytesToU8Array(this._value.bytes(), serialize);
+    this._value.serialize(ds);
     // fill the method of action
-    WriteBytesToU8Array(Builtin.fromU32(this._method.length).bytes(), serialize);
-    WriteBytesToU8Array(StringToBytes(this._method), serialize);
+    ds.writeString(this._method);
+    let payloadSize = 0;
     // fill serialized payload field
-    let params = new Array<u8>()
-    this._payload.forEach(function (item: Parameter): void {
-      WriteBytesToU8Array(item.bytes(), params);
-    })
-    WriteBytesToU8Array(Builtin.fromU32(params.length).bytes(), serialize);
-    serialize = serialize.concat(params);
+    for (let i = 0; i < this._payload.length; i++) {
+      const param = this._payload[i];
+      if (param instanceof Builtin) {
+        payloadSize += DataStream.measure<Builtin>(param)
+      } else if (param instanceof BuiltinArray) {
+        payloadSize += DataStream.measure<BuiltinArray>(param);
+      } else {
+        throw new Error("unknown parameters type");
+      }
+    }
+    for (let i = 0; i < this._payload.length; i++) {
+      this._payload[i].serialize(ds);
+    }
     // fill extra field
-    WriteBytesToU8Array(Builtin.fromU32(this._extra.length).bytes(), serialize);
-    WriteBytesToU8Array(StringToBytes(this._extra), serialize);
-    // convert u8 array to bytes
-    return U8ArrayToBytes(serialize);
+    ds.writeString(this._extra);
+  }
+
+  deserialize(ds: DataStream): void {
+    return;
+  }
+
+  key(): string {
+    return "";
   }
 }
 
@@ -247,11 +269,5 @@ export function ReturnString(str: string): void {
  * @param v - u64 value
  */
 export function ReturnU64(v: u64): void {
-  returnData(changetype<usize>(Builtin.fromU64(v).bytes()), 8);
-}
-
-export function ReturnU8(v: u8): void {
-  const bytes = new Bytes(1)
-  bytes[0] = v;
-  returnData(changetype<usize>(v), 1);
+  returnU64(v);
 }

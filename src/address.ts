@@ -1,7 +1,7 @@
 import { StringToBytes, BytesToString } from "../lib/codec";
-import { HexToBytes } from "../lib/helper";
+import { HexToBytes, WriteBytesToU8Array, U8ArrayToBytes } from "../lib/helper";
 
-export class Address {
+export class Address implements Serializable {
 	_value: Bytes;
 	_len: u32 = 20;
 
@@ -41,5 +41,20 @@ export class Address {
 
 	get buffer(): usize {
 		return changetype<usize>(this._value.buffer);
+	}
+
+	serialize(ds: DataStream): void {
+		const arr = new Array<u8>(this._value.length);
+		WriteBytesToU8Array(this._value, arr);
+		ds.writeVector<u8>(arr);
+	}
+
+	deserialize(ds: DataStream): void {
+		const arr = ds.readVector<u8>();
+		this._value = U8ArrayToBytes(arr);
+	}
+
+	key(): string {
+		return "";
 	}
 }

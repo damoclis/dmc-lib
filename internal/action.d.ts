@@ -18,3 +18,6 @@ export declare function getValue(buffer: usize, len: u32): u32;
 
 @external("damoclis", "returnData")
 export declare function returnData(buffer: usize, len: u32): void;
+
+@external("damoclis", "returnU64")
+export declare function returnU64(val: u64): void;
