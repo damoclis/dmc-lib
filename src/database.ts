@@ -2,6 +2,7 @@ import { Address } from "./address";
 import { dbGet, dbStore, dbIterator, dbUpdate, dbRemove, dbRetrieve, dbNext } from "../internal/database";
 import { StringToBytes, StringToUsize } from "../lib/codec";
 import { Assert } from "./system";
+import { CreateDataStream } from "../lib/helper";
 
 export class Iterator<T extends Serializable> {
 	_db: Database<T>
@@ -45,8 +46,7 @@ export class Database<T extends Serializable> {
 	get(key: string): T {
 		const out = new this._objConstruct()
 		const size = dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, 0, 0);
-		const bytes = new Bytes(size)
-		const ds = new DataStream(changetype<usize>(bytes.buffer), size);
+		const ds = CreateDataStream(size)
 		dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, size);
 		out.deserialize(ds);
 		return out

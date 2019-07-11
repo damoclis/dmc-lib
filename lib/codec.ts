@@ -4,9 +4,8 @@ export function StringToBytes(str: string): Bytes {
   const bytes = new Bytes(str.length)
   const buffer = String.UTF8.encode(str)
 
-  for (let i = 0; i < buffer.byteLength; i++) {
-    bytes[i] = changetype<u8>(buffer[i]);
-  }
+  memory.copy(changetype<usize>(bytes.buffer), changetype<usize>(buffer), buffer.byteLength);
+  return bytes;
 }
 
 export function BytesToString(bytes: Bytes): string {

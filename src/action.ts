@@ -181,8 +181,7 @@ export class Action implements Serializable {
 
   static getActionData(): DataStream {
     const size = getActionData(0, 0);
-    const bytes = new Bytes(size);
-    const ds = new DataStream(changetype<usize>(bytes.buffer), size);
+    const ds = CreateDataStream(size)
     getActionData(ds.buffer, ds.len);
     return ds;
   }
