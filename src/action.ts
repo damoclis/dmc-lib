@@ -1,7 +1,7 @@
 import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
-import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64 } from "../internal/action";
+import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64 } from "../internal/action.d";
 import { BytesToString, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
 import { U8ArrayToBytes, CreateDataStream, BytesToU8Array, } from "../lib/helper";
 import { Asset } from "./asset";

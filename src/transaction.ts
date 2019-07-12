@@ -1,4 +1,4 @@
-import { getTxHash, getSignature } from "../internal/transaction";
+import { getTxHash, getSignature } from "../internal/transaction.d";
 
 export class Transaction {
   static getTxHash(): Bytes {
