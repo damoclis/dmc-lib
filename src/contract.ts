@@ -4,7 +4,7 @@ import { Account } from "./account";
 import { Action } from "./action";
 import { Transaction } from "./transaction";
 
-export class Contract{
+export class Contract {
     sender: Address;
     receiver: Address;
     contract: Address;
@@ -23,11 +23,11 @@ export class Contract{
         this.actionName = Action.getActionName();
     }
 
-    isAction(actionName: string):bool{
+    isAction(actionName: string): bool {
         return actionName == this.actionName;
     }
 
-    getDataStream(): DataStream{
+    getDataStream(): DataStream {
         return Action.getActionData();
     }
 

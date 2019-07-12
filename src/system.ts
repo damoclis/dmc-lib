@@ -1,4 +1,4 @@
-import { damoAssert, damoExit } from "../internal/system";
+import { damoAssert, damoExit } from "../internal/system.d";
 import { StringToUsize } from "../lib/codec";
 
 export function Assert(test: bool, msg: string): void {
