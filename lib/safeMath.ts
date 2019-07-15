@@ -1,7 +1,7 @@
 import { Assert } from "../src/system";
 
 export namespace SafeMath {
-  function mul(a: u64, b: u64): u64 {
+  export function mul(a: u64, b: u64): u64 {
     if (a == 0) {
       return 0;
     }
@@ -14,7 +14,7 @@ export namespace SafeMath {
 	 * Integer division of two numbers, truncating the quotient
 	 */
 
-  function div(a: u64, b: u64): u64 {
+  export function div(a: u64, b: u64): u64 {
     Assert(b != 0, `Can't dividing by 0`);
     return a / b;
   }
@@ -25,7 +25,7 @@ export namespace SafeMath {
 	 * @param a the mimuend number
 	 * @param b the subtrahead number
 	 */
-  function sub(a: u64, b: u64): u64 {
+  export function sub(a: u64, b: u64): u64 {
     Assert(b <= a, `Minuend is greater than subtrahend`);
     return a - b;
   }
@@ -34,7 +34,7 @@ export namespace SafeMath {
 	 * Add two nubmers, throws on overflow.
 	 */
 
-  function add(a: u64, b: u64): u64 {
+  export function add(a: u64, b: u64): u64 {
     var c = a + b;
     Assert(c >= a, `SafeMath add failed`);
     return c;
@@ -44,7 +44,7 @@ export namespace SafeMath {
 	 * gives square root of given x.
 	 * @param x
 	 */
-  function sqrt(x: u64): u64 {
+  export function sqrt(x: u64): u64 {
     var z = (add(x, 1) / 2);
     var y = x;
     while (z < y) {
@@ -57,14 +57,14 @@ export namespace SafeMath {
 	/**
      * gives square. multiplies x by x
      */
-  function square(x: u64): u64 {
+  export function square(x: u64): u64 {
     return mul(x, x);
   }
 
 	/**
 	 *  x to the power of y
 	 */
-  function pwr(a: u64, b: u64): u64 {
+  export function pwr(a: u64, b: u64): u64 {
     if (a == 0) {
       return 0;
     } else if (b == 0) {
@@ -78,7 +78,7 @@ export namespace SafeMath {
     }
   }
 
-  function random(seed: u64): u64 {
+  export function random(seed: u64): u64 {
     return seed;
   }
 }
