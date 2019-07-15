@@ -1,10 +1,10 @@
 import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
-import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64 } from "../internal/action.d";
+import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64, getValue } from "../internal/action.d";
 import { BytesToString, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
 import { U8ArrayToBytes, CreateDataStream, BytesToU8Array, } from "../lib/helper";
-import { Asset } from "./asset";
+import { Asset, UNIT } from "./asset";
 
 /**
  * Builtin represents a parameter with built-in type.
@@ -131,25 +131,18 @@ export class Builtin implements Serializable {
 /**
  * BuiltinArray represents an array of parameters with built-in types,
  * like 'string[]', 'u64[]'
+ * 
  */
-export class BuiltinArray extends Builtin implements Serializable {
-  _params: Builtin[]
-
-  constructor(params: Builtin[]) {
-    super(new Bytes(0));
-    this._params = params;
-  }
-
-  len(): i32 {
-    return this._params.length
-  }
-
+export class BuiltinArray extends Array<Builtin> implements Serializable {
   serialize(ds: DataStream): void {
-    ds.writeComplexVector<Builtin>(this._params);
+    ds.writeComplexVector<Builtin>(this);
   }
 
   deserialize(ds: DataStream): void {
-    this._params = ds.readComplexVector<Builtin>();
+    const arr = ds.readComplexVector<Builtin>();
+    for (let i = 0; i < arr.length; i++) {
+      this.push(arr[i]);
+    }
   }
 
   key(): string {
@@ -186,6 +179,14 @@ export class Action implements Serializable {
     return ds;
   }
 
+  static getValue(): Asset {
+    const size = getValue(0, 0);
+    const ds = CreateDataStream(size);
+    getValue(ds.buffer, ds.len);
+    const amount = ds.read<u64>();
+    return new Asset(amount, UNIT);
+  }
+
   send(): void {
     Assert(this._method != "__DEPLOY__", "action name should not be '__DEPLOY__'");
     const size = DataStream.measure<Action>(this);
@@ -201,7 +202,7 @@ export class Action implements Serializable {
     this._value.serialize(ds);
     // fill the method of action
     ds.writeString(this._method);
-    let payloadSize = 0;
+    let payloadSize: u64 = 0;
     // fill serialized payload field
     for (let i = 0; i < this._payload.length; i++) {
       const param = this._payload[i];
@@ -213,6 +214,7 @@ export class Action implements Serializable {
         throw new Error("unknown parameters type");
       }
     }
+    ds.write<u64>(payloadSize);
     for (let i = 0; i < this._payload.length; i++) {
       this._payload[i].serialize(ds);
     }
