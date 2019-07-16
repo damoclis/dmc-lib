@@ -1,12 +1,9 @@
-import { BytesToString } from "../lib/codec";
-import { HexToBytes, U8ArrayToBytes, BytesToU8Array } from "../lib/helper";
-
 export class Address implements Serializable {
 	_value: Bytes;
 	_len: u32 = 20;
 
 	static from(hex: string): Address {
-		return new Address(HexToBytes(hex));
+		return new Address(Bytes.fromHex(hex));
 	}
 
 	constructor(raw: Bytes) {
@@ -17,7 +14,7 @@ export class Address implements Serializable {
 	}
 
 	hex(): string {
-		return BytesToString(this._value);
+		return this._value.toString();
 	}
 
 	@operator("==")
@@ -44,12 +41,12 @@ export class Address implements Serializable {
 	}
 
 	serialize(ds: DataStream): void {
-		ds.writeVector<u8>(BytesToU8Array(this._value));
+		ds.writeVector<u8>(this._value.toU8Array());
 	}
 
 	deserialize(ds: DataStream): void {
 		const arr = ds.readVector<u8>();
-		this._value = U8ArrayToBytes(arr);
+		this._value = Bytes.fromU8Array(arr);
 	}
 
 	key(): string {

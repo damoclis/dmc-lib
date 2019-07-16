@@ -2,8 +2,8 @@ import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
 import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64, getValue } from "../internal/action.d";
-import { BytesToString, EncodeSLEB128, EncodeULEB128, StringToBytes, StringToUsize } from "../lib/codec";
-import { U8ArrayToBytes, CreateDataStream, BytesToU8Array, } from "../lib/helper";
+import { EncodeSLEB128, EncodeULEB128, StringToUsize } from "../lib/codec";
+import { CreateDataStream, } from "../lib/helper";
 import { Asset, UNIT } from "./asset";
 
 /**
@@ -83,7 +83,7 @@ export class Builtin implements Serializable {
   }
 
   static fromString(str: string): Builtin {
-    return new Builtin(StringToBytes(str));
+    return new Builtin(Bytes.fromString(str));
   }
 
   static fromBytes(bytes: Bytes): Builtin {
@@ -114,13 +114,13 @@ export class Builtin implements Serializable {
   }
 
   serialize(ds: DataStream): void {
-    const arr = BytesToU8Array(this._val);
+    const arr = this._val.toU8Array();
     ds.writeVector<u8>(arr);
   }
 
   deserialize(ds: DataStream): void {
     const arr = ds.readVector<u8>();
-    this._val = U8ArrayToBytes(arr);
+    this._val = Bytes.fromU8Array(arr);
   }
 
   key(): string {
@@ -169,7 +169,7 @@ export class Action implements Serializable {
     const size = getActionName(0, 0);
     const bytes = new Bytes(size);
     getActionName(changetype<usize>(bytes.buffer), size);
-    return BytesToString(bytes);
+    return bytes.toString();
   }
 
   static getActionData(): DataStream {

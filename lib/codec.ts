@@ -1,19 +1,5 @@
-import { U8ArrayToBytes } from "./helper";
-
-export function StringToBytes(str: string): Bytes {
-  const bytes = new Bytes(str.length)
-  const buffer = String.UTF8.encode(str)
-
-  memory.copy(changetype<usize>(bytes.buffer), changetype<usize>(buffer), buffer.byteLength);
-  return bytes;
-}
-
-export function BytesToString(bytes: Bytes): string {
-  return String.UTF8.decode(bytes.buffer);
-}
-
 export function StringToUsize(str: string): usize {
-  return changetype<usize>(StringToBytes(str).buffer);
+  return changetype<usize>(Bytes.fromString(str).buffer);
 }
 
 /**
@@ -32,7 +18,7 @@ export function EncodeULEB128(v: u64): Bytes {
       break;
     }
   }
-  return U8ArrayToBytes(bytes);
+  return Bytes.fromU8Array(bytes);
 }
 
 /**
@@ -52,7 +38,7 @@ export function EncodeSLEB128(v: i64): Bytes {
       break;
     }
   }
-  return U8ArrayToBytes(bytes);
+  return Bytes.fromU8Array(bytes);
 }
 
 /** 
