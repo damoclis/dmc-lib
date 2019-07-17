@@ -1,5 +1,5 @@
 import { Address } from "./address";
-import { getSelf, getSender, getReciver } from "../internal/account";
+import { getSelf, getSender, getReciver } from "../internal/account.d";
 import { Account } from "./account";
 import { Action } from "./action";
 import { Transaction } from "./transaction";

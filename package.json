@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/damoclis/dmc-lib#readme",
   "dependencies": {
-    "dmcscript": "^0.1.6"
+    "dmcscript": "^0.1.22"
   }
 }
