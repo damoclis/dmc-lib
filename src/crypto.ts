@@ -1,4 +1,4 @@
-import { sha256, sha512, ripemd160, recoverKey, assertSha256, assertSha512, assertRipemd160, assertRecoverKey } from "../internal/crypto";
+import { sha256, sha512, ripemd160, recoverKey, assertSha256, assertSha512, assertRipemd160, assertRecoverKey } from "../internal/crypto.d";
 import { Assert } from "./system";
 import { PUBLIC_KEY_LEN, SIGNATURE_LEN, SHA256_LEN, SHA512_LEN, RIPEMD160_LEN } from "../lib/constant";
 
