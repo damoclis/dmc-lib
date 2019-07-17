@@ -1,6 +1,6 @@
 import { Address } from "./address";
 import { dbGet, dbStore, dbIterator, dbUpdate, dbRemove, dbRetrieve, dbNext } from "../internal/database.d";
-import { StringToBytes, StringToUsize } from "../lib/codec";
+import { StringToUsize } from "../lib/codec";
 import { Assert } from "./system";
 import { CreateDataStream } from "../lib/helper";
 

@@ -1,6 +1,12 @@
 {
   "extends": "./node_modules/dmcscript/std/assembly.json",
-  "include": ["./src/*.ts", "./index.d.ts", "./lib/*.ts", "./internal/*.d.ts","./example/**/*.ts"],
+  "include": [
+    "./src/*.ts",
+    "./index.d.ts",
+    "./lib/*.ts",
+    "./internal/*.d.ts",
+    "./example/**/*.ts"
+  ],
   "compilerOptions": {
     /* Basic Options */
     "target": "es5",
