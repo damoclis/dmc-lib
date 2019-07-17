@@ -37,12 +37,12 @@ export class Crypto {
     assertSha512(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
-  static assertRipemd160(origin: Bytes, hash: Bytes) {
+  static assertRipemd160(origin: Bytes, hash: Bytes):void{
     Assert(hash.length == RIPEMD160_LEN, `invalid hash length: want ${RIPEMD160_LEN}, got ${hash.length}`);
     assertRipemd160(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
-  static assertRecoverKey(sign: Bytes, pub: Bytes) {
+  static assertRecoverKey(sign: Bytes, pub: Bytes):void{
     Assert(sign.length == SIGNATURE_LEN, `invalid signature length: want ${SIGNATURE_LEN}, got ${sign.length}`);
     Assert(pub.length == PUBLIC_KEY_LEN, `invalid public key length: want ${PUBLIC_KEY_LEN}, got ${pub.length}`);
     assertRecoverKey(changetype<usize>(sign.buffer), sign.length, changetype<usize>(pub.buffer), pub.length);
