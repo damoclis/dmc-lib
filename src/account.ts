@@ -1,6 +1,6 @@
 import { Address } from "./address";
 import { Asset } from "./asset";
-import { getBalance, transfer } from "../internal/account";
+import { getBalance, transfer } from "../internal/account.d";
 import { CreateDataStream } from "../lib/helper";
 
 export class Account {

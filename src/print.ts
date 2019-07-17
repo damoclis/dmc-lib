@@ -1,4 +1,4 @@
-import { prints, printi, printui, printHex } from "../internal/print";
+import { prints, printi, printui, printHex } from "../internal/print.d";
 import { StringToUsize } from "../lib/codec";
 
 export function Prints(msg: string): void {
