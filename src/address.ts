@@ -32,7 +32,7 @@ export class Address implements Serializable {
 		return !this.equal(t);
 	}
 
-	bytes(): Bytes {
+	get bytes(): Bytes {
 		return this._value;
 	}
 

@@ -1,0 +1,68 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [
+    {
+      "new_type_name": "i64",
+      "type": "int64"
+    },
+    {
+      "new_type_name": "u64",
+      "type": "uint64"
+    }
+  ],
+  "structs": [
+    {
+      "fileds": [],
+      "name": "printActionName",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "msg",
+          "type": "string"
+        }
+      ],
+      "name": "printStr",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "a",
+          "type": "i64"
+        },
+        {
+          "name": "b",
+          "type": "u64"
+        }
+      ],
+      "name": "printInt",
+      "base": ""
+    },
+    {
+      "fileds": [],
+      "name": "printAddr",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "printActionName",
+      "type": "printActionName"
+    },
+    {
+      "name": "printStr",
+      "type": "printStr"
+    },
+    {
+      "name": "printInt",
+      "type": "printInt"
+    },
+    {
+      "name": "printAddr",
+      "type": "printAddr"
+    }
+  ],
+  "tables": []
+}
