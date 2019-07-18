@@ -8,7 +8,7 @@ export class Address implements Serializable {
 
 	constructor(raw: Bytes) {
 		if (raw.length > 20) {
-			raw = raw.subarray(0, 20);
+			raw = <Bytes>(<Uint8Array>raw.subarray(0, 20));
 		}
 		this._value = raw;
 	}
