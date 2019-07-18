@@ -23,7 +23,6 @@ class HelloWorld extends Contract {
     // 定义合约方法`hi`
     @action
     hi(msg: string): void {
-        let asset: Asset = new Asset(1, 1);
         // 打印日志
         Prints(msg);
     }
@@ -46,12 +45,3 @@ class HelloWorld extends Contract {
     //     db.store(person);
     //   }
 }
-
-export function apply():void{
-    let _HelloWorld=new HelloWorld();
-    let ds = _HelloWorld.getDataStream();
-    if (_HelloWorld.isAction("hi")){
-      let msg=ds.readString();
-      _HelloWorld.hi(msg);
-    }
-  }

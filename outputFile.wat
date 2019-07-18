@@ -7,13 +7,14 @@
  (type $FUNCSIG$viii (func (param i32 i32 i32)))
  (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$i (func (result i32)))
+ (type $FUNCSIG$iiiiii (func (param i32 i32 i32 i32 i32) (result i32)))
  (type $FUNCSIG$vii (func (param i32 i32)))
- (type $FUNCSIG$iiji (func (param i32 i64 i32) (result i32)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (import "damoclis" "getSelf" (func $internal/account.d/getSelf (param i32)))
  (import "damoclis" "getSender" (func $internal/account.d/getSender (param i32)))
  (import "damoclis" "getReciver" (func $internal/account.d/getReciver (param i32)))
  (import "damoclis" "getActionName" (func $internal/action.d/getActionName (param i32 i32) (result i32)))
+ (import "damoclis" "getActionData" (func $internal/action.d/getActionData (param i32 i32) (result i32)))
  (import "damoclis" "prints" (func $internal/print.d/prints (param i32 i32)))
  (memory $0 1)
  (data (i32.const 8) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00l\00e\00n\00g\00t\00h\00")
@@ -115,7 +116,8 @@
  (data (i32.const 2368) "|\01\00\00\01\00\00\00\00\00\00\00|\01\00\00\80\00\00\00\98\00\00\00\b0\00\00\00\c8\00\00\00\e0\00\00\00\f8\00\00\00\10\01\00\00(\01\00\00@\01\00\00X\01\00\00p\01\00\00\88\01\00\00\a0\01\00\00\b8\01\00\00\d0\01\00\00\e8\01\00\00\00\02\00\00\18\02\00\000\02\00\00H\02\00\00`\02\00\00x\02\00\00\90\02\00\00\a8\02\00\00\c0\02\00\00\d8\02\00\00\f0\02\00\00\08\03\00\00 \03\00\008\03\00\00P\03\00\00h\03\00\00\80\03\00\00\98\03\00\00\b0\03\00\00\c8\03\00\00\e0\03\00\00\f8\03\00\00\10\04\00\00(\04\00\00@\04\00\00X\04\00\00p\04\00\00\88\04\00\00\a0\04\00\00\b8\04\00\00\d0\04\00\00\e8\04\00\00\00\05\00\00\18\05\00\000\05\00\000\05\00\00H\05\00\00`\05\00\00x\05\00\00\90\05\00\00\a8\05\00\00\c0\05\00\00\d8\05\00\00\f0\05\00\00\08\06\00\00 \06\00\008\06\00\00P\06\00\00h\06\00\00\80\06\00\00\98\06\00\00\b0\06\00\00\c8\06\00\00\e0\06\00\00\f8\06\00\00\10\07\00\00(\07\00\00@\07\00\00X\07\00\00p\07\00\00\88\07\00\00\a0\07\00\00\b8\07\00\00\d0\07\00\00\e8\07\00\00\00\08\00\00\18\08\00\000\08\00\00H\08\00\00`\08\00\00x\08\00\00\90\08\00\00\a8\08\00\00\c0\08\00\00\d8\08\00\00\f0\08\00\00\08\t\00\00 \t\00\008\t\00\00")
  (data (i32.const 2768) "\10\00\00\00\01\00\00\00\08\00\00\00\10\00\00\00P\t\00\00P\t\00\00|\01\00\00_\00\00\00")
  (data (i32.const 2800) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00~\00l\00i\00b\00/\00s\00t\00r\00i\00n\00g\00.\00t\00s\00")
- (data (i32.const 2848) "\06\00\00\00\01\00\00\00\01\00\00\00\06\00\00\00a\00a\00a\00")
+ (data (i32.const 2848) "\04\00\00\00\01\00\00\00\01\00\00\00\04\00\00\00h\00i\00")
+ (data (i32.const 2872) "\00\00\00\00\01\00\00\00\01\00\00\00\00\00\00\00")
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
  (global $lib/constant/SHA256_LEN i32 (i32.const 32))
@@ -133,11 +135,11 @@
  (global $~lib/ASC_SHRINK_LEVEL i32 (i32.const 0))
  (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2784))
  (global $~lib/datastream/HEADER_SIZE i32 (i32.const 0))
- (global $~lib/heap/__heap_base i32 (i32.const 2872))
+ (global $~lib/heap/__heap_base i32 (i32.const 2888))
  (export "memory" (memory $0))
- (export "test" (func $example/helloworld/helloworld/test))
+ (export "apply" (func $example/helloworld/helloworld/apply))
  (start $start)
- (func $~lib/rt/stub/__alloc (; 6 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/stub/__alloc (; 7 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -229,7 +231,7 @@
   i32.store offset=12
   local.get $2
  )
- (func $~lib/memory/memory.fill (; 7 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/memory/memory.fill (; 8 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -493,13 +495,13 @@
    end
   end
  )
- (func $~lib/rt/stub/__retain (; 8 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/rt/stub/__retain (; 9 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
  )
- (func $~lib/rt/stub/__release (; 9 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/stub/__release (; 10 ;) (type $FUNCSIG$vi) (param $0 i32)
   nop
  )
- (func $~lib/arraybuffer/ArrayBufferView#constructor (; 10 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBufferView#constructor (; 11 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -570,7 +572,7 @@
   i32.store offset=8
   local.get $0
  )
- (func $~lib/typedarray/Uint8Array#constructor (; 11 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#constructor (; 12 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   if (result i32)
    local.get $0
@@ -586,7 +588,7 @@
   local.set $0
   local.get $0
  )
- (func $~lib/bytes/Bytes#constructor (; 12 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/bytes/Bytes#constructor (; 13 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -602,20 +604,20 @@
   local.set $0
   local.get $0
  )
- (func $~lib/typedarray/Uint8Array#get:buffer (; 13 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#get:buffer (; 14 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   call $~lib/rt/stub/__retain
  )
- (func $~lib/arraybuffer/ArrayBufferView#get:byteLength (; 14 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBufferView#get:byteLength (; 15 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load offset=8
  )
- (func $~lib/typedarray/Uint8Array#get:length (; 15 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#get:length (; 16 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/arraybuffer/ArrayBufferView#get:byteLength
  )
- (func $~lib/typedarray/Uint8Array#subarray (; 16 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#subarray (; 17 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -736,7 +738,7 @@
   call $~lib/rt/stub/__release
   local.get $9
  )
- (func $src/address/Address#constructor (; 17 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/address/Address#constructor (; 18 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -793,13 +795,13 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $~lib/arraybuffer/ArrayBuffer#get:byteLength (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBuffer#get:byteLength (; 19 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.const 16
   i32.sub
   i32.load offset=12
  )
- (func $~lib/util/memory/memcpy (; 19 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/util/memory/memcpy (; 20 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -1827,7 +1829,7 @@
    i32.store8
   end
  )
- (func $~lib/memory/memory.copy (; 20 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/memory/memory.copy (; 21 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2052,7 +2054,7 @@
    end
   end
  )
- (func $~lib/rt/stub/__realloc (; 21 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/stub/__realloc (; 22 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2085,7 +2087,7 @@
   end
   local.get $0
  )
- (func $~lib/string/String.UTF8.decodeUnsafe (; 22 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/string/String.UTF8.decodeUnsafe (; 23 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2314,7 +2316,7 @@
   call $~lib/rt/stub/__realloc
   call $~lib/rt/stub/__retain
  )
- (func $~lib/string/String.UTF8.decode (; 23 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.decode (; 24 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   call $~lib/rt/stub/__retain
@@ -2329,7 +2331,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $~lib/bytes/Bytes#toString (; 24 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes#toString (; 25 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2348,7 +2350,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/action/Action.getActionName (; 25 ;) (type $FUNCSIG$i) (result i32)
+ (func $src/action/Action.getActionName (; 26 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
@@ -2376,7 +2378,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/contract/Contract#constructor (; 26 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/contract/Contract#constructor (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2486,7 +2488,7 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $example/helloworld/helloworld/HelloWorld#constructor (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $example/helloworld/helloworld/HelloWorld#constructor (; 28 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -2501,31 +2503,79 @@
   local.set $0
   local.get $0
  )
- (func $src/asset/Asset#constructor (; 28 ;) (type $FUNCSIG$iiji) (param $0 i32) (param $1 i64) (param $2 i32) (result i32)
+ (func $~lib/datastream/DataStream#constructor (; 29 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.eqz
   if
-   i32.const 9
+   i32.const 12
    i32.const 9
    call $~lib/rt/stub/__alloc
    call $~lib/rt/stub/__retain
    local.set $0
   end
   local.get $0
-  i64.const 0
-  i64.store
+  i32.const 0
+  i32.store
   local.get $0
   i32.const 0
-  i32.store8 offset=8
+  i32.store offset=4
+  local.get $0
+  i32.const 0
+  i32.store offset=8
   local.get $0
   local.get $1
-  i64.store
+  i32.store
   local.get $0
   local.get $2
-  i32.store8 offset=8
+  i32.store offset=4
+  local.get $0
+  i32.const 0
+  i32.store offset=8
   local.get $0
  )
- (func $~lib/string/String#get:length (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $lib/helper/CreateDataStream (; 30 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  i32.const 0
+  local.get $0
+  call $~lib/bytes/Bytes#constructor
+  local.set $1
+  i32.const 0
+  local.get $1
+  call $~lib/typedarray/Uint8Array#get:buffer
+  local.tee $2
+  local.get $0
+  call $~lib/datastream/DataStream#constructor
+  local.set $3
+  local.get $1
+  call $~lib/rt/stub/__release
+  local.get $2
+  call $~lib/rt/stub/__release
+  local.get $3
+ )
+ (func $src/action/Action.getActionData (; 31 ;) (type $FUNCSIG$i) (result i32)
+  (local $0 i32)
+  (local $1 i32)
+  i32.const 0
+  i32.const 0
+  call $internal/action.d/getActionData
+  local.set $0
+  local.get $0
+  call $lib/helper/CreateDataStream
+  local.set $1
+  local.get $1
+  i32.load
+  local.get $1
+  i32.load offset=4
+  call $internal/action.d/getActionData
+  drop
+  local.get $1
+ )
+ (func $src/contract/Contract#getDataStream (; 32 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  call $src/action/Action.getActionData
+ )
+ (func $~lib/string/String#get:length (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.const 16
   i32.sub
@@ -2533,7 +2583,263 @@
   i32.const 1
   i32.shr_u
  )
- (func $~lib/string/String.UTF8.byteLength (; 30 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/util/string/compareImpl (; 34 ;) (type $FUNCSIG$iiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (result i32)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
+  local.get $0
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $2
+  call $~lib/rt/stub/__retain
+  drop
+  i32.const 0
+  local.set $5
+  local.get $0
+  local.get $1
+  i32.const 1
+  i32.shl
+  i32.add
+  local.set $6
+  local.get $2
+  local.get $3
+  i32.const 1
+  i32.shl
+  i32.add
+  local.set $7
+  block $break|0
+   loop $continue|0
+    local.get $4
+    if (result i32)
+     local.get $6
+     i32.load16_u
+     local.get $7
+     i32.load16_u
+     i32.sub
+     local.tee $5
+     i32.eqz
+    else     
+     i32.const 0
+    end
+    i32.eqz
+    br_if $break|0
+    local.get $4
+    i32.const 1
+    i32.sub
+    local.set $4
+    local.get $6
+    i32.const 2
+    i32.add
+    local.set $6
+    local.get $7
+    i32.const 2
+    i32.add
+    local.set $7
+    br $continue|0
+   end
+   unreachable
+  end
+  local.get $5
+  local.set $8
+  local.get $0
+  call $~lib/rt/stub/__release
+  local.get $2
+  call $~lib/rt/stub/__release
+  local.get $8
+ )
+ (func $~lib/string/String.__eq (; 35 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 i32)
+  local.get $0
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $1
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $0
+  local.get $1
+  i32.eq
+  if
+   i32.const 1
+   local.set $2
+   local.get $0
+   call $~lib/rt/stub/__release
+   local.get $1
+   call $~lib/rt/stub/__release
+   local.get $2
+   return
+  end
+  local.get $0
+  i32.const 0
+  i32.eq
+  if (result i32)
+   i32.const 1
+  else   
+   local.get $1
+   i32.const 0
+   i32.eq
+  end
+  if
+   i32.const 0
+   local.set $2
+   local.get $0
+   call $~lib/rt/stub/__release
+   local.get $1
+   call $~lib/rt/stub/__release
+   local.get $2
+   return
+  end
+  local.get $0
+  call $~lib/string/String#get:length
+  local.set $3
+  local.get $3
+  local.get $1
+  call $~lib/string/String#get:length
+  i32.ne
+  if
+   i32.const 0
+   local.set $2
+   local.get $0
+   call $~lib/rt/stub/__release
+   local.get $1
+   call $~lib/rt/stub/__release
+   local.get $2
+   return
+  end
+  local.get $0
+  i32.const 0
+  local.get $1
+  i32.const 0
+  local.get $3
+  call $~lib/util/string/compareImpl
+  i32.eqz
+  local.set $2
+  local.get $0
+  call $~lib/rt/stub/__release
+  local.get $1
+  call $~lib/rt/stub/__release
+  local.get $2
+ )
+ (func $src/contract/Contract#isAction (; 36 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  local.get $1
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $1
+  local.get $0
+  i32.load offset=12
+  call $~lib/string/String.__eq
+  local.set $2
+  local.get $1
+  call $~lib/rt/stub/__release
+  local.get $2
+ )
+ (func $~lib/datastream/DataStream#read<u8> (; 37 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  local.get $0
+  i32.load
+  local.get $0
+  i32.load offset=8
+  i32.add
+  i32.load8_u
+  local.set $1
+  local.get $0
+  local.get $0
+  i32.load offset=8
+  i32.const 1
+  i32.add
+  i32.store offset=8
+  local.get $1
+ )
+ (func $~lib/datastream/DataStream#readVarint32 (; 38 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  i32.const 0
+  local.set $1
+  i32.const 0
+  local.set $2
+  loop $continue|0
+   local.get $0
+   call $~lib/datastream/DataStream#read<u8>
+   local.set $3
+   local.get $1
+   local.get $3
+   i32.const 127
+   i32.and
+   i32.const 7
+   local.get $2
+   local.tee $4
+   i32.const 1
+   i32.add
+   local.set $2
+   local.get $4
+   i32.mul
+   i32.shl
+   i32.or
+   local.set $1
+   local.get $3
+   i32.const 128
+   i32.and
+   br_if $continue|0
+  end
+  local.get $1
+ )
+ (func $~lib/datastream/DataStream#readString (; 39 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  (local $5 i32)
+  local.get $0
+  call $~lib/datastream/DataStream#readVarint32
+  local.set $1
+  local.get $1
+  i32.const 0
+  i32.eq
+  if
+   i32.const 2888
+   call $~lib/rt/stub/__retain
+   return
+  end
+  i32.const 0
+  local.get $1
+  call $~lib/typedarray/Uint8Array#constructor
+  local.set $2
+  local.get $2
+  call $~lib/typedarray/Uint8Array#get:buffer
+  local.tee $3
+  local.get $0
+  i32.load
+  local.get $0
+  i32.load offset=8
+  i32.add
+  local.get $1
+  call $~lib/memory/memory.copy
+  local.get $0
+  local.get $0
+  i32.load offset=8
+  local.get $1
+  i32.add
+  i32.store offset=8
+  local.get $2
+  call $~lib/typedarray/Uint8Array#get:buffer
+  local.tee $4
+  local.get $1
+  i32.const 0
+  call $~lib/string/String.UTF8.decodeUnsafe
+  local.set $5
+  local.get $3
+  call $~lib/rt/stub/__release
+  local.get $4
+  call $~lib/rt/stub/__release
+  local.get $2
+  call $~lib/rt/stub/__release
+  local.get $5
+ )
+ (func $~lib/string/String.UTF8.byteLength (; 40 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2656,7 +2962,7 @@
   call $~lib/rt/stub/__release
   local.get $5
  )
- (func $~lib/string/String.UTF8.encode (; 31 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.encode (; 41 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2908,7 +3214,7 @@
   call $~lib/rt/stub/__release
   local.get $6
  )
- (func $~lib/bytes/Bytes.fromString (; 32 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes.fromString (; 42 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2942,7 +3248,7 @@
   call $~lib/rt/stub/__release
   local.get $4
  )
- (func $lib/codec/StringToUsize (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $lib/codec/StringToUsize (; 43 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2963,7 +3269,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/print/Prints (; 34 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $src/print/Prints (; 44 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/rt/stub/__retain
   drop
@@ -2975,35 +3281,44 @@
   local.get $0
   call $~lib/rt/stub/__release
  )
- (func $example/helloworld/helloworld/HelloWorld#hi (; 35 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
-  (local $2 i32)
+ (func $example/helloworld/helloworld/HelloWorld#hi (; 45 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
-  i32.const 0
-  i64.const 1
-  i32.const 1
-  call $src/asset/Asset#constructor
-  local.set $2
   local.get $1
   call $src/print/Prints
-  local.get $2
-  call $~lib/rt/stub/__release
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $example/helloworld/helloworld/test (; 36 ;) (type $FUNCSIG$v)
+ (func $example/helloworld/helloworld/apply (; 46 ;) (type $FUNCSIG$v)
   (local $0 i32)
+  (local $1 i32)
+  (local $2 i32)
   i32.const 0
   call $example/helloworld/helloworld/HelloWorld#constructor
   local.set $0
   local.get $0
+  call $src/contract/Contract#getDataStream
+  local.set $1
+  local.get $0
   i32.const 2864
-  call $example/helloworld/helloworld/HelloWorld#hi
+  call $src/contract/Contract#isAction
+  if
+   local.get $1
+   call $~lib/datastream/DataStream#readString
+   local.set $2
+   local.get $0
+   local.get $2
+   call $example/helloworld/helloworld/HelloWorld#hi
+   local.get $2
+   call $~lib/rt/stub/__release
+  end
   local.get $0
   call $~lib/rt/stub/__release
+  local.get $1
+  call $~lib/rt/stub/__release
  )
- (func $start (; 37 ;) (type $FUNCSIG$v)
+ (func $start (; 47 ;) (type $FUNCSIG$v)
   global.get $~lib/heap/__heap_base
   i32.const 15
   i32.add
@@ -3015,6 +3330,6 @@
   global.get $~lib/rt/stub/startOffset
   global.set $~lib/rt/stub/offset
  )
- (func $null (; 38 ;) (type $FUNCSIG$v)
+ (func $null (; 48 ;) (type $FUNCSIG$v)
  )
 )
