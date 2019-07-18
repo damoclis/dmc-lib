@@ -1,0 +1,23 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fileds": [
+        {
+          "name": "msg",
+          "type": "string"
+        }
+      ],
+      "name": "hi",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "hi",
+      "type": "hi"
+    }
+  ],
+  "tables": []
+}

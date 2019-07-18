@@ -37,11 +37,7 @@ export class Crypto {
     assertSha512(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
-<<<<<<< HEAD
-  static assertRipemd160(origin: Bytes, hash: Bytes):void{
-=======
   static assertRipemd160(origin: Bytes, hash: Bytes):void {
->>>>>>> eaa10d6b4f3471a319c2093c63f2501a57781a1e
     Assert(hash.length == RIPEMD160_LEN, `invalid hash length: want ${RIPEMD160_LEN}, got ${hash.length}`);
     assertRipemd160(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
