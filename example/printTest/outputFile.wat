@@ -3,7 +3,6 @@
  (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
- (type $FUNCSIG$viiii (func (param i32 i32 i32 i32)))
  (type $FUNCSIG$viii (func (param i32 i32 i32)))
  (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$i (func (result i32)))
@@ -12,143 +11,139 @@
  (type $FUNCSIG$ji (func (param i32) (result i64)))
  (type $FUNCSIG$vijj (func (param i32 i64 i64)))
  (type $FUNCSIG$vj (func (param i64)))
- (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
- (import "damoclis" "getSelf" (func $internal/account.d/getSelf (param i32)))
- (import "damoclis" "getSender" (func $internal/account.d/getSender (param i32)))
- (import "damoclis" "getReciver" (func $internal/account.d/getReciver (param i32)))
- (import "damoclis" "getActionName" (func $internal/action.d/getActionName (param i32 i32) (result i32)))
- (import "damoclis" "getActionData" (func $internal/action.d/getActionData (param i32 i32) (result i32)))
- (import "damoclis" "prints" (func $internal/print.d/prints (param i32 i32)))
- (import "damoclis" "printi" (func $internal/print.d/printi (param i64)))
- (import "damoclis" "printui" (func $internal/print.d/printui (param i64)))
- (import "damoclis" "printHex" (func $internal/print.d/printHex (param i32 i32)))
+ (import "damoclis" "getSelf" (func $../../internal/account.d/getSelf (param i32)))
+ (import "damoclis" "getSender" (func $../../internal/account.d/getSender (param i32)))
+ (import "damoclis" "getReciver" (func $../../internal/account.d/getReciver (param i32)))
+ (import "damoclis" "getActionName" (func $../../internal/action.d/getActionName (param i32 i32) (result i32)))
+ (import "damoclis" "getActionData" (func $../../internal/action.d/getActionData (param i32 i32) (result i32)))
+ (import "damoclis" "prints" (func $../../internal/print.d/prints (param i32 i32)))
+ (import "damoclis" "printi" (func $../../internal/print.d/printi (param i64)))
+ (import "damoclis" "printui" (func $../../internal/print.d/printui (param i64)))
+ (import "damoclis" "printHex" (func $../../internal/print.d/printHex (param i32 i32)))
  (memory $0 1)
- (data (i32.const 8) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00l\00e\00n\00g\00t\00h\00")
- (data (i32.const 56) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00b\00u\00f\00f\00e\00r\00.\00t\00s\00")
- (data (i32.const 112) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00 \00")
- (data (i32.const 136) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00!\00")
- (data (i32.const 160) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\"\00")
- (data (i32.const 184) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00#\00")
- (data (i32.const 208) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00$\00")
- (data (i32.const 232) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00%\00")
- (data (i32.const 256) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00&\00")
- (data (i32.const 280) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\'\00")
- (data (i32.const 304) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00(\00")
- (data (i32.const 328) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00)\00")
- (data (i32.const 352) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00*\00")
- (data (i32.const 376) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00+\00")
- (data (i32.const 400) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00,\00")
- (data (i32.const 424) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00-\00")
- (data (i32.const 448) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00.\00")
- (data (i32.const 472) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00/\00")
- (data (i32.const 496) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\000\00")
- (data (i32.const 520) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\001\00")
- (data (i32.const 544) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\002\00")
- (data (i32.const 568) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\003\00")
- (data (i32.const 592) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\004\00")
- (data (i32.const 616) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\005\00")
- (data (i32.const 640) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\006\00")
- (data (i32.const 664) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\007\00")
- (data (i32.const 688) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\008\00")
- (data (i32.const 712) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\009\00")
- (data (i32.const 736) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00:\00")
- (data (i32.const 760) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00;\00")
- (data (i32.const 784) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00<\00")
- (data (i32.const 808) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00=\00")
- (data (i32.const 832) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00>\00")
- (data (i32.const 856) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00?\00")
- (data (i32.const 880) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00@\00")
- (data (i32.const 904) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00A\00")
- (data (i32.const 928) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00B\00")
- (data (i32.const 952) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00C\00")
- (data (i32.const 976) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00D\00")
- (data (i32.const 1000) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00E\00")
- (data (i32.const 1024) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00F\00")
- (data (i32.const 1048) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00G\00")
- (data (i32.const 1072) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00H\00")
- (data (i32.const 1096) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00I\00")
- (data (i32.const 1120) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00J\00")
- (data (i32.const 1144) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00K\00")
- (data (i32.const 1168) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00L\00")
- (data (i32.const 1192) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00M\00")
- (data (i32.const 1216) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00N\00")
- (data (i32.const 1240) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00O\00")
- (data (i32.const 1264) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00P\00")
- (data (i32.const 1288) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Q\00")
- (data (i32.const 1312) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00R\00")
- (data (i32.const 1336) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00T\00")
- (data (i32.const 1360) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00U\00")
- (data (i32.const 1384) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00V\00")
- (data (i32.const 1408) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00W\00")
- (data (i32.const 1432) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00X\00")
- (data (i32.const 1456) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Y\00")
- (data (i32.const 1480) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Z\00")
- (data (i32.const 1504) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00[\00")
- (data (i32.const 1528) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\\\00")
- (data (i32.const 1552) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00]\00")
- (data (i32.const 1576) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00^\00")
- (data (i32.const 1600) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00_\00")
- (data (i32.const 1624) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00`\00")
- (data (i32.const 1648) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00a\00")
- (data (i32.const 1672) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00b\00")
- (data (i32.const 1696) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00c\00")
- (data (i32.const 1720) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00d\00")
- (data (i32.const 1744) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00e\00")
- (data (i32.const 1768) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00f\00")
- (data (i32.const 1792) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00g\00")
- (data (i32.const 1816) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00h\00")
- (data (i32.const 1840) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00i\00")
- (data (i32.const 1864) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00j\00")
- (data (i32.const 1888) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00k\00")
- (data (i32.const 1912) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00l\00")
- (data (i32.const 1936) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00m\00")
- (data (i32.const 1960) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00n\00")
- (data (i32.const 1984) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00o\00")
- (data (i32.const 2008) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00p\00")
- (data (i32.const 2032) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00q\00")
- (data (i32.const 2056) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00r\00")
- (data (i32.const 2080) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00s\00")
- (data (i32.const 2104) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00t\00")
- (data (i32.const 2128) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00u\00")
- (data (i32.const 2152) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00v\00")
- (data (i32.const 2176) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00w\00")
- (data (i32.const 2200) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00x\00")
- (data (i32.const 2224) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00y\00")
- (data (i32.const 2248) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00z\00")
- (data (i32.const 2272) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00{\00")
- (data (i32.const 2296) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00|\00")
- (data (i32.const 2320) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00}\00")
- (data (i32.const 2344) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00~\00")
- (data (i32.const 2368) "|\01\00\00\01\00\00\00\00\00\00\00|\01\00\00\80\00\00\00\98\00\00\00\b0\00\00\00\c8\00\00\00\e0\00\00\00\f8\00\00\00\10\01\00\00(\01\00\00@\01\00\00X\01\00\00p\01\00\00\88\01\00\00\a0\01\00\00\b8\01\00\00\d0\01\00\00\e8\01\00\00\00\02\00\00\18\02\00\000\02\00\00H\02\00\00`\02\00\00x\02\00\00\90\02\00\00\a8\02\00\00\c0\02\00\00\d8\02\00\00\f0\02\00\00\08\03\00\00 \03\00\008\03\00\00P\03\00\00h\03\00\00\80\03\00\00\98\03\00\00\b0\03\00\00\c8\03\00\00\e0\03\00\00\f8\03\00\00\10\04\00\00(\04\00\00@\04\00\00X\04\00\00p\04\00\00\88\04\00\00\a0\04\00\00\b8\04\00\00\d0\04\00\00\e8\04\00\00\00\05\00\00\18\05\00\000\05\00\000\05\00\00H\05\00\00`\05\00\00x\05\00\00\90\05\00\00\a8\05\00\00\c0\05\00\00\d8\05\00\00\f0\05\00\00\08\06\00\00 \06\00\008\06\00\00P\06\00\00h\06\00\00\80\06\00\00\98\06\00\00\b0\06\00\00\c8\06\00\00\e0\06\00\00\f8\06\00\00\10\07\00\00(\07\00\00@\07\00\00X\07\00\00p\07\00\00\88\07\00\00\a0\07\00\00\b8\07\00\00\d0\07\00\00\e8\07\00\00\00\08\00\00\18\08\00\000\08\00\00H\08\00\00`\08\00\00x\08\00\00\90\08\00\00\a8\08\00\00\c0\08\00\00\d8\08\00\00\f0\08\00\00\08\t\00\00 \t\00\008\t\00\00")
- (data (i32.const 2768) "\10\00\00\00\01\00\00\00\08\00\00\00\10\00\00\00P\t\00\00P\t\00\00|\01\00\00_\00\00\00")
- (data (i32.const 2800) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00~\00l\00i\00b\00/\00s\00t\00r\00i\00n\00g\00.\00t\00s\00")
- (data (i32.const 2848) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00p\00r\00i\00n\00t\00A\00c\00t\00i\00o\00n\00N\00a\00m\00e\00")
- (data (i32.const 2896) "\10\00\00\00\01\00\00\00\01\00\00\00\10\00\00\00p\00r\00i\00n\00t\00S\00t\00r\00")
- (data (i32.const 2928) "\00\00\00\00\01\00\00\00\01\00\00\00\00\00\00\00")
- (data (i32.const 2944) "\10\00\00\00\01\00\00\00\01\00\00\00\10\00\00\00p\00r\00i\00n\00t\00I\00n\00t\00")
- (data (i32.const 2976) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00p\00r\00i\00n\00t\00A\00d\00d\00r\00")
+ (data (i32.const 8) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00 \00")
+ (data (i32.const 32) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00!\00")
+ (data (i32.const 56) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\"\00")
+ (data (i32.const 80) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00#\00")
+ (data (i32.const 104) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00$\00")
+ (data (i32.const 128) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00%\00")
+ (data (i32.const 152) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00&\00")
+ (data (i32.const 176) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\'\00")
+ (data (i32.const 200) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00(\00")
+ (data (i32.const 224) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00)\00")
+ (data (i32.const 248) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00*\00")
+ (data (i32.const 272) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00+\00")
+ (data (i32.const 296) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00,\00")
+ (data (i32.const 320) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00-\00")
+ (data (i32.const 344) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00.\00")
+ (data (i32.const 368) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00/\00")
+ (data (i32.const 392) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\000\00")
+ (data (i32.const 416) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\001\00")
+ (data (i32.const 440) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\002\00")
+ (data (i32.const 464) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\003\00")
+ (data (i32.const 488) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\004\00")
+ (data (i32.const 512) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\005\00")
+ (data (i32.const 536) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\006\00")
+ (data (i32.const 560) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\007\00")
+ (data (i32.const 584) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\008\00")
+ (data (i32.const 608) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\009\00")
+ (data (i32.const 632) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00:\00")
+ (data (i32.const 656) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00;\00")
+ (data (i32.const 680) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00<\00")
+ (data (i32.const 704) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00=\00")
+ (data (i32.const 728) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00>\00")
+ (data (i32.const 752) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00?\00")
+ (data (i32.const 776) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00@\00")
+ (data (i32.const 800) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00A\00")
+ (data (i32.const 824) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00B\00")
+ (data (i32.const 848) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00C\00")
+ (data (i32.const 872) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00D\00")
+ (data (i32.const 896) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00E\00")
+ (data (i32.const 920) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00F\00")
+ (data (i32.const 944) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00G\00")
+ (data (i32.const 968) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00H\00")
+ (data (i32.const 992) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00I\00")
+ (data (i32.const 1016) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00J\00")
+ (data (i32.const 1040) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00K\00")
+ (data (i32.const 1064) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00L\00")
+ (data (i32.const 1088) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00M\00")
+ (data (i32.const 1112) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00N\00")
+ (data (i32.const 1136) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00O\00")
+ (data (i32.const 1160) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00P\00")
+ (data (i32.const 1184) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Q\00")
+ (data (i32.const 1208) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00R\00")
+ (data (i32.const 1232) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00T\00")
+ (data (i32.const 1256) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00U\00")
+ (data (i32.const 1280) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00V\00")
+ (data (i32.const 1304) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00W\00")
+ (data (i32.const 1328) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00X\00")
+ (data (i32.const 1352) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Y\00")
+ (data (i32.const 1376) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00Z\00")
+ (data (i32.const 1400) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00[\00")
+ (data (i32.const 1424) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00\\\00")
+ (data (i32.const 1448) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00]\00")
+ (data (i32.const 1472) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00^\00")
+ (data (i32.const 1496) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00_\00")
+ (data (i32.const 1520) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00`\00")
+ (data (i32.const 1544) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00a\00")
+ (data (i32.const 1568) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00b\00")
+ (data (i32.const 1592) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00c\00")
+ (data (i32.const 1616) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00d\00")
+ (data (i32.const 1640) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00e\00")
+ (data (i32.const 1664) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00f\00")
+ (data (i32.const 1688) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00g\00")
+ (data (i32.const 1712) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00h\00")
+ (data (i32.const 1736) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00i\00")
+ (data (i32.const 1760) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00j\00")
+ (data (i32.const 1784) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00k\00")
+ (data (i32.const 1808) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00l\00")
+ (data (i32.const 1832) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00m\00")
+ (data (i32.const 1856) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00n\00")
+ (data (i32.const 1880) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00o\00")
+ (data (i32.const 1904) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00p\00")
+ (data (i32.const 1928) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00q\00")
+ (data (i32.const 1952) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00r\00")
+ (data (i32.const 1976) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00s\00")
+ (data (i32.const 2000) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00t\00")
+ (data (i32.const 2024) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00u\00")
+ (data (i32.const 2048) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00v\00")
+ (data (i32.const 2072) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00w\00")
+ (data (i32.const 2096) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00x\00")
+ (data (i32.const 2120) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00y\00")
+ (data (i32.const 2144) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00z\00")
+ (data (i32.const 2168) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00{\00")
+ (data (i32.const 2192) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00|\00")
+ (data (i32.const 2216) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00}\00")
+ (data (i32.const 2240) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00~\00")
+ (data (i32.const 2264) "|\01\00\00\01\00\00\00\00\00\00\00|\01\00\00\18\00\00\000\00\00\00H\00\00\00`\00\00\00x\00\00\00\90\00\00\00\a8\00\00\00\c0\00\00\00\d8\00\00\00\f0\00\00\00\08\01\00\00 \01\00\008\01\00\00P\01\00\00h\01\00\00\80\01\00\00\98\01\00\00\b0\01\00\00\c8\01\00\00\e0\01\00\00\f8\01\00\00\10\02\00\00(\02\00\00@\02\00\00X\02\00\00p\02\00\00\88\02\00\00\a0\02\00\00\b8\02\00\00\d0\02\00\00\e8\02\00\00\00\03\00\00\18\03\00\000\03\00\00H\03\00\00`\03\00\00x\03\00\00\90\03\00\00\a8\03\00\00\c0\03\00\00\d8\03\00\00\f0\03\00\00\08\04\00\00 \04\00\008\04\00\00P\04\00\00h\04\00\00\80\04\00\00\98\04\00\00\b0\04\00\00\c8\04\00\00\c8\04\00\00\e0\04\00\00\f8\04\00\00\10\05\00\00(\05\00\00@\05\00\00X\05\00\00p\05\00\00\88\05\00\00\a0\05\00\00\b8\05\00\00\d0\05\00\00\e8\05\00\00\00\06\00\00\18\06\00\000\06\00\00H\06\00\00`\06\00\00x\06\00\00\90\06\00\00\a8\06\00\00\c0\06\00\00\d8\06\00\00\f0\06\00\00\08\07\00\00 \07\00\008\07\00\00P\07\00\00h\07\00\00\80\07\00\00\98\07\00\00\b0\07\00\00\c8\07\00\00\e0\07\00\00\f8\07\00\00\10\08\00\00(\08\00\00@\08\00\00X\08\00\00p\08\00\00\88\08\00\00\a0\08\00\00\b8\08\00\00\d0\08\00\00")
+ (data (i32.const 2664) "\10\00\00\00\01\00\00\00\08\00\00\00\10\00\00\00\e8\08\00\00\e8\08\00\00|\01\00\00_\00\00\00")
+ (data (i32.const 2696) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00p\00r\00i\00n\00t\00A\00c\00t\00i\00o\00n\00N\00a\00m\00e\00")
+ (data (i32.const 2744) "\10\00\00\00\01\00\00\00\01\00\00\00\10\00\00\00p\00r\00i\00n\00t\00S\00t\00r\00")
+ (data (i32.const 2776) "\00\00\00\00\01\00\00\00\01\00\00\00\00\00\00\00")
+ (data (i32.const 2792) "\10\00\00\00\01\00\00\00\01\00\00\00\10\00\00\00p\00r\00i\00n\00t\00I\00n\00t\00")
+ (data (i32.const 2824) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00p\00r\00i\00n\00t\00A\00d\00d\00r\00")
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
- (global $lib/constant/SHA256_LEN i32 (i32.const 32))
- (global $lib/constant/SHA512_LEN i32 (i32.const 64))
- (global $lib/constant/RIPEMD160_LEN i32 (i32.const 20))
- (global $lib/constant/ADDRESS_LEN i32 (i32.const 20))
- (global $lib/constant/SIGNATURE_LEN i32 (i32.const 64))
- (global $lib/constant/PUBLIC_KEY_LEN i32 (i32.const 32))
- (global $src/asset/UNIT i32 (i32.const 0))
- (global $src/asset/KUNIT i32 (i32.const 1))
- (global $src/asset/MUNIT i32 (i32.const 2))
- (global $src/asset/DOM i32 (i32.const 3))
+ (global $../../lib/constant/SHA256_LEN i32 (i32.const 32))
+ (global $../../lib/constant/SHA512_LEN i32 (i32.const 64))
+ (global $../../lib/constant/RIPEMD160_LEN i32 (i32.const 20))
+ (global $../../lib/constant/ADDRESS_LEN i32 (i32.const 20))
+ (global $../../lib/constant/SIGNATURE_LEN i32 (i32.const 64))
+ (global $../../lib/constant/PUBLIC_KEY_LEN i32 (i32.const 32))
+ (global $../../src/asset/UNIT i32 (i32.const 0))
+ (global $../../src/asset/KUNIT i32 (i32.const 1))
+ (global $../../src/asset/MUNIT i32 (i32.const 2))
+ (global $../../src/asset/DOM i32 (i32.const 3))
  (global $~lib/rt/stub/startOffset (mut i32) (i32.const 0))
  (global $~lib/rt/stub/offset (mut i32) (i32.const 0))
  (global $~lib/ASC_SHRINK_LEVEL i32 (i32.const 0))
- (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2784))
+ (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2680))
  (global $~lib/datastream/HEADER_SIZE i32 (i32.const 0))
- (global $~lib/heap/__heap_base i32 (i32.const 3012))
+ (global $~lib/heap/__heap_base i32 (i32.const 2860))
  (export "memory" (memory $0))
- (export "apply" (func $example/printTest/index/apply))
+ (export "apply" (func $index/apply))
  (start $start)
- (func $~lib/rt/stub/__alloc (; 10 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/stub/__alloc (; 9 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -240,7 +235,7 @@
   i32.store offset=12
   local.get $2
  )
- (func $~lib/memory/memory.fill (; 11 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/memory/memory.fill (; 10 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -504,13 +499,13 @@
    end
   end
  )
- (func $~lib/rt/stub/__retain (; 12 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/rt/stub/__retain (; 11 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
  )
- (func $~lib/rt/stub/__release (; 13 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/stub/__release (; 12 ;) (type $FUNCSIG$vi) (param $0 i32)
   nop
  )
- (func $~lib/arraybuffer/ArrayBufferView#constructor (; 14 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBufferView#constructor (; 13 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -520,11 +515,6 @@
   i32.shr_u
   i32.gt_u
   if
-   i32.const 24
-   i32.const 72
-   i32.const 14
-   i32.const 56
-   call $~lib/builtins/abort
    unreachable
   end
   local.get $1
@@ -581,7 +571,7 @@
   i32.store offset=8
   local.get $0
  )
- (func $~lib/typedarray/Uint8Array#constructor (; 15 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#constructor (; 14 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   if (result i32)
    local.get $0
@@ -597,7 +587,7 @@
   local.set $0
   local.get $0
  )
- (func $~lib/bytes/Bytes#constructor (; 16 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/bytes/Bytes#constructor (; 15 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -613,20 +603,20 @@
   local.set $0
   local.get $0
  )
- (func $~lib/typedarray/Uint8Array#get:buffer (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#get:buffer (; 16 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   call $~lib/rt/stub/__retain
  )
- (func $~lib/arraybuffer/ArrayBufferView#get:byteLength (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBufferView#get:byteLength (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load offset=8
  )
- (func $~lib/typedarray/Uint8Array#get:length (; 19 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#get:length (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/arraybuffer/ArrayBufferView#get:byteLength
  )
- (func $~lib/typedarray/Uint8Array#subarray (; 20 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/typedarray/Uint8Array#subarray (; 19 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -747,7 +737,7 @@
   call $~lib/rt/stub/__release
   local.get $9
  )
- (func $src/address/Address#constructor (; 21 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $../../src/address/Address#constructor (; 20 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -804,13 +794,13 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $~lib/arraybuffer/ArrayBuffer#get:byteLength (; 22 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBuffer#get:byteLength (; 21 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.const 16
   i32.sub
   i32.load offset=12
  )
- (func $~lib/util/memory/memcpy (; 23 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/util/memory/memcpy (; 22 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -1838,7 +1828,7 @@
    i32.store8
   end
  )
- (func $~lib/memory/memory.copy (; 24 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/memory/memory.copy (; 23 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2063,7 +2053,7 @@
    end
   end
  )
- (func $~lib/rt/stub/__realloc (; 25 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/stub/__realloc (; 24 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2096,7 +2086,7 @@
   end
   local.get $0
  )
- (func $~lib/string/String.UTF8.decodeUnsafe (; 26 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/string/String.UTF8.decodeUnsafe (; 25 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2109,18 +2099,6 @@
   local.get $1
   i32.add
   local.set $4
-  local.get $4
-  local.get $3
-  i32.ge_u
-  i32.eqz
-  if
-   i32.const 0
-   i32.const 2816
-   i32.const 610
-   i32.const 6
-   call $~lib/builtins/abort
-   unreachable
-  end
   local.get $1
   i32.const 1
   i32.shl
@@ -2325,7 +2303,7 @@
   call $~lib/rt/stub/__realloc
   call $~lib/rt/stub/__retain
  )
- (func $~lib/string/String.UTF8.decode (; 27 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.decode (; 26 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   call $~lib/rt/stub/__retain
@@ -2340,7 +2318,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $~lib/bytes/Bytes#toString (; 28 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes#toString (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2359,14 +2337,14 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/action/Action.getActionName (; 29 ;) (type $FUNCSIG$i) (result i32)
+ (func $../../src/action/Action.getActionName (; 28 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   i32.const 0
   i32.const 0
-  call $internal/action.d/getActionName
+  call $../../internal/action.d/getActionName
   local.set $0
   i32.const 0
   local.get $0
@@ -2376,7 +2354,7 @@
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $2
   local.get $0
-  call $internal/action.d/getActionName
+  call $../../internal/action.d/getActionName
   drop
   local.get $1
   call $~lib/bytes/Bytes#toString
@@ -2387,7 +2365,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/contract/Contract#constructor (; 30 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $../../src/contract/Contract#constructor (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2403,7 +2381,7 @@
   local.get $1
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $2
-  call $internal/account.d/getSelf
+  call $../../internal/account.d/getSelf
   local.get $0
   i32.eqz
   if
@@ -2429,7 +2407,7 @@
   local.tee $3
   i32.const 0
   local.get $1
-  call $src/address/Address#constructor
+  call $../../src/address/Address#constructor
   local.set $4
   local.get $3
   i32.load offset=8
@@ -2443,12 +2421,12 @@
   local.get $4
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $3
-  call $internal/account.d/getSender
+  call $../../internal/account.d/getSender
   local.get $0
   local.tee $5
   i32.const 0
   local.get $4
-  call $src/address/Address#constructor
+  call $../../src/address/Address#constructor
   local.set $6
   local.get $5
   i32.load
@@ -2462,12 +2440,12 @@
   local.get $6
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $5
-  call $internal/account.d/getReciver
+  call $../../internal/account.d/getReciver
   local.get $0
   local.tee $7
   i32.const 0
   local.get $6
-  call $src/address/Address#constructor
+  call $../../src/address/Address#constructor
   local.set $8
   local.get $7
   i32.load offset=4
@@ -2476,7 +2454,7 @@
   i32.store offset=4
   local.get $0
   local.tee $8
-  call $src/action/Action.getActionName
+  call $../../src/action/Action.getActionName
   local.set $7
   local.get $8
   i32.load offset=12
@@ -2497,7 +2475,7 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $example/printTest/index/printTest#constructor (; 31 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $index/printTest#constructor (; 30 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -2508,11 +2486,11 @@
    local.set $0
   end
   local.get $0
-  call $src/contract/Contract#constructor
+  call $../../src/contract/Contract#constructor
   local.set $0
   local.get $0
  )
- (func $~lib/datastream/DataStream#constructor (; 32 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/datastream/DataStream#constructor (; 31 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -2542,7 +2520,7 @@
   i32.store offset=8
   local.get $0
  )
- (func $lib/helper/CreateDataStream (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $../../lib/helper/CreateDataStream (; 32 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2563,28 +2541,28 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/action/Action.getActionData (; 34 ;) (type $FUNCSIG$i) (result i32)
+ (func $../../src/action/Action.getActionData (; 33 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 0
   i32.const 0
-  call $internal/action.d/getActionData
+  call $../../internal/action.d/getActionData
   local.set $0
   local.get $0
-  call $lib/helper/CreateDataStream
+  call $../../lib/helper/CreateDataStream
   local.set $1
   local.get $1
   i32.load
   local.get $1
   i32.load offset=4
-  call $internal/action.d/getActionData
+  call $../../internal/action.d/getActionData
   drop
   local.get $1
  )
- (func $src/contract/Contract#getDataStream (; 35 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  call $src/action/Action.getActionData
+ (func $../../src/contract/Contract#getDataStream (; 34 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  call $../../src/action/Action.getActionData
  )
- (func $~lib/string/String#get:length (; 36 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/string/String#get:length (; 35 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.const 16
   i32.sub
@@ -2592,7 +2570,7 @@
   i32.const 1
   i32.shr_u
  )
- (func $~lib/util/string/compareImpl (; 37 ;) (type $FUNCSIG$iiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (result i32)
+ (func $~lib/util/string/compareImpl (; 36 ;) (type $FUNCSIG$iiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (result i32)
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
@@ -2657,7 +2635,7 @@
   call $~lib/rt/stub/__release
   local.get $8
  )
- (func $~lib/string/String.__eq (; 38 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__eq (; 37 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $0
@@ -2730,7 +2708,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $src/contract/Contract#isAction (; 39 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $../../src/contract/Contract#isAction (; 38 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -2744,7 +2722,50 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $~lib/string/String.UTF8.byteLength (; 40 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $index/Person#constructor (; 39 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.eqz
+  if
+   i32.const 8
+   i32.const 10
+   call $~lib/rt/stub/__alloc
+   call $~lib/rt/stub/__retain
+   local.set $0
+  end
+  local.get $0
+  i64.const 0
+  i64.store
+  local.get $0
+ )
+ (func $~lib/datastream/DataStream#read<u64> (; 40 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
+  (local $1 i64)
+  local.get $0
+  i32.load
+  local.get $0
+  i32.load offset=8
+  i32.add
+  i64.load
+  local.set $1
+  local.get $0
+  local.get $0
+  i32.load offset=8
+  i32.const 8
+  i32.add
+  i32.store offset=8
+  local.get $1
+ )
+ (func $index/Person#deserialize (; 41 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $1
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $0
+  local.get $1
+  call $~lib/datastream/DataStream#read<u64>
+  i64.store
+  local.get $1
+  call $~lib/rt/stub/__release
+ )
+ (func $~lib/string/String.UTF8.byteLength (; 42 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2867,7 +2888,7 @@
   call $~lib/rt/stub/__release
   local.get $5
  )
- (func $~lib/string/String.UTF8.encode (; 41 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.encode (; 43 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -3075,18 +3096,6 @@
   end
   local.get $1
   if
-   local.get $2
-   local.get $3
-   i32.le_u
-   i32.eqz
-   if
-    i32.const 0
-    i32.const 2816
-    i32.const 592
-    i32.const 8
-    call $~lib/builtins/abort
-    unreachable
-   end
    local.get $4
    local.get $5
    local.get $4
@@ -3099,18 +3108,7 @@
    i32.const 0
    i32.store8
   else   
-   local.get $2
-   local.get $3
-   i32.eq
-   i32.eqz
-   if
-    i32.const 0
-    i32.const 2816
-    i32.const 596
-    i32.const 8
-    call $~lib/builtins/abort
-    unreachable
-   end
+   nop
   end
   local.get $4
   call $~lib/rt/stub/__retain
@@ -3119,7 +3117,7 @@
   call $~lib/rt/stub/__release
   local.get $6
  )
- (func $~lib/bytes/Bytes.fromString (; 42 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes.fromString (; 44 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3153,7 +3151,7 @@
   call $~lib/rt/stub/__release
   local.get $4
  )
- (func $lib/codec/StringToUsize (; 43 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $../../lib/codec/StringToUsize (; 45 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3174,24 +3172,29 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/print/Prints (; 44 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $../../src/print/Prints (; 46 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/rt/stub/__retain
   drop
   local.get $0
-  call $lib/codec/StringToUsize
+  call $../../lib/codec/StringToUsize
   local.get $0
   call $~lib/string/String#get:length
-  call $internal/print.d/prints
+  call $../../internal/print.d/prints
   local.get $0
   call $~lib/rt/stub/__release
  )
- (func $example/printTest/index/printTest#printActionName (; 45 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $index/printTest#printActionName (; 47 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $1
+  call $~lib/rt/stub/__retain
+  drop
   local.get $0
   i32.load offset=12
-  call $src/print/Prints
+  call $../../src/print/Prints
+  local.get $1
+  call $~lib/rt/stub/__release
  )
- (func $~lib/datastream/DataStream#read<u8> (; 46 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/datastream/DataStream#read<u8> (; 48 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.load
@@ -3208,7 +3211,7 @@
   i32.store offset=8
   local.get $1
  )
- (func $~lib/datastream/DataStream#readVarint32 (; 47 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/datastream/DataStream#readVarint32 (; 49 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3243,7 +3246,7 @@
   end
   local.get $1
  )
- (func $~lib/datastream/DataStream#readString (; 48 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/datastream/DataStream#readString (; 50 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3256,7 +3259,7 @@
   i32.const 0
   i32.eq
   if
-   i32.const 2944
+   i32.const 2792
    call $~lib/rt/stub/__retain
    return
   end
@@ -3295,16 +3298,16 @@
   call $~lib/rt/stub/__release
   local.get $5
  )
- (func $example/printTest/index/printTest#printStr (; 49 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $index/printTest#printStr (; 51 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
   local.get $1
-  call $src/print/Prints
+  call $../../src/print/Prints
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $~lib/datastream/DataStream#read<i64> (; 50 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
+ (func $~lib/datastream/DataStream#read<i64> (; 52 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
   (local $1 i64)
   local.get $0
   i32.load
@@ -3321,43 +3324,26 @@
   i32.store offset=8
   local.get $1
  )
- (func $~lib/datastream/DataStream#read<u64> (; 51 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
-  (local $1 i64)
+ (func $../../src/print/Printi (; 53 ;) (type $FUNCSIG$vj) (param $0 i64)
   local.get $0
-  i32.load
+  call $../../internal/print.d/printi
+ )
+ (func $../../src/print/Printui (; 54 ;) (type $FUNCSIG$vj) (param $0 i64)
   local.get $0
-  i32.load offset=8
-  i32.add
-  i64.load
-  local.set $1
-  local.get $0
-  local.get $0
-  i32.load offset=8
-  i32.const 8
-  i32.add
-  i32.store offset=8
+  call $../../internal/print.d/printui
+ )
+ (func $index/printTest#printInt (; 55 ;) (type $FUNCSIG$vijj) (param $0 i32) (param $1 i64) (param $2 i64)
   local.get $1
- )
- (func $src/print/Printi (; 52 ;) (type $FUNCSIG$vj) (param $0 i64)
-  local.get $0
-  call $internal/print.d/printi
- )
- (func $src/print/Printui (; 53 ;) (type $FUNCSIG$vj) (param $0 i64)
-  local.get $0
-  call $internal/print.d/printui
- )
- (func $example/printTest/index/printTest#printInt (; 54 ;) (type $FUNCSIG$vijj) (param $0 i32) (param $1 i64) (param $2 i64)
-  local.get $1
-  call $src/print/Printi
+  call $../../src/print/Printi
   local.get $2
-  call $src/print/Printui
+  call $../../src/print/Printui
  )
- (func $src/address/Address#get:bytes (; 55 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $../../src/address/Address#get:bytes (; 56 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   call $~lib/rt/stub/__retain
  )
- (func $src/print/PrintHex (; 56 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $../../src/print/PrintHex (; 57 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   call $~lib/rt/stub/__retain
@@ -3367,31 +3353,31 @@
   local.tee $1
   local.get $0
   call $~lib/typedarray/Uint8Array#get:length
-  call $internal/print.d/printHex
+  call $../../internal/print.d/printHex
   local.get $1
   call $~lib/rt/stub/__release
   local.get $0
   call $~lib/rt/stub/__release
  )
- (func $example/printTest/index/printTest#printAddr (; 57 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $index/printTest#printAddr (; 58 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   local.get $0
   i32.load offset=8
-  call $src/address/Address#get:bytes
+  call $../../src/address/Address#get:bytes
   local.tee $1
-  call $src/print/PrintHex
+  call $../../src/print/PrintHex
   local.get $0
   i32.load offset=4
-  call $src/address/Address#get:bytes
+  call $../../src/address/Address#get:bytes
   local.tee $2
-  call $src/print/PrintHex
+  call $../../src/print/PrintHex
   local.get $0
   i32.load
-  call $src/address/Address#get:bytes
+  call $../../src/address/Address#get:bytes
   local.tee $3
-  call $src/print/PrintHex
+  call $../../src/print/PrintHex
   local.get $1
   call $~lib/rt/stub/__release
   local.get $2
@@ -3399,41 +3385,50 @@
   local.get $3
   call $~lib/rt/stub/__release
  )
- (func $example/printTest/index/apply (; 58 ;) (type $FUNCSIG$v)
+ (func $index/apply (; 59 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i64)
   (local $4 i64)
   i32.const 0
-  call $example/printTest/index/printTest#constructor
+  call $index/printTest#constructor
   local.set $0
   local.get $0
-  call $src/contract/Contract#getDataStream
+  call $../../src/contract/Contract#getDataStream
   local.set $1
   local.get $0
-  i32.const 2864
-  call $src/contract/Contract#isAction
+  i32.const 2712
+  call $../../src/contract/Contract#isAction
   if
+   i32.const 0
+   call $index/Person#constructor
+   local.set $2
+   local.get $2
+   local.get $1
+   call $index/Person#deserialize
    local.get $0
-   call $example/printTest/index/printTest#printActionName
+   local.get $2
+   call $index/printTest#printActionName
+   local.get $2
+   call $~lib/rt/stub/__release
   end
   local.get $0
-  i32.const 2912
-  call $src/contract/Contract#isAction
+  i32.const 2760
+  call $../../src/contract/Contract#isAction
   if
    local.get $1
    call $~lib/datastream/DataStream#readString
    local.set $2
    local.get $0
    local.get $2
-   call $example/printTest/index/printTest#printStr
+   call $index/printTest#printStr
    local.get $2
    call $~lib/rt/stub/__release
   end
   local.get $0
-  i32.const 2960
-  call $src/contract/Contract#isAction
+  i32.const 2808
+  call $../../src/contract/Contract#isAction
   if
    local.get $1
    call $~lib/datastream/DataStream#read<i64>
@@ -3444,21 +3439,21 @@
    local.get $0
    local.get $3
    local.get $4
-   call $example/printTest/index/printTest#printInt
+   call $index/printTest#printInt
   end
   local.get $0
-  i32.const 2992
-  call $src/contract/Contract#isAction
+  i32.const 2840
+  call $../../src/contract/Contract#isAction
   if
    local.get $0
-   call $example/printTest/index/printTest#printAddr
+   call $index/printTest#printAddr
   end
   local.get $0
   call $~lib/rt/stub/__release
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $start (; 59 ;) (type $FUNCSIG$v)
+ (func $start (; 60 ;) (type $FUNCSIG$v)
   global.get $~lib/heap/__heap_base
   i32.const 15
   i32.add
@@ -3470,6 +3465,6 @@
   global.get $~lib/rt/stub/startOffset
   global.set $~lib/rt/stub/offset
  )
- (func $null (; 60 ;) (type $FUNCSIG$v)
+ (func $null (; 61 ;) (type $FUNCSIG$v)
  )
 )

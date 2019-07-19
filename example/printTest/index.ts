@@ -3,10 +3,27 @@ import { Prints } from "../../index";
 import { Printi, Printui } from "../../index";
 import { PrintHex } from "../../index";
 
+@database("aaa")
+class Person{
+    age: u64 = 0;
+    
+    serialize(ds: DataStream) :void{
+        ds.write<u64>(this.age);
+    }
+
+    deserialize(ds:DataStream):void {
+        this.age = ds.read<u64>();
+    }
+
+    key():string {
+        return "";
+    }
+
+}
 
 class printTest extends Contract{
     @action
-    printActionName(): void{
+    printActionName(a:Person): void{
         Prints(this.actionName);
     }
 
@@ -27,5 +44,4 @@ class printTest extends Contract{
         PrintHex(this.receiver.bytes);
         PrintHex(this.sender.bytes);
     }
-
 }

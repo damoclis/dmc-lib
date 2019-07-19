@@ -2,17 +2,32 @@
   "version": "Damoclis VM:1.0",
   "types": [
     {
-      "new_type_name": "i64",
-      "type": "int64"
-    },
-    {
       "new_type_name": "u64",
       "type": "uint64"
+    },
+    {
+      "new_type_name": "i64",
+      "type": "int64"
     }
   ],
   "structs": [
     {
-      "fileds": [],
+      "fileds": [
+        {
+          "name": "age",
+          "type": "u64"
+        }
+      ],
+      "name": "Person",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "a",
+          "type": "Person"
+        }
+      ],
       "name": "printActionName",
       "base": ""
     },
@@ -64,5 +79,17 @@
       "type": "printAddr"
     }
   ],
-  "tables": []
+  "tables": [
+    {
+      "index_type": "i64",
+      "keys_names": [
+        "currency"
+      ],
+      "keys_types": [
+        "uint64"
+      ],
+      "name": "aaa",
+      "type": "Person"
+    }
+  ]
 }
