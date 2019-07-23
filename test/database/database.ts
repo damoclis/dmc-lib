@@ -1,6 +1,7 @@
 import { Contract } from "../../src/contract";
 import { Database } from "../../src/database";
 import { dbUpdate } from "../../internal/database";
+import { Assert } from "../../src/system";
 
 @database("people")
 class Person implements Serializable {
@@ -57,15 +58,15 @@ class DatabaseTest extends Contract {
   testIterator(): void {
     const people = [
       {
-        name: "lowesyang",
+        name: "1",
         age: 22
       },
       {
-        name: "qiangyuzhou",
+        name: "2",
         age: 21
       },
       {
-        name: "dingtianyu",
+        name: "3",
         age: 24
       }
     ]
@@ -73,6 +74,16 @@ class DatabaseTest extends Contract {
     for (let i = 0; i < people.length; i++) {
       const p = people[i]
       this.create(p.name, p.age);
+    }
+
+    let itr = this.db.iterator();
+    let i = 0;
+    while (!itr.end()) {
+      const p = new Person()
+      itr.get(p);
+      Assert(people[i].name == p.name, "name mismatch");
+      Assert(people[i].age == p.age, "age mismatch");
+      itr.next();
     }
   }
 }

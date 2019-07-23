@@ -10,6 +10,10 @@ export class Contract {
     contract: Address;
     actionName: string;
 
+    get self(): Address {
+        return this.receiver;
+    }
+
     constructor() {
         let _contract = new Bytes(20);
         getSelf(changetype<usize>(_contract.buffer));
