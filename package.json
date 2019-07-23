@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "printTestBuild":"node_modules/dmcscript/bin/asc ./example/printTest/index.ts --dispatch -t ./example/printTest/outputFile.wat --abiFile ./example/printTest/outputFile.abi -b ./example/printTest/outputFile.wasm --runtime none ",
-    "dmcbuild":"node_modules/dmcscript/bin/asc ./example/helloworld/helloworld.ts --dispatch -t outputFile.wat --abiFile outputFile.abi -b outputFile.wasm --runtime none "
+    "printTestBuild": "node_modules/dmcscript/bin/asc ./example/printTest/index.ts --dispatch -t ./example/printTest/outputFile.wat --abiFile ./example/printTest/outputFile.abi -b ./example/printTest/outputFile.wasm --runtime none ",
+    "dmcbuild": "node_modules/dmcscript/bin/asc ./example/helloworld/helloworld.ts --dispatch -t outputFile.wat --abiFile outputFile.abi -b outputFile.wasm --runtime none "
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/damoclis/dmc-lib#readme",
   "dependencies": {
-    "dmcscript": "^0.1.28"
+    "dmcscript": "^0.1.36"
   }
 }

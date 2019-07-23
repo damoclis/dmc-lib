@@ -1,5 +1,4 @@
-import { Contract, Prints } from "../../index";
-import { Asset } from "../../index";
+import { Contract} from "../../index";
 
 
 // 声明数据表person，定义每列数据的字段。底层为k-v型存储。
@@ -22,9 +21,14 @@ class HelloWorld extends Contract {
 
     // 定义合约方法`hi`
     @action
-    hi(msg: string): void {
+    // hi(msg: string): void {
+    //     // 打印日志
+    //     Prints(msg);
+    // }
+
+    hi(): void {
         // 打印日志
-        Prints(msg);
+        let a = 100;
     }
 
     //   // 定义合约方法`add`
