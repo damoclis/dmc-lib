@@ -1,10 +1,10 @@
 import { Builtin } from "./action";
 import { SafeMath } from "../lib/safeMath";
 
-export const UNIT = 0x0
-export const KUNIT = 0x1
-export const MUNIT = 0X2
-export const DOM = 0x3
+export const UNIT:u8 = 0x0
+export const KUNIT:u8 = 0x1
+export const MUNIT:u8 = 0X2
+export const DOM :u8= 0x3
 
 export class Asset implements Serializable {
 
@@ -16,7 +16,7 @@ export class Asset implements Serializable {
         this.symbol = sy;
     }
 
-    bytes(): Bytes {
+    get bytes(): Bytes {
         const raw = this.raw();
         return Builtin.fromU64(this.amount).bytes();
     }
