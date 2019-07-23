@@ -1,0 +1,18 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fileds": [],
+      "name": "transferTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "transferTest",
+      "type": "transferTest"
+    }
+  ],
+  "tables": []
+}
