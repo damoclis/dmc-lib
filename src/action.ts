@@ -1,8 +1,8 @@
 import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
-import { getActionName, getActionData, hasAuth, requireAuth, callAction, returnData, returnU64, getValue } from "../internal/action.d";
-import { EncodeSLEB128, EncodeULEB128, StringToUsize } from "../lib/codec";
+import { getActionName, getActionData, hasAuth, requireAuth, callAction, getValue } from "../internal/action.d";
+import { EncodeSLEB128, EncodeULEB128} from "../lib/codec";
 import { CreateDataStream, } from "../lib/helper";
 import { Asset, UNIT } from "./asset";
 
@@ -38,7 +38,7 @@ export class Builtin implements Serializable {
     let bytes = new Bytes(8);
     let i = 0;
     while (i < bytes.length) {
-      let c: u8 = (val >> (i * 8)) & 0xff;
+      let c: u8 = <u8>((val >> (i * 8)) & 0xff);
       bytes[i] = c;
     }
     return new Builtin(bytes);
@@ -254,24 +254,3 @@ export function RequireAuth(addr: Address): void {
  * 
  * @param bytes - bytes array
  */
-export function ReturnBytes(bytes: Bytes): void {
-  returnData(changetype<usize>(bytes.buffer), bytes.length);
-}
-
-/**
- * Set string as return data of action.
- * 
- * @param str - a string
- */
-export function ReturnString(str: string): void {
-  returnData(StringToUsize(str), str.length);
-}
-
-/**
- * Set uint64 value as return data of action.
- * 
- * @param v - u64 value
- */
-export function ReturnU64(v: u64): void {
-  returnU64(v);
-}

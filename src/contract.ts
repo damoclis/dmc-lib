@@ -1,8 +1,8 @@
 import { Address } from "./address";
-import { getSelf, getSender, getReciver } from "../internal/account.d";
-import { Account } from "./account";
+import { getSelf, getSender, getReceiver } from "../internal/account.d";
 import { Action } from "./action";
-import { Transaction } from "./transaction";
+import { returnData, returnU64 } from "../internal/action.d";
+import { StringToUsize } from "../lib/codec";
 
 export class Contract {
     sender: Address;
@@ -18,7 +18,7 @@ export class Contract {
         getSender(changetype<usize>(_sender.buffer));
         this.sender = new Address(_sender);
         let _receiver = new Bytes(20);
-        getReciver(changetype<usize>(_receiver.buffer));
+        getReceiver(changetype<usize>(_receiver.buffer));
         this.receiver = new Address(_receiver);
         this.actionName = Action.getActionName();
     }
@@ -34,6 +34,28 @@ export class Contract {
     // static get txHash() {
     //     return Transaction.getTxHash();
     // }
+
+    ReturnBytes(bytes: Bytes): void {
+        returnData(changetype<usize>(bytes.buffer), bytes.length);
+    }
+
+    /**
+     * Set string as return data of action.
+     * 
+     * @param str - a string
+     */
+    ReturnString(str: string): void {
+        returnData(StringToUsize(str), str.length);
+    }
+
+    /**
+     * Set uint64 value as return data of action.
+     * 
+     * @param v - u64 value
+     */
+    ReturnU64(v: u64): void {
+        returnU64(v);
+    }
 
 
 }
