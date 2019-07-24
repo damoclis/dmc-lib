@@ -2,7 +2,7 @@ import { Address } from "./address";
 import { Assert } from "./system";
 import { RIPEMD160_LEN, SHA256_LEN, SHA512_LEN } from "../lib/constant";
 import { getActionName, getActionData, hasAuth, requireAuth, callAction, getValue } from "../internal/action.d";
-import { EncodeSLEB128, EncodeULEB128} from "../lib/codec";
+import { EncodeSLEB128, EncodeULEB128 } from "../lib/codec";
 import { CreateDataStream, } from "../lib/helper";
 import { Asset, UNIT } from "./asset";
 
@@ -246,11 +246,11 @@ export function HasAuth(addr: Address): bool {
  * @param addr - address of a certain account
  */
 export function RequireAuth(addr: Address): void {
-  return requireAuth(addr.buffer);
+  requireAuth(addr.buffer);
 }
 
 /**
  * Set bytes as return data of action.
- * 
+ *
  * @param bytes - bytes array
  */

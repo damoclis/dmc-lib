@@ -122,7 +122,7 @@
  (data (i32.const 2784) "\00\00\00\00\01\00\00\00\01\00\00\00\00\00\00\00")
  (data (i32.const 2800) "\08\00\00\00\01\00\00\00\01\00\00\00\08\00\00\00n\00u\00l\00l\00")
  (data (i32.const 2824) "\04\00\00\00\01\00\00\00\01\00\00\00\04\00\00\000\00x\00")
- (data (i32.const 2848) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00t\00r\00a\00n\00s\00f\00e\00r\00 \00f\00a\00i\00l\00e\00d\00")
+ (data (i32.const 2848) " \00\00\00\01\00\00\00\01\00\00\00 \00\00\00 \00t\00r\00a\00n\00s\00f\00e\00r\00 \00f\00a\00i\00l\00e\00d\00")
  (data (i32.const 2896) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00a\00s\00s\00e\00t\00 \00m\00i\00s\00m\00a\00t\00c\00h\00")
  (data (i32.const 2944) "6\00\00\00\01\00\00\00\01\00\00\006\00\00\00t\00r\00a\00n\00s\00f\00e\00r\00 \00s\00h\00o\00u\00l\00d\00 \00n\00o\00t\00 \00s\00u\00c\00c\00e\00s\00s\00")
  (table $0 1 funcref)
@@ -3120,14 +3120,11 @@
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $src/account/Account.getBalance (; 56 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/address/Address#getBalance (; 56 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  local.get $0
-  call $~lib/rt/stub/__retain
-  drop
   i32.const 0
   i64.const 0
   global.get $src/asset/DOM
@@ -3156,8 +3153,6 @@
   local.get $1
   local.set $4
   local.get $3
-  call $~lib/rt/stub/__release
-  local.get $0
   call $~lib/rt/stub/__release
   local.get $4
  )
@@ -3772,126 +3767,7 @@
   i32.add
   i32.load8_u
  )
- (func $~lib/bytes/Bytes#cloneBytes (; 68 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  local.get $0
-  call $~lib/rt/stub/__retain
-  local.set $1
-  i32.const 0
-  local.get $1
-  call $~lib/typedarray/Uint8Array#get:length
-  call $~lib/bytes/Bytes#constructor
-  local.set $2
-  block $break|0
-   i32.const 0
-   local.set $3
-   loop $loop|0
-    local.get $3
-    local.get $1
-    call $~lib/typedarray/Uint8Array#get:length
-    i32.lt_s
-    i32.eqz
-    br_if $break|0
-    local.get $2
-    local.get $3
-    local.get $1
-    local.get $3
-    call $~lib/typedarray/Uint8Array#__get
-    call $~lib/typedarray/Uint8Array#__set
-    local.get $3
-    i32.const 1
-    i32.add
-    local.set $3
-    br $loop|0
-   end
-   unreachable
-  end
-  local.get $2
-  local.set $3
-  local.get $1
-  call $~lib/rt/stub/__release
-  local.get $3
- )
- (func $~lib/typedarray/Uint8Array#reverse (; 69 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  local.get $0
-  call $~lib/rt/stub/__retain
-  local.set $1
-  local.get $1
-  i32.load offset=4
-  local.set $2
-  block $break|0
-   i32.const 0
-   local.set $3
-   local.get $1
-   call $~lib/typedarray/Uint8Array#get:length
-   i32.const 1
-   i32.sub
-   local.set $4
-   loop $loop|0
-    local.get $3
-    local.get $4
-    i32.lt_u
-    i32.eqz
-    br_if $break|0
-    local.get $2
-    local.get $3
-    i32.const 0
-    i32.shl
-    i32.add
-    local.set $5
-    local.get $2
-    local.get $4
-    i32.const 0
-    i32.shl
-    i32.add
-    local.set $6
-    local.get $5
-    i32.load8_u
-    local.set $7
-    local.get $5
-    local.get $6
-    i32.load8_u
-    i32.store8
-    local.get $6
-    local.get $7
-    i32.store8
-    local.get $3
-    i32.const 1
-    i32.add
-    local.set $3
-    local.get $4
-    i32.const 1
-    i32.sub
-    local.set $4
-    br $loop|0
-   end
-   unreachable
-  end
-  local.get $1
- )
- (func $~lib/bytes/Bytes#swapEndian (; 70 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  (local $2 i32)
-  local.get $0
-  call $~lib/bytes/Bytes#cloneBytes
-  local.set $1
-  local.get $1
-  call $~lib/typedarray/Uint8Array#reverse
-  local.set $2
-  local.get $1
-  call $~lib/rt/stub/__release
-  local.get $2
- )
- (func $~lib/array/Array<~lib/string/String>#__unchecked_get (; 71 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/array/Array<~lib/string/String>#__unchecked_get (; 68 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.load offset=4
   local.get $1
@@ -3901,7 +3777,7 @@
   i32.load
   call $~lib/rt/stub/__retain
  )
- (func $~lib/array/Array<~lib/string/String>#__get (; 72 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/array/Array<~lib/string/String>#__get (; 69 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   local.get $0
   i32.load offset=12
@@ -3922,7 +3798,7 @@
   local.get $1
   call $~lib/array/Array<~lib/string/String>#__unchecked_get
  )
- (func $~lib/string/String#concat (; 73 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String#concat (; 70 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -3998,7 +3874,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $~lib/string/String.__concat (; 74 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__concat (; 71 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   call $~lib/rt/stub/__retain
@@ -4021,7 +3897,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $~lib/bytes/Bytes#toHex (; 75 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes#toHex (; 72 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -4033,7 +3909,6 @@
   (local $9 i32)
   (local $10 i32)
   (local $11 i32)
-  (local $12 i32)
   local.get $0
   call $~lib/rt/stub/__retain
   local.set $1
@@ -4045,78 +3920,75 @@
   i32.const 2800
   call $~lib/rt/stub/__retain
   local.set $3
-  local.get $1
-  call $~lib/bytes/Bytes#swapEndian
-  local.set $4
   block $break|0
    i32.const 0
-   local.set $5
+   local.set $4
    loop $loop|0
-    local.get $5
     local.get $4
+    local.get $1
     call $~lib/typedarray/Uint8Array#get:length
     i32.lt_s
     i32.eqz
     br_if $break|0
+    local.get $1
     local.get $4
-    local.get $5
     call $~lib/typedarray/Uint8Array#__get
-    local.set $6
+    local.set $5
     local.get $3
     local.get $2
-    local.get $6
+    local.get $5
     i32.const 4
     i32.shr_u
     call $~lib/array/Array<~lib/string/String>#__get
-    local.tee $7
+    local.tee $6
     call $~lib/string/String.__concat
+    local.tee $7
     local.tee $8
-    local.tee $9
     local.get $3
-    local.tee $10
+    local.tee $9
     i32.ne
     if
-     local.get $9
+     local.get $8
      call $~lib/rt/stub/__retain
      drop
-     local.get $10
+     local.get $9
      call $~lib/rt/stub/__release
     end
-    local.get $9
+    local.get $8
     local.set $3
     local.get $3
     local.get $2
-    local.get $6
+    local.get $5
     i32.const 15
     i32.and
     call $~lib/array/Array<~lib/string/String>#__get
-    local.tee $9
+    local.tee $8
     call $~lib/string/String.__concat
+    local.tee $9
     local.tee $10
-    local.tee $11
     local.get $3
-    local.tee $12
+    local.tee $11
     i32.ne
     if
-     local.get $11
+     local.get $10
      call $~lib/rt/stub/__retain
      drop
-     local.get $12
+     local.get $11
      call $~lib/rt/stub/__release
     end
-    local.get $11
+    local.get $10
     local.set $3
-    local.get $5
+    local.get $4
     i32.const 1
     i32.add
-    local.set $5
+    local.set $4
+    local.get $6
+    call $~lib/rt/stub/__release
     local.get $7
     call $~lib/rt/stub/__release
     local.get $8
     call $~lib/rt/stub/__release
     local.get $9
-    call $~lib/rt/stub/__release
-    local.get $10
     call $~lib/rt/stub/__release
     br $loop|0
    end
@@ -4125,27 +3997,25 @@
   i32.const 2840
   local.get $3
   call $~lib/string/String.__concat
-  local.tee $10
+  local.tee $9
   call $~lib/rt/stub/__retain
-  local.set $9
+  local.set $8
   local.get $1
   call $~lib/rt/stub/__release
   local.get $2
   call $~lib/rt/stub/__release
   local.get $3
   call $~lib/rt/stub/__release
-  local.get $4
-  call $~lib/rt/stub/__release
-  local.get $10
-  call $~lib/rt/stub/__release
   local.get $9
+  call $~lib/rt/stub/__release
+  local.get $8
  )
- (func $src/address/Address#hex (; 76 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/address/Address#hex (; 73 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   call $~lib/bytes/Bytes#toHex
  )
- (func $~lib/string/String.UTF8.byteLength (; 77 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.byteLength (; 74 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -4268,7 +4138,7 @@
   call $~lib/rt/stub/__release
   local.get $5
  )
- (func $~lib/string/String.UTF8.encode (; 78 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.UTF8.encode (; 75 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -4497,7 +4367,7 @@
   call $~lib/rt/stub/__release
   local.get $6
  )
- (func $~lib/bytes/Bytes.fromString (; 79 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/bytes/Bytes.fromString (; 76 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -4531,7 +4401,7 @@
   call $~lib/rt/stub/__release
   local.get $4
  )
- (func $lib/codec/StringToUsize (; 80 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $lib/codec/StringToUsize (; 77 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -4552,7 +4422,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $src/system/Assert (; 81 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $src/system/Assert (; 78 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
@@ -4565,7 +4435,7 @@
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $src/asset/Asset#eq (; 82 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#eq (; 79 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -4589,7 +4459,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $test/account/account/accountTest#transferTest (; 83 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $test/account/account/accountTest#transferTest (; 80 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -4605,7 +4475,7 @@
   call $~lib/rt/stub/__retain
   drop
   local.get $1
-  call $src/account/Account.getBalance
+  call $src/address/Address#getBalance
   local.set $3
   local.get $3
   i32.load8_u offset=8
@@ -4633,7 +4503,7 @@
   call $src/asset/Asset#constructor
   local.set $8
   local.get $1
-  call $src/account/Account.getBalance
+  call $src/address/Address#getBalance
   local.set $9
   local.get $8
   local.get $9
@@ -4673,7 +4543,7 @@
   local.get $2
   call $~lib/rt/stub/__release
  )
- (func $test/account/account/apply (; 84 ;) (type $FUNCSIG$v)
+ (func $test/account/account/apply (; 81 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
@@ -4714,7 +4584,7 @@
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $start (; 85 ;) (type $FUNCSIG$v)
+ (func $start (; 82 ;) (type $FUNCSIG$v)
   global.get $~lib/heap/__heap_base
   i32.const 15
   i32.add
@@ -4726,6 +4596,6 @@
   global.get $~lib/rt/stub/startOffset
   global.set $~lib/rt/stub/offset
  )
- (func $null (; 86 ;) (type $FUNCSIG$v)
+ (func $null (; 83 ;) (type $FUNCSIG$v)
  )
 )

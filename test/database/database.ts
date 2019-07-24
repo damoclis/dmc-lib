@@ -1,6 +1,5 @@
 import { Contract } from "../../src/contract";
 import { Database } from "../../src/database";
-import { dbUpdate } from "../../internal/database";
 import { Assert } from "../../src/system";
 
 @database("people")
@@ -56,24 +55,15 @@ class DatabaseTest extends Contract {
 
   @action
   testIterator(): void {
-    const people = [
-      {
-        name: "1",
-        age: 22
-      },
-      {
-        name: "2",
-        age: 21
-      },
-      {
-        name: "3",
-        age: 24
-      }
-    ]
+    const people = new Map<string, u32>();
+    people.set("1", 22);
+    people.set("2", 18);
+    people.set("3", 24);
 
-    for (let i = 0; i < people.length; i++) {
-      const p = people[i]
-      this.create(p.name, p.age);
+    const keys = people.keys();
+    for (let i = 0; i < keys.length; i++) {
+      const age = people.get(keys[i]);
+      this.create(keys[i], age);
     }
 
     let itr = this.db.iterator();
@@ -81,9 +71,10 @@ class DatabaseTest extends Contract {
     while (!itr.end()) {
       const p = new Person()
       itr.get(p);
-      Assert(people[i].name == p.name, "name mismatch");
-      Assert(people[i].age == p.age, "age mismatch");
+      Assert(keys[i] == p.name, "name mismatch");
+      Assert(people.get(keys[i]) == p.age, "age mismatch");
       itr.next();
+      i++;
     }
   }
 }

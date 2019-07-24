@@ -1,15 +1,19 @@
 import { Builtin } from "./action";
 import { SafeMath } from "../lib/safeMath";
 
-export const UNIT:u8 = 0x0
-export const KUNIT:u8 = 0x1
-export const MUNIT:u8 = 0X2
-export const DOM :u8= 0x3
+export const UNIT: u8 = 0x0
+export const KUNIT: u8 = 0x1
+export const MUNIT: u8 = 0X2
+export const DOM: u8 = 0x3
 
 export class Asset implements Serializable {
 
     amount: u64;
     symbol: u8;
+
+    static get zero(): Asset {
+        return new Asset();
+    }
 
     constructor(amt: u64 = 0, sy: u8 = DOM) {
         this.amount = amt;
@@ -71,27 +75,27 @@ export class Asset implements Serializable {
     @operator("+")
     add(r: Asset): Asset {
         assert(r.symbol == this.symbol, "Asset with different symbols!");
-        this.amount = SafeMath.add(this.amount , r.amount);
+        this.amount = SafeMath.add(this.amount, r.amount);
         return this;
     }
-    
+
     @operator("-")
     sub(r: Asset): Asset {
         assert(r.symbol == this.symbol, "Asset with different symbols!");
         assert(r.amount <= this.symbol, "Asset amount not enough!");
-        this.amount = SafeMath.sub(this.amount , r.amount);
+        this.amount = SafeMath.sub(this.amount, r.amount);
         return this;
     }
 
     @operator("*")
     multi(r: u64): Asset {
-        this.amount = SafeMath.mul(this.amount , r);
+        this.amount = SafeMath.mul(this.amount, r);
         return this;
     }
-    
+
     @operator("/")
     divide(r: u64): Asset {
-        this.amount = SafeMath.div(this.amount , r);
+        this.amount = SafeMath.div(this.amount, r);
         return this;
     }
 

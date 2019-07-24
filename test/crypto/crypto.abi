@@ -1,0 +1,42 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fileds": [],
+      "name": "Bytes",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "data",
+          "type": "Bytes"
+        }
+      ],
+      "name": "hashTest",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "sign",
+          "type": "Bytes"
+        }
+      ],
+      "name": "recoverKeyTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "hashTest",
+      "type": "hashTest"
+    },
+    {
+      "name": "recoverKeyTest",
+      "type": "recoverKeyTest"
+    }
+  ],
+  "tables": []
+}
