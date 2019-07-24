@@ -1,9 +1,46 @@
 {
   "version": "Damoclis VM:1.0",
-  "types": [],
+  "types": [
+    {
+      "new_type_name": "Address",
+      "type": "address"
+    },
+    {
+      "new_type_name": "u32",
+      "type": "uint32"
+    }
+  ],
   "structs": [
     {
       "fileds": [],
+      "name": "Bytes",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "_value",
+          "type": "Bytes"
+        },
+        {
+          "name": "_len",
+          "type": "u32"
+        }
+      ],
+      "name": "Address",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "from",
+          "type": "Address"
+        },
+        {
+          "name": "to",
+          "type": "Address"
+        }
+      ],
       "name": "transferTest",
       "base": ""
     }
