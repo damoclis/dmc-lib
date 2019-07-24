@@ -2,19 +2,23 @@ export class Address implements Serializable {
 	_value: Bytes;
 	_len: u32 = 20;
 
-	static from(hex: string): Address {
-		return new Address(Bytes.fromHex(hex));
+	static fromHex(hex: string): Address {
+		const addr = new Address();
+		addr._value = Bytes.fromHex(hex);
+		return addr;
 	}
 
-	constructor(raw: Bytes) {
+	static fromBytes(raw: Bytes): Address {
 		if (raw.length > 20) {
 			raw = <Bytes>(<Uint8Array>raw.subarray(0, 20));
 		}
-		this._value = raw;
+		const addr = new Address();
+		addr._value = raw;
+		return addr;
 	}
 
 	hex(): string {
-		return this._value.toString();
+		return this._value.toHex();
 	}
 
 	@operator("==")

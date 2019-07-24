@@ -17,13 +17,13 @@ export class Contract {
     constructor() {
         let _contract = new Bytes(20);
         getSelf(changetype<usize>(_contract.buffer));
-        this.contract = new Address(_contract);
+        this.contract = Address.fromBytes(_contract);
         let _sender = new Bytes(20);
         getSender(changetype<usize>(_sender.buffer));
-        this.sender = new Address(_sender);
+        this.sender = Address.fromBytes(_sender);
         let _receiver = new Bytes(20);
         getReceiver(changetype<usize>(_receiver.buffer));
-        this.receiver = new Address(_receiver);
+        this.receiver = Address.fromBytes(_receiver);
         this.actionName = Action.getActionName();
     }
 
