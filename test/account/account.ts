@@ -1,6 +1,7 @@
 import { Contract, Asset, Address } from "../../index";
 import { Account } from "../../src/account";
 import { Assert } from "../../src/system";
+import { Address } from "../../src/address";
 
 class accountTest extends Contract {
     @action
