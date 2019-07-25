@@ -28,23 +28,23 @@ export class Crypto {
   }
 
   static assertSha256(origin: Bytes, hash: Bytes): void {
-    Assert(hash.length == SHA256_LEN, `invalid hash length: want ${SHA256_LEN}, got ${hash.length}`);
+    Assert(hash.length == SHA256_LEN, "invalid hash256 length");
     assertSha256(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
   static assertSha512(origin: Bytes, hash: Bytes): void {
-    Assert(hash.length == SHA512_LEN, `invalid hash length: want ${SHA512_LEN}, got ${hash.length}`);
+    Assert(hash.length == SHA512_LEN, "invalid hash512 length");
     assertSha512(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
-  static assertRipemd160(origin: Bytes, hash: Bytes):void {
-    Assert(hash.length == RIPEMD160_LEN, `invalid hash length: want ${RIPEMD160_LEN}, got ${hash.length}`);
+  static assertRipemd160(origin: Bytes, hash: Bytes): void {
+    Assert(hash.length == RIPEMD160_LEN, "invalid ripemd160 length");
     assertRipemd160(changetype<usize>(origin.buffer), origin.length, changetype<usize>(hash.buffer));
   }
 
-  static assertRecoverKey(sign: Bytes, pub: Bytes):void{
-    Assert(sign.length == SIGNATURE_LEN, `invalid signature length: want ${SIGNATURE_LEN}, got ${sign.length}`);
-    Assert(pub.length == PUBLIC_KEY_LEN, `invalid public key length: want ${PUBLIC_KEY_LEN}, got ${pub.length}`);
+  static assertRecoverKey(sign: Bytes, pub: Bytes): void {
+    Assert(sign.length == SIGNATURE_LEN, "invalid signature length");
+    Assert(pub.length == PUBLIC_KEY_LEN, "invalid public key length");
     assertRecoverKey(changetype<usize>(sign.buffer), sign.length, changetype<usize>(pub.buffer), pub.length);
   }
 }

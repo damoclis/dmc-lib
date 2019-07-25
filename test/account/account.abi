@@ -6,6 +6,10 @@
       "type": "address"
     },
     {
+      "new_type_name": "Bytes",
+      "type": "bytes"
+    },
+    {
       "new_type_name": "u32",
       "type": "uint32"
     }

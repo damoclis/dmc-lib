@@ -3240,13 +3240,10 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $src/account/Account.transfer (; 62 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $src/address/Address#transfer (; 62 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  local.get $0
-  call $~lib/rt/stub/__retain
-  drop
   local.get $1
   call $~lib/rt/stub/__retain
   drop
@@ -3272,8 +3269,6 @@
   call $internal/account.d/transfer
   local.set $5
   local.get $4
-  call $~lib/rt/stub/__release
-  local.get $0
   call $~lib/rt/stub/__release
   local.get $1
   call $~lib/rt/stub/__release
@@ -4483,7 +4478,7 @@
   local.get $1
   local.get $2
   local.get $3
-  call $src/account/Account.transfer
+  call $src/address/Address#transfer
   local.set $5
   local.get $5
   i32.const 0
@@ -4517,7 +4512,7 @@
   local.get $4
   call $src/asset/Asset#constructor
   local.tee $10
-  call $src/account/Account.transfer
+  call $src/address/Address#transfer
   local.set $5
   local.get $5
   i32.const 0

@@ -1,6 +1,11 @@
 {
   "version": "Damoclis VM:1.0",
-  "types": [],
+  "types": [
+    {
+      "new_type_name": "Bytes",
+      "type": "bytes"
+    }
+  ],
   "structs": [
     {
       "fileds": [],
