@@ -8,15 +8,14 @@ class accountTest extends Contract {
 
         //transfer test
         let oldBalance = from.getBalance();
-        let symbol = oldBalance.symbol;
         let result = from.transfer(to, oldBalance);
         Assert(result == true, from.hex() + " transfer failed");
-        let zeroAsset = new Asset(0, symbol);
+        let zeroAsset = new Asset(0);
         let newBalance = from.getBalance();
         Assert(zeroAsset == newBalance, "asset mismatch");
 
         //no enough moneycode
-        result = from.transfer(to, new Asset(1, symbol));
+        result = from.transfer(to, new Asset(1));
         Assert(result == false, "transfer should not success");
     }
 }

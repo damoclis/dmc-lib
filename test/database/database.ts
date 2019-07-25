@@ -4,6 +4,7 @@ import { Assert } from "../../src/system";
 
 @database("people")
 class Person implements Serializable {
+  @key
   name: string;
   age: u32;
 
