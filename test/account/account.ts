@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import { Contract, Asset, Address } from "../../index";
-import { Account } from "../../src/account";
-=======
 import { Contract, Asset } from "../../index";
->>>>>>> cd394b922521b980475f8a9d9f934f92f3ac1e28
 import { Assert } from "../../src/system";
 import { Address } from "../../src/address";
 

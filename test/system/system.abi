@@ -1,0 +1,45 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fields": [],
+      "name": "nowTest",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "genesisTimeTest",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "assertExitTestTrue",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "assertExitTestFalse",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "nowTest",
+      "type": "nowTest"
+    },
+    {
+      "name": "genesisTimeTest",
+      "type": "genesisTimeTest"
+    },
+    {
+      "name": "assertExitTestTrue",
+      "type": "assertExitTestTrue"
+    },
+    {
+      "name": "assertExitTestFalse",
+      "type": "assertExitTestFalse"
+    }
+  ],
+  "tables": []
+}
