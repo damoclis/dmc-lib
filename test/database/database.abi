@@ -8,7 +8,7 @@
   ],
   "structs": [
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -22,7 +22,7 @@
       "base": ""
     },
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -36,7 +36,7 @@
       "base": ""
     },
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -46,7 +46,7 @@
       "base": ""
     },
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -56,7 +56,7 @@
       "base": ""
     },
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -70,7 +70,7 @@
       "base": ""
     },
     {
-      "fileds": [
+      "fields": [
         {
           "name": "name",
           "type": "string"
@@ -80,7 +80,7 @@
       "base": ""
     },
     {
-      "fileds": [],
+      "fields": [],
       "name": "testIterator",
       "base": ""
     }
@@ -115,10 +115,10 @@
     {
       "index_type": "i64",
       "keys_names": [
-        "currency"
+        "name"
       ],
       "keys_types": [
-        "uint64"
+        "string"
       ],
       "name": "people",
       "type": "Person"

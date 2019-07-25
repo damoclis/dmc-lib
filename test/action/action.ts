@@ -1,6 +1,6 @@
 import { Contract } from "../../src/contract";
 import { Address } from "../../src/address";
-import { HasAuth, RequireAuth, Action, Builtin, BuiltinArray } from "../../src/action";
+import { HasAuth, RequireAuth, Action, Builtin } from "../../src/action";
 import { Asset } from "../../src/asset";
 import { Assert } from "../../src/system";
 
@@ -32,7 +32,7 @@ class ActionTest extends Contract {
   @action
   callInlineAddWithArr(target: Address): void {
     const action = new Action(target, Asset.zero, "addWithArray",
-      [Builtin.fromU64(1), [Builtin.fromU64(2), Builtin.fromU64(3), Builtin.fromU64(4)]])
+      [Builtin.fromU64(1), Builtin.fromArray([Builtin.fromU64(2), Builtin.fromU64(3), Builtin.fromU64(4)])]);
     action.send();
   }
 

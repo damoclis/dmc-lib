@@ -1,15 +1,14 @@
-class Simple {
-  val: u64
+import { Contract } from "../../src/contract";
+import { Prints } from "../../src/print";
 
-
-  constructor(v: u64) {
-    this.val = v;
+class SimpleTest extends Contract {
+  @action
+  hi(): void {
+    Prints("Hello world");
   }
 
-  add(a: u64, b: u64): u64 {
-    return a + b
+  @action
+  add(a: u64, b: u64[]): void {
+
   }
 }
-
-const s = new Simple(1);
-s.add(1, 2);

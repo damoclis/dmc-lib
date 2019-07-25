@@ -9,80 +9,68 @@ export const DOM: u8 = 0x3
 export class Asset implements Serializable {
 
     amount: u64;
-    symbol: u8;
 
     static get zero(): Asset {
         return new Asset();
     }
 
-    constructor(amt: u64 = 0, sy: u8 = DOM) {
+    constructor(amt: u64 = 0, sy: u8 = UNIT) {
+        if (sy == KUNIT) {
+            amt *= 1000
+        } else if (sy == MUNIT) {
+            amt *= 1000 * 1000
+        } else if (sy == DOM) {
+            amt *= 1000 * 1000 * 100
+        }
         this.amount = amt;
-        this.symbol = sy;
     }
 
     get bytes(): Bytes {
-        const raw = this.raw();
-        return Builtin.fromU64(this.amount).bytes();
-    }
-
-    raw(): u64 {
-        let amount = this.amount
-        if (this.symbol == KUNIT) {
-            amount *= 1000
-        } else if (this.symbol == MUNIT) {
-            amount *= 1000 * 1000
-        } else if (this.symbol == DOM) {
-            amount *= 1000 * 1000 * 100
-        }
-        return amount
-    }
-
-    isSymbolValid(): bool {
-        return this.symbol == UNIT || this.symbol == KUNIT || this.symbol == MUNIT || this.symbol == DOM;
+        const raw = this.amount;
+        const ds = Builtin.fromU64(this.amount);
+        return Bytes.fromU8Array(ds.datastream.toArray<u8>());
     }
 
     //算数操作
     @operator(">")
     gt(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount > r.amount;
+        return this.amount > r.amount;
     }
 
     @operator(">=")
     gte(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount >= r.amount;
+        return this.amount >= r.amount;
     }
 
     @operator("<")
     lt(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount < r.amount;
+        return this.amount < r.amount;
     }
 
     @operator("<=")
     lte(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount <= r.amount;
+        return this.amount <= r.amount;
     }
 
     @operator("==")
     eq(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount == r.amount;
+        return this.amount == r.amount;
     }
 
     @operator("!=")
     uq(r: Asset): bool {
-        return this.symbol == r.symbol && this.amount != r.amount;
+        return this.amount != r.amount;
     }
 
     @operator("+")
     add(r: Asset): Asset {
-        assert(r.symbol == this.symbol, "Asset with different symbols!");
         this.amount = SafeMath.add(this.amount, r.amount);
         return this;
     }
 
     @operator("-")
     sub(r: Asset): Asset {
-        assert(r.symbol == this.symbol, "Asset with different symbols!");
-        assert(r.amount <= this.symbol, "Asset amount not enough!");
+        assert(r.amount <= this.amount, "Asset amount not enough!");
         this.amount = SafeMath.sub(this.amount, r.amount);
         return this;
     }
@@ -103,12 +91,10 @@ export class Asset implements Serializable {
     //Serilizable interface implements
     serialize(ds: DataStream): void {
         ds.write<u64>(this.amount);
-        ds.write<u8>(this.symbol);
     }
 
     deserialize(ds: DataStream): void {
         this.amount = ds.read<u64>();
-        this.symbol = ds.read<u8>();
     }
 
     key(): string {

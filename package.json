@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/damoclis/dmc-lib#readme",
   "dependencies": {
+<<<<<<< HEAD
     "dmcscript": "^0.1.57"
+=======
+    "dmcscript": "^0.1.55"
+>>>>>>> 4f93b9c56a5bad9f8d6290b3cdd8728be3c42ed5
   }
 }

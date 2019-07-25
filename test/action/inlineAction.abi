@@ -8,8 +8,17 @@
   ],
   "structs": [
     {
-      "fields": [],
-      "name": "hi",
+      "fields": [
+        {
+          "name": "a",
+          "type": "u64"
+        },
+        {
+          "name": "b",
+          "type": "u64"
+        }
+      ],
+      "name": "add",
       "base": ""
     },
     {
@@ -23,18 +32,27 @@
           "type": "u64[]"
         }
       ],
-      "name": "add",
+      "name": "addWithArray",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "empty",
       "base": ""
     }
   ],
   "actions": [
     {
-      "name": "hi",
-      "type": "hi"
-    },
-    {
       "name": "add",
       "type": "add"
+    },
+    {
+      "name": "addWithArray",
+      "type": "addWithArray"
+    },
+    {
+      "name": "empty",
+      "type": "empty"
     }
   ],
   "tables": []
