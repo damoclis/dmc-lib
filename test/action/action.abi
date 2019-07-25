@@ -1,0 +1,135 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [
+    {
+      "new_type_name": "Address",
+      "type": "address"
+    },
+    {
+      "new_type_name": "u32",
+      "type": "uint32"
+    }
+  ],
+  "structs": [
+    {
+      "fileds": [],
+      "name": "Bytes",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "_value",
+          "type": "Bytes"
+        },
+        {
+          "name": "_len",
+          "type": "u32"
+        }
+      ],
+      "name": "Address",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "addr",
+          "type": "Address"
+        }
+      ],
+      "name": "hasAuthTest",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "addr",
+          "type": "Address"
+        }
+      ],
+      "name": "requireAuthTest",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "target",
+          "type": "Address"
+        }
+      ],
+      "name": "callInlineAdd",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "target",
+          "type": "Address"
+        }
+      ],
+      "name": "callFailedInlineAdd",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "target",
+          "type": "Address"
+        }
+      ],
+      "name": "callInlineAddWithArr",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "target",
+          "type": "Address"
+        }
+      ],
+      "name": "callWithValue",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "target",
+          "type": "Address"
+        }
+      ],
+      "name": "callDeploy",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "hasAuthTest",
+      "type": "hasAuthTest"
+    },
+    {
+      "name": "requireAuthTest",
+      "type": "requireAuthTest"
+    },
+    {
+      "name": "callInlineAdd",
+      "type": "callInlineAdd"
+    },
+    {
+      "name": "callFailedInlineAdd",
+      "type": "callFailedInlineAdd"
+    },
+    {
+      "name": "callInlineAddWithArr",
+      "type": "callInlineAddWithArr"
+    },
+    {
+      "name": "callWithValue",
+      "type": "callWithValue"
+    },
+    {
+      "name": "callDeploy",
+      "type": "callDeploy"
+    }
+  ],
+  "tables": []
+}

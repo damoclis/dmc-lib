@@ -1,5 +1,4 @@
 // export src 
-export * from "./src/account";
 export * from "./src/print";
 export * from "./src/system";
 export * from "./src/crypto";

@@ -1,0 +1,127 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [
+    {
+      "new_type_name": "u32",
+      "type": "uint32"
+    }
+  ],
+  "structs": [
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "age",
+          "type": "u32"
+        }
+      ],
+      "name": "Person",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "age",
+          "type": "u32"
+        }
+      ],
+      "name": "create",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "getAge",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "exist",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "age",
+          "type": "u32"
+        }
+      ],
+      "name": "update",
+      "base": ""
+    },
+    {
+      "fileds": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "delete",
+      "base": ""
+    },
+    {
+      "fileds": [],
+      "name": "testIterator",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "create",
+      "type": "create"
+    },
+    {
+      "name": "getAge",
+      "type": "getAge"
+    },
+    {
+      "name": "exist",
+      "type": "exist"
+    },
+    {
+      "name": "update",
+      "type": "update"
+    },
+    {
+      "name": "delete",
+      "type": "delete"
+    },
+    {
+      "name": "testIterator",
+      "type": "testIterator"
+    }
+  ],
+  "tables": [
+    {
+      "index_type": "i64",
+      "keys_names": [
+        "currency"
+      ],
+      "keys_types": [
+        "uint64"
+      ],
+      "name": "people",
+      "type": "Person"
+    }
+  ]
+}

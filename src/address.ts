@@ -1,3 +1,7 @@
+import { Asset } from "./asset";
+import { getBalance, transfer } from "../internal/account.d";
+import { CreateDataStream } from "../lib/helper";
+
 export class Address implements Serializable {
 	_value: Bytes;
 	_len: u32 = 20;
@@ -55,5 +59,21 @@ export class Address implements Serializable {
 
 	key(): string {
 		return "";
+	}
+
+	getBalance(): Asset {
+		let asset: Asset = new Asset();
+		let size = getBalance(this.buffer, 0, 0);
+		let ds = CreateDataStream(size);
+		getBalance(this.buffer, ds.buffer, ds.len);
+		asset.deserialize(ds);
+		return asset;
+	}
+
+	transfer(to: Address, value: Asset): bool {
+		let size = DataStream.measure<Asset>(value);
+		let ds = CreateDataStream(size);
+		value.serialize(ds);
+		return transfer(this.buffer, to.buffer, ds.buffer, size);
 	}
 }
