@@ -1,7 +1,7 @@
 import { Contract } from "../../src/contract";
 import { Now, GenesisTime, AssertExit } from "../../src/system";
 
-class system extends Contract{
+class SystemTest extends Contract{
     @action
     nowTest(): u64{
         return Now();

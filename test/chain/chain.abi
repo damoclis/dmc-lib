@@ -1,0 +1,27 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fields": [],
+      "name": "getBlockHeightTest",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "getBlockHashTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "getBlockHeightTest",
+      "type": "getBlockHeightTest"
+    },
+    {
+      "name": "getBlockHashTest",
+      "type": "getBlockHashTest"
+    }
+  ],
+  "tables": []
+}

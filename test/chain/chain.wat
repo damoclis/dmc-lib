@@ -11,16 +11,18 @@
  (type $FUNCSIG$j (func (result i64)))
  (type $FUNCSIG$vij (func (param i32 i64)))
  (type $FUNCSIG$vj (func (param i64)))
+ (type $FUNCSIG$ij (func (param i64) (result i32)))
+ (type $FUNCSIG$vji (func (param i64 i32)))
  (type $FUNCSIG$vii (func (param i32 i32)))
  (import "damoclis" "getSelf" (func $../../internal/account.d/getSelf (param i32)))
  (import "damoclis" "getSender" (func $../../internal/account.d/getSender (param i32)))
  (import "damoclis" "getReceiver" (func $../../internal/account.d/getReceiver (param i32)))
  (import "damoclis" "getActionName" (func $../../internal/action.d/getActionName (param i32 i32) (result i32)))
  (import "damoclis" "getActionData" (func $../../internal/action.d/getActionData (param i32 i32) (result i32)))
- (import "damoclis" "now" (func $../../internal/system.d/now (result i64)))
+ (import "damoclis" "getBlockHeight" (func $../../internal/chain.d/getBlockHeight (result i64)))
  (import "damoclis" "returnU64" (func $../../internal/action.d/returnU64 (param i64)))
- (import "damoclis" "genesisTime" (func $../../internal/system.d/genesisTime (result i64)))
- (import "damoclis" "damoExit" (func $../../internal/system.d/damoExit (param i32 i32)))
+ (import "damoclis" "getBlockHash" (func $../../internal/chain.d/getBlockHash (param i64 i32)))
+ (import "damoclis" "returnData" (func $../../internal/action.d/returnData (param i32 i32)))
  (memory $0 1)
  (data (i32.const 8) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00 \00")
  (data (i32.const 32) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00!\00")
@@ -118,10 +120,8 @@
  (data (i32.const 2240) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00~\00")
  (data (i32.const 2264) "|\01\00\00\01\00\00\00\00\00\00\00|\01\00\00\18\00\00\000\00\00\00H\00\00\00`\00\00\00x\00\00\00\90\00\00\00\a8\00\00\00\c0\00\00\00\d8\00\00\00\f0\00\00\00\08\01\00\00 \01\00\008\01\00\00P\01\00\00h\01\00\00\80\01\00\00\98\01\00\00\b0\01\00\00\c8\01\00\00\e0\01\00\00\f8\01\00\00\10\02\00\00(\02\00\00@\02\00\00X\02\00\00p\02\00\00\88\02\00\00\a0\02\00\00\b8\02\00\00\d0\02\00\00\e8\02\00\00\00\03\00\00\18\03\00\000\03\00\00H\03\00\00`\03\00\00x\03\00\00\90\03\00\00\a8\03\00\00\c0\03\00\00\d8\03\00\00\f0\03\00\00\08\04\00\00 \04\00\008\04\00\00P\04\00\00h\04\00\00\80\04\00\00\98\04\00\00\b0\04\00\00\c8\04\00\00\c8\04\00\00\e0\04\00\00\f8\04\00\00\10\05\00\00(\05\00\00@\05\00\00X\05\00\00p\05\00\00\88\05\00\00\a0\05\00\00\b8\05\00\00\d0\05\00\00\e8\05\00\00\00\06\00\00\18\06\00\000\06\00\00H\06\00\00`\06\00\00x\06\00\00\90\06\00\00\a8\06\00\00\c0\06\00\00\d8\06\00\00\f0\06\00\00\08\07\00\00 \07\00\008\07\00\00P\07\00\00h\07\00\00\80\07\00\00\98\07\00\00\b0\07\00\00\c8\07\00\00\e0\07\00\00\f8\07\00\00\10\08\00\00(\08\00\00@\08\00\00X\08\00\00p\08\00\00\88\08\00\00\a0\08\00\00\b8\08\00\00\d0\08\00\00")
  (data (i32.const 2664) "\10\00\00\00\01\00\00\00\08\00\00\00\10\00\00\00\e8\08\00\00\e8\08\00\00|\01\00\00_\00\00\00")
- (data (i32.const 2696) "\0e\00\00\00\01\00\00\00\01\00\00\00\0e\00\00\00n\00o\00w\00T\00e\00s\00t\00")
- (data (i32.const 2728) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00g\00e\00n\00e\00s\00i\00s\00T\00i\00m\00e\00T\00e\00s\00t\00")
- (data (i32.const 2776) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00a\00s\00s\00e\00r\00t\00E\00x\00i\00t\00T\00e\00s\00t\00T\00r\00u\00e\00")
- (data (i32.const 2832) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00a\00s\00s\00e\00r\00t\00E\00x\00i\00t\00T\00e\00s\00t\00F\00a\00l\00s\00e\00")
+ (data (i32.const 2696) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00g\00e\00t\00B\00l\00o\00c\00k\00H\00e\00i\00g\00h\00t\00T\00e\00s\00t\00")
+ (data (i32.const 2752) " \00\00\00\01\00\00\00\01\00\00\00 \00\00\00g\00e\00t\00B\00l\00o\00c\00k\00H\00a\00s\00h\00T\00e\00s\00t\00")
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
  (global $../../lib/constant/SHA256_LEN i32 (i32.const 32))
@@ -139,9 +139,9 @@
  (global $~lib/ASC_SHRINK_LEVEL i32 (i32.const 0))
  (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2680))
  (global $~lib/datastream/HEADER_SIZE i32 (i32.const 0))
- (global $~lib/heap/__heap_base i32 (i32.const 2888))
+ (global $~lib/heap/__heap_base i32 (i32.const 2800))
  (export "memory" (memory $0))
- (export "apply" (func $system/apply))
+ (export "apply" (func $chain/apply))
  (start $start)
  (func $~lib/rt/stub/__alloc (; 9 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -2481,11 +2481,11 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $system/SystemTest#constructor (; 31 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $chain/ChainTest#constructor (; 31 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
-   i32.const 16
+   i32.const 24
    i32.const 7
    call $~lib/rt/stub/__alloc
    call $~lib/rt/stub/__retain
@@ -2494,6 +2494,9 @@
   local.get $0
   call $../../src/contract/Contract#constructor
   local.set $0
+  local.get $0
+  i64.const 0
+  i64.store offset=16
   local.get $0
  )
  (func $~lib/datastream/DataStream#constructor (; 32 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
@@ -2728,47 +2731,72 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/system/Now (; 40 ;) (type $FUNCSIG$j) (result i64)
-  call $../../internal/system.d/now
+ (func $../../src/chain/Chain.getBlockHeight (; 40 ;) (type $FUNCSIG$j) (result i64)
+  call $../../internal/chain.d/getBlockHeight
  )
- (func $system/SystemTest#nowTest (; 41 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
-  call $../../src/system/Now
+ (func $chain/ChainTest#getBlockHeightTest (; 41 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
+  local.get $0
+  call $../../src/chain/Chain.getBlockHeight
+  i64.store offset=16
+  local.get $0
+  i64.load offset=16
  )
  (func $../../src/contract/Contract#ReturnU64 (; 42 ;) (type $FUNCSIG$vij) (param $0 i32) (param $1 i64)
   local.get $1
   call $../../internal/action.d/returnU64
  )
- (func $../../src/system/GenesisTime (; 43 ;) (type $FUNCSIG$j) (result i64)
-  call $../../internal/system.d/genesisTime
- )
- (func $system/SystemTest#genesisTimeTest (; 44 ;) (type $FUNCSIG$ji) (param $0 i32) (result i64)
-  call $../../src/system/GenesisTime
- )
- (func $../../src/system/AssertExit (; 45 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $../../src/chain/Chain.getBlockHash (; 43 ;) (type $FUNCSIG$ij) (param $0 i64) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  i32.const 0
+  i32.const 32
+  call $~lib/bytes/Bytes#constructor
+  local.set $1
   local.get $0
   local.get $1
-  call $../../internal/system.d/damoExit
+  call $~lib/typedarray/Uint8Array#get:buffer
+  local.tee $2
+  call $../../internal/chain.d/getBlockHash
+  local.get $1
+  local.set $3
+  local.get $2
+  call $~lib/rt/stub/__release
+  local.get $3
  )
- (func $system/SystemTest#assertExitTestTrue (; 46 ;) (type $FUNCSIG$vi) (param $0 i32)
-  i32.const 1
-  i32.const 1
-  i32.eq
-  i32.const 1
-  call $../../src/system/AssertExit
+ (func $chain/ChainTest#getBlockHashTest (; 44 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i64.load offset=16
+  call $../../src/chain/Chain.getBlockHash
  )
- (func $system/SystemTest#assertExitTestFalse (; 47 ;) (type $FUNCSIG$vi) (param $0 i32)
-  i32.const 1
-  i32.const 2
-  i32.eq
-  i32.const 2
-  call $../../src/system/AssertExit
+ (func $~lib/bytes/Bytes#get:bytes (; 45 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  call $~lib/rt/stub/__retain
  )
- (func $system/apply (; 48 ;) (type $FUNCSIG$v)
+ (func $../../src/contract/Contract#ReturnBytes (; 46 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  (local $2 i32)
+  local.get $1
+  call $~lib/rt/stub/__retain
+  drop
+  local.get $1
+  call $~lib/typedarray/Uint8Array#get:buffer
+  local.tee $2
+  local.get $1
+  call $~lib/typedarray/Uint8Array#get:length
+  call $../../internal/action.d/returnData
+  local.get $2
+  call $~lib/rt/stub/__release
+  local.get $1
+  call $~lib/rt/stub/__release
+ )
+ (func $chain/apply (; 47 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i64)
+  (local $3 i32)
+  (local $4 i32)
   i32.const 0
-  call $system/SystemTest#constructor
+  call $chain/ChainTest#constructor
   local.set $0
   local.get $0
   call $../../src/contract/Contract#getDataStream
@@ -2778,43 +2806,35 @@
   call $../../src/contract/Contract#isAction
   if
    local.get $0
-   call $system/SystemTest#nowTest
+   call $chain/ChainTest#getBlockHeightTest
    local.set $2
    local.get $0
    local.get $2
    call $../../src/contract/Contract#ReturnU64
   end
   local.get $0
-  i32.const 2744
+  i32.const 2768
   call $../../src/contract/Contract#isAction
   if
    local.get $0
-   call $system/SystemTest#genesisTimeTest
-   local.set $2
+   call $chain/ChainTest#getBlockHashTest
+   local.set $3
    local.get $0
-   local.get $2
-   call $../../src/contract/Contract#ReturnU64
-  end
-  local.get $0
-  i32.const 2792
-  call $../../src/contract/Contract#isAction
-  if
-   local.get $0
-   call $system/SystemTest#assertExitTestTrue
-  end
-  local.get $0
-  i32.const 2848
-  call $../../src/contract/Contract#isAction
-  if
-   local.get $0
-   call $system/SystemTest#assertExitTestFalse
+   local.get $3
+   call $~lib/bytes/Bytes#get:bytes
+   local.tee $4
+   call $../../src/contract/Contract#ReturnBytes
+   local.get $3
+   call $~lib/rt/stub/__release
+   local.get $4
+   call $~lib/rt/stub/__release
   end
   local.get $0
   call $~lib/rt/stub/__release
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $start (; 49 ;) (type $FUNCSIG$v)
+ (func $start (; 48 ;) (type $FUNCSIG$v)
   global.get $~lib/heap/__heap_base
   i32.const 15
   i32.add
@@ -2826,6 +2846,6 @@
   global.get $~lib/rt/stub/startOffset
   global.set $~lib/rt/stub/offset
  )
- (func $null (; 50 ;) (type $FUNCSIG$v)
+ (func $null (; 49 ;) (type $FUNCSIG$v)
  )
 )
