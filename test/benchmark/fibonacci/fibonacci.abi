@@ -1,0 +1,28 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [
+    {
+      "new_type_name": "u64",
+      "type": "uint64"
+    }
+  ],
+  "structs": [
+    {
+      "fields": [
+        {
+          "name": "n",
+          "type": "u64"
+        }
+      ],
+      "name": "compute",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "compute",
+      "type": "compute"
+    }
+  ],
+  "tables": []
+}
