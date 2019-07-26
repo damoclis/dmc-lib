@@ -115,6 +115,7 @@
  (data (i32.const 2264) "|\01\00\00\01\00\00\00\00\00\00\00|\01\00\00\18\00\00\000\00\00\00H\00\00\00`\00\00\00x\00\00\00\90\00\00\00\a8\00\00\00\c0\00\00\00\d8\00\00\00\f0\00\00\00\08\01\00\00 \01\00\008\01\00\00P\01\00\00h\01\00\00\80\01\00\00\98\01\00\00\b0\01\00\00\c8\01\00\00\e0\01\00\00\f8\01\00\00\10\02\00\00(\02\00\00@\02\00\00X\02\00\00p\02\00\00\88\02\00\00\a0\02\00\00\b8\02\00\00\d0\02\00\00\e8\02\00\00\00\03\00\00\18\03\00\000\03\00\00H\03\00\00`\03\00\00x\03\00\00\90\03\00\00\a8\03\00\00\c0\03\00\00\d8\03\00\00\f0\03\00\00\08\04\00\00 \04\00\008\04\00\00P\04\00\00h\04\00\00\80\04\00\00\98\04\00\00\b0\04\00\00\c8\04\00\00\c8\04\00\00\e0\04\00\00\f8\04\00\00\10\05\00\00(\05\00\00@\05\00\00X\05\00\00p\05\00\00\88\05\00\00\a0\05\00\00\b8\05\00\00\d0\05\00\00\e8\05\00\00\00\06\00\00\18\06\00\000\06\00\00H\06\00\00`\06\00\00x\06\00\00\90\06\00\00\a8\06\00\00\c0\06\00\00\d8\06\00\00\f0\06\00\00\08\07\00\00 \07\00\008\07\00\00P\07\00\00h\07\00\00\80\07\00\00\98\07\00\00\b0\07\00\00\c8\07\00\00\e0\07\00\00\f8\07\00\00\10\08\00\00(\08\00\00@\08\00\00X\08\00\00p\08\00\00\88\08\00\00\a0\08\00\00\b8\08\00\00\d0\08\00\00")
  (data (i32.const 2664) "\10\00\00\00\01\00\00\00\08\00\00\00\10\00\00\00\e8\08\00\00\e8\08\00\00|\01\00\00_\00\00\00")
  (data (i32.const 2696) "\0e\00\00\00\01\00\00\00\01\00\00\00\0e\00\00\00c\00o\00m\00p\00u\00t\00e\00")
+ (data (i32.const 2728) "\"\00\00\00\01\00\00\00\01\00\00\00\"\00\00\00c\00o\00m\00p\00u\00t\00e\00R\00e\00c\00u\00r\00r\00e\00n\00c\00e\00")
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
  (global $../../../lib/constant/SHA256_LEN i32 (i32.const 32))
@@ -132,7 +133,7 @@
  (global $~lib/ASC_SHRINK_LEVEL i32 (i32.const 0))
  (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2680))
  (global $~lib/datastream/HEADER_SIZE i32 (i32.const 0))
- (global $~lib/heap/__heap_base i32 (i32.const 2728))
+ (global $~lib/heap/__heap_base i32 (i32.const 2780))
  (export "memory" (memory $0))
  (export "apply" (func $fibonacci/apply))
  (start $start)
@@ -2788,7 +2789,27 @@
   local.get $1
   call $../../../internal/action.d/returnU64
  )
- (func $fibonacci/apply (; 40 ;) (type $FUNCSIG$v)
+ (func $fibonacci/Fibonacci#computeRecurrence (; 40 ;) (type $FUNCSIG$jij) (param $0 i32) (param $1 i64) (result i64)
+  local.get $1
+  i64.const 2
+  i64.le_u
+  if
+   i64.const 1
+   return
+  end
+  local.get $0
+  local.get $1
+  i64.const 1
+  i64.sub
+  call $fibonacci/Fibonacci#computeRecurrence
+  local.get $0
+  local.get $1
+  i64.const 2
+  i64.sub
+  call $fibonacci/Fibonacci#computeRecurrence
+  i64.add
+ )
+ (func $fibonacci/apply (; 41 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i64)
@@ -2815,11 +2836,26 @@
    call $../../../src/contract/Contract#ReturnU64
   end
   local.get $0
+  i32.const 2744
+  call $../../../src/contract/Contract#isAction
+  if
+   local.get $1
+   call $~lib/datastream/DataStream#read<u64>
+   local.set $3
+   local.get $0
+   local.get $3
+   call $fibonacci/Fibonacci#computeRecurrence
+   local.set $2
+   local.get $0
+   local.get $2
+   call $../../../src/contract/Contract#ReturnU64
+  end
+  local.get $0
   call $~lib/rt/stub/__release
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $start (; 41 ;) (type $FUNCSIG$v)
+ (func $start (; 42 ;) (type $FUNCSIG$v)
   global.get $~lib/heap/__heap_base
   i32.const 15
   i32.add
@@ -2831,6 +2867,6 @@
   global.get $~lib/rt/stub/startOffset
   global.set $~lib/rt/stub/offset
  )
- (func $null (; 42 ;) (type $FUNCSIG$v)
+ (func $null (; 43 ;) (type $FUNCSIG$v)
  )
 )

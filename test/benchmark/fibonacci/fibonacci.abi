@@ -16,12 +16,26 @@
       ],
       "name": "compute",
       "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "n",
+          "type": "u64"
+        }
+      ],
+      "name": "computeRecurrence",
+      "base": ""
     }
   ],
   "actions": [
     {
       "name": "compute",
       "type": "compute"
+    },
+    {
+      "name": "computeRecurrence",
+      "type": "computeRecurrence"
     }
   ],
   "tables": []
