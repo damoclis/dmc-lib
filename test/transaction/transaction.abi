@@ -9,7 +9,7 @@
     },
     {
       "fields": [],
-      "name": "getSinatureTest",
+      "name": "getSignatureTest",
       "base": ""
     }
   ],
@@ -19,8 +19,8 @@
       "type": "getTxHashTest"
     },
     {
-      "name": "getSinatureTest",
-      "type": "getSinatureTest"
+      "name": "getSignatureTest",
+      "type": "getSignatureTest"
     }
   ],
   "tables": []

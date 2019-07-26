@@ -1,14 +1,14 @@
 import { Contract } from "../../src/contract";
-import { Transaction } from "../..";
+import { Transaction } from "../../src/transaction";
 
-class TransactionTest extends Contract{
+class TransactionTest extends Contract {
     @action
-    getTxHashTest(): Bytes{
+    getTxHashTest(): Bytes {
         return Transaction.getTxHash();
     }
 
     @action
-    getSinatureTest(): Bytes{
+    getSignatureTest(): Bytes {
         return Transaction.getSignature();
     }
 }
