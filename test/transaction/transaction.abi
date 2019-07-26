@@ -1,0 +1,27 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fields": [],
+      "name": "getTxHashTest",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "getSinatureTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "getTxHashTest",
+      "type": "getTxHashTest"
+    },
+    {
+      "name": "getSinatureTest",
+      "type": "getSinatureTest"
+    }
+  ],
+  "tables": []
+}
