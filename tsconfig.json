@@ -6,7 +6,7 @@
     "./lib/*.ts",
     "./internal/*.d.ts",
     "./example/**/*.ts",
-    "./test/**/*.ts"
+    "./test/**/*.ts",
   ],
   "compilerOptions": {
     /* Basic Options */

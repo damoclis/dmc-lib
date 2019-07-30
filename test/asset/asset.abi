@@ -1,0 +1,27 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fields": [],
+      "name": "compareTest",
+      "base": ""
+    },
+    {
+      "fields": [],
+      "name": "mathTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "compareTest",
+      "type": "compareTest"
+    },
+    {
+      "name": "mathTest",
+      "type": "mathTest"
+    }
+  ],
+  "tables": []
+}
