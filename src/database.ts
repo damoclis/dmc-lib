@@ -13,10 +13,11 @@ export class Iterator<T extends Serializable> {
 		this._itr = itr;
 	}
 
-	get(obj: T): T {
+	get(): T {
 		const size = dbRetrieve(this._db._contract.buffer, StringToUsize(this._db._table), this._db._table.length, this._itr, 0, 0);
 		const bytes = new Bytes(size);
 		const ds = new DataStream(changetype<usize>(bytes.buffer), size);
+		let obj = {} as T;
 		obj.deserialize(ds);
 		return obj;
 	}
@@ -39,10 +40,14 @@ export class Database<T extends Serializable> {
 		this._table = table;
 	}
 
-	get(key: string, obj: T): T {
+	get(key: string): T {
 		const size = dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, 0, 0);
+		if (size == 0) {
+			return {} as T;
+		}
 		const ds = CreateDataStream(size)
 		dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, size);
+		let obj = {} as T;
 		obj.deserialize(ds);
 		return obj
 	}

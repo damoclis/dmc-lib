@@ -25,6 +25,10 @@ export class Address implements Serializable {
 		return this._value.toHex();
 	}
 
+	toString(): string {
+		return this._value.toString();
+	}
+
 	@operator("==")
 	equal(t: Address): bool {
 		for (let i = 0; i < this._len; i++) {

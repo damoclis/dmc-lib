@@ -1,0 +1,18 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [],
+  "structs": [
+    {
+      "fields": [],
+      "name": "storePageTest",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "storePageTest",
+      "type": "storePageTest"
+    }
+  ],
+  "tables": []
+}

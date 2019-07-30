@@ -7,10 +7,6 @@ class Person implements Serializable {
   @key
   name: string;
   age: u32;
-
-  key(): string {
-    return this.name;
-  }
 }
 
 class DatabaseTest extends Contract {
@@ -31,8 +27,7 @@ class DatabaseTest extends Contract {
 
   @action
   getAge(name: string): u32 {
-    let p = new Person();
-    this.db.get(name, p);
+    let p = this.db.get(name);
     return p.age;
   }
 
@@ -70,8 +65,7 @@ class DatabaseTest extends Contract {
     let itr = this.db.iterator();
     let i = 0;
     while (!itr.end()) {
-      const p = new Person()
-      itr.get(p);
+      const p = itr.get();
       Assert(keys[i] == p.name, "name mismatch");
       Assert(people.get(keys[i]) == p.age, "age mismatch");
       itr.next();

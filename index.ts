@@ -15,3 +15,4 @@ export * from "./lib/constant";
 export * from "./lib/codec";
 export * from "./lib/helper";
 export * from "./lib/safeMath";
+export * from "./lib/hashmap";
