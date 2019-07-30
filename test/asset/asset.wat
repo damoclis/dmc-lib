@@ -11,12 +11,12 @@
  (type $FUNCSIG$vii (func (param i32 i32)))
  (type $FUNCSIG$jjj (func (param i64 i64) (result i64)))
  (type $FUNCSIG$iij (func (param i32 i64) (result i32)))
- (import "damoclis" "getSelf" (func $../../internal/account.d/getSelf (param i32)))
- (import "damoclis" "getSender" (func $../../internal/account.d/getSender (param i32)))
- (import "damoclis" "getReceiver" (func $../../internal/account.d/getReceiver (param i32)))
- (import "damoclis" "getActionName" (func $../../internal/action.d/getActionName (param i32 i32) (result i32)))
- (import "damoclis" "getActionData" (func $../../internal/action.d/getActionData (param i32 i32) (result i32)))
- (import "damoclis" "damoAssert" (func $../../internal/system.d/damoAssert (param i32 i32 i32)))
+ (import "damoclis" "getSelf" (func $internal/account.d/getSelf (param i32)))
+ (import "damoclis" "getSender" (func $internal/account.d/getSender (param i32)))
+ (import "damoclis" "getReceiver" (func $internal/account.d/getReceiver (param i32)))
+ (import "damoclis" "getActionName" (func $internal/action.d/getActionName (param i32 i32) (result i32)))
+ (import "damoclis" "getActionData" (func $internal/action.d/getActionData (param i32 i32) (result i32)))
+ (import "damoclis" "damoAssert" (func $internal/system.d/damoAssert (param i32 i32 i32)))
  (memory $0 1)
  (data (i32.const 8) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00 \00")
  (data (i32.const 32) "\02\00\00\00\01\00\00\00\01\00\00\00\02\00\00\00!\00")
@@ -124,32 +124,33 @@
  (data (i32.const 2928) "\10\00\00\00\01\00\00\00\01\00\00\00\10\00\00\00m\00a\00t\00h\00T\00e\00s\00t\00")
  (data (i32.const 2960) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00S\00a\00f\00e\00M\00a\00t\00h\00 \00a\00d\00d\00 \00f\00a\00i\00l\00e\00d\00")
  (data (i32.const 3016) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00a\00d\00d\00 \00w\00r\00o\00n\00g\00")
- (data (i32.const 3056) "D\00\00\00\01\00\00\00\01\00\00\00D\00\00\00M\00i\00n\00u\00e\00n\00d\00 \00i\00s\00 \00g\00r\00e\00a\00t\00e\00r\00 \00t\00h\00a\00n\00 \00s\00u\00b\00t\00r\00a\00h\00e\00n\00d\00")
- (data (i32.const 3144) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00s\00u\00b\00 \00w\00r\00o\00n\00g\00")
- (data (i32.const 3184) "8\00\00\00\01\00\00\00\01\00\00\008\00\00\00$\00{\00a\00}\00 \00m\00u\00l\00i\00t\00i\00p\00l\00y\00 \00$\00{\00b\00}\00 \00o\00v\00e\00r\00f\00l\00o\00w\00")
- (data (i32.const 3256) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00m\00u\00l\00 \00w\00r\00o\00n\00g\00")
- (data (i32.const 3296) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00C\00a\00n\00\'\00t\00 \00d\00i\00v\00i\00d\00i\00n\00g\00 \00b\00y\00 \000\00")
- (data (i32.const 3352) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00d\00i\00v\00 \00w\00r\00o\00n\00g\00")
+ (data (i32.const 3056) "0\00\00\00\01\00\00\00\01\00\00\000\00\00\00A\00s\00s\00e\00t\00 \00a\00m\00o\00u\00n\00t\00 \00n\00o\00t\00 \00e\00n\00o\00u\00g\00h\00!\00")
+ (data (i32.const 3120) "D\00\00\00\01\00\00\00\01\00\00\00D\00\00\00M\00i\00n\00u\00e\00n\00d\00 \00i\00s\00 \00g\00r\00e\00a\00t\00e\00r\00 \00t\00h\00a\00n\00 \00s\00u\00b\00t\00r\00a\00h\00e\00n\00d\00")
+ (data (i32.const 3208) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00s\00u\00b\00 \00w\00r\00o\00n\00g\00")
+ (data (i32.const 3248) "8\00\00\00\01\00\00\00\01\00\00\008\00\00\00$\00{\00a\00}\00 \00m\00u\00l\00i\00t\00i\00p\00l\00y\00 \00$\00{\00b\00}\00 \00o\00v\00e\00r\00f\00l\00o\00w\00")
+ (data (i32.const 3320) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00m\00u\00l\00 \00w\00r\00o\00n\00g\00")
+ (data (i32.const 3360) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00C\00a\00n\00\'\00t\00 \00d\00i\00v\00i\00d\00i\00n\00g\00 \00b\00y\00 \000\00")
+ (data (i32.const 3416) "\12\00\00\00\01\00\00\00\01\00\00\00\12\00\00\00d\00i\00v\00 \00w\00r\00o\00n\00g\00")
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
- (global $../../lib/constant/SHA256_LEN i32 (i32.const 32))
- (global $../../lib/constant/SHA512_LEN i32 (i32.const 64))
- (global $../../lib/constant/RIPEMD160_LEN i32 (i32.const 20))
- (global $../../lib/constant/ADDRESS_LEN i32 (i32.const 20))
- (global $../../lib/constant/SIGNATURE_LEN i32 (i32.const 96))
- (global $../../lib/constant/PUBLIC_KEY_LEN i32 (i32.const 32))
- (global $../../src/asset/UNIT i32 (i32.const 0))
- (global $../../src/asset/KUNIT i32 (i32.const 1))
- (global $../../src/asset/MUNIT i32 (i32.const 2))
- (global $../../src/asset/DOM i32 (i32.const 3))
+ (global $lib/constant/SHA256_LEN i32 (i32.const 32))
+ (global $lib/constant/SHA512_LEN i32 (i32.const 64))
+ (global $lib/constant/RIPEMD160_LEN i32 (i32.const 20))
+ (global $lib/constant/ADDRESS_LEN i32 (i32.const 20))
+ (global $lib/constant/SIGNATURE_LEN i32 (i32.const 96))
+ (global $lib/constant/PUBLIC_KEY_LEN i32 (i32.const 32))
+ (global $src/asset/UNIT i32 (i32.const 0))
+ (global $src/asset/KUNIT i32 (i32.const 1))
+ (global $src/asset/MUNIT i32 (i32.const 2))
+ (global $src/asset/DOM i32 (i32.const 3))
  (global $~lib/rt/stub/startOffset (mut i32) (i32.const 0))
  (global $~lib/rt/stub/offset (mut i32) (i32.const 0))
  (global $~lib/ASC_SHRINK_LEVEL i32 (i32.const 0))
  (global $~lib/utf8util/ASCIICHAR i32 (i32.const 2680))
  (global $~lib/datastream/HEADER_SIZE i32 (i32.const 0))
- (global $~lib/heap/__heap_base i32 (i32.const 3388))
+ (global $~lib/heap/__heap_base i32 (i32.const 3452))
  (export "memory" (memory $0))
- (export "apply" (func $asset/apply))
+ (export "apply" (func $test/asset/asset/apply))
  (start $start)
  (func $~lib/rt/stub/__alloc (; 6 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -745,7 +746,7 @@
   call $~lib/rt/stub/__release
   local.get $9
  )
- (func $../../src/address/Address#constructor (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/address/Address#constructor (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -763,7 +764,7 @@
   i32.store offset=4
   local.get $0
  )
- (func $../../src/address/Address.fromBytes (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/address/Address.fromBytes (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -786,7 +787,7 @@
    local.set $0
   end
   i32.const 0
-  call $../../src/address/Address#constructor
+  call $src/address/Address#constructor
   local.set $1
   local.get $1
   local.tee $2
@@ -2354,14 +2355,14 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $../../src/action/Action.getActionName (; 26 ;) (type $FUNCSIG$i) (result i32)
+ (func $src/action/Action.getActionName (; 26 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   i32.const 0
   i32.const 0
-  call $../../internal/action.d/getActionName
+  call $internal/action.d/getActionName
   local.set $0
   i32.const 0
   local.get $0
@@ -2371,7 +2372,7 @@
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $2
   local.get $0
-  call $../../internal/action.d/getActionName
+  call $internal/action.d/getActionName
   drop
   local.get $1
   call $~lib/bytes/Bytes#toString
@@ -2382,7 +2383,7 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $../../src/contract/Contract#constructor (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $src/contract/Contract#constructor (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2398,7 +2399,7 @@
   local.get $1
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $2
-  call $../../internal/account.d/getSelf
+  call $internal/account.d/getSelf
   local.get $0
   i32.eqz
   if
@@ -2423,7 +2424,7 @@
   local.get $0
   local.tee $3
   local.get $1
-  call $../../src/address/Address.fromBytes
+  call $src/address/Address.fromBytes
   local.set $4
   local.get $3
   i32.load offset=8
@@ -2437,11 +2438,11 @@
   local.get $4
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $3
-  call $../../internal/account.d/getSender
+  call $internal/account.d/getSender
   local.get $0
   local.tee $5
   local.get $4
-  call $../../src/address/Address.fromBytes
+  call $src/address/Address.fromBytes
   local.set $6
   local.get $5
   i32.load
@@ -2455,11 +2456,11 @@
   local.get $6
   call $~lib/typedarray/Uint8Array#get:buffer
   local.tee $5
-  call $../../internal/account.d/getReceiver
+  call $internal/account.d/getReceiver
   local.get $0
   local.tee $7
   local.get $6
-  call $../../src/address/Address.fromBytes
+  call $src/address/Address.fromBytes
   local.set $8
   local.get $7
   i32.load offset=4
@@ -2468,7 +2469,7 @@
   i32.store offset=4
   local.get $0
   local.tee $8
-  call $../../src/action/Action.getActionName
+  call $src/action/Action.getActionName
   local.set $7
   local.get $8
   i32.load offset=12
@@ -2489,7 +2490,7 @@
   call $~lib/rt/stub/__release
   local.get $0
  )
- (func $../../src/asset/Asset#constructor (; 28 ;) (type $FUNCSIG$iiji) (param $0 i32) (param $1 i64) (param $2 i32) (result i32)
+ (func $src/asset/Asset#constructor (; 28 ;) (type $FUNCSIG$iiji) (param $0 i32) (param $1 i64) (param $2 i32) (result i32)
   local.get $2
   i32.const 255
   i32.and
@@ -2548,7 +2549,7 @@
   i64.store
   local.get $0
  )
- (func $asset/AssetTest#constructor (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $test/asset/asset/AssetTest#constructor (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -2559,37 +2560,37 @@
    local.set $0
   end
   local.get $0
-  call $../../src/contract/Contract#constructor
+  call $src/contract/Contract#constructor
   local.set $0
   local.get $0
   i32.const 0
   i64.const 1
-  global.get $../../src/asset/UNIT
-  call $../../src/asset/Asset#constructor
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
   i32.store offset=16
   local.get $0
   i32.const 0
   i64.const 2
-  global.get $../../src/asset/UNIT
-  call $../../src/asset/Asset#constructor
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
   i32.store offset=20
   local.get $0
   i32.const 0
   i64.const 100
-  global.get $../../src/asset/UNIT
-  call $../../src/asset/Asset#constructor
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
   i32.store offset=24
   local.get $0
   i32.const 0
   i64.const 200
-  global.get $../../src/asset/UNIT
-  call $../../src/asset/Asset#constructor
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
   i32.store offset=28
   local.get $0
   i32.const 0
   i64.const 1000
-  global.get $../../src/asset/UNIT
-  call $../../src/asset/Asset#constructor
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
   i32.store offset=32
   local.get $0
  )
@@ -2623,7 +2624,7 @@
   i32.store offset=8
   local.get $0
  )
- (func $../../lib/helper/CreateDataStream (; 31 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $lib/helper/CreateDataStream (; 31 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2644,26 +2645,26 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $../../src/action/Action.getActionData (; 32 ;) (type $FUNCSIG$i) (result i32)
+ (func $src/action/Action.getActionData (; 32 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 0
   i32.const 0
-  call $../../internal/action.d/getActionData
+  call $internal/action.d/getActionData
   local.set $0
   local.get $0
-  call $../../lib/helper/CreateDataStream
+  call $lib/helper/CreateDataStream
   local.set $1
   local.get $1
   i32.load
   local.get $1
   i32.load offset=4
-  call $../../internal/action.d/getActionData
+  call $internal/action.d/getActionData
   drop
   local.get $1
  )
- (func $../../src/contract/Contract#getDataStream (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  call $../../src/action/Action.getActionData
+ (func $src/contract/Contract#getDataStream (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  call $src/action/Action.getActionData
  )
  (func $~lib/string/String#get:length (; 34 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
@@ -2811,7 +2812,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/contract/Contract#isAction (; 37 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/contract/Contract#isAction (; 37 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -2825,7 +2826,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/asset/Asset#lt (; 38 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#lt (; 38 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3226,7 +3227,7 @@
   call $~lib/rt/stub/__release
   local.get $4
  )
- (func $../../lib/codec/StringToUsize (; 42 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $lib/codec/StringToUsize (; 42 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3247,20 +3248,20 @@
   call $~lib/rt/stub/__release
   local.get $3
  )
- (func $../../src/system/Assert (; 43 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $src/system/Assert (; 43 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
   local.get $0
   local.get $1
-  call $../../lib/codec/StringToUsize
+  call $lib/codec/StringToUsize
   local.get $1
   call $~lib/string/String#get:length
-  call $../../internal/system.d/damoAssert
+  call $internal/system.d/damoAssert
   local.get $1
   call $~lib/rt/stub/__release
  )
- (func $../../src/asset/Asset#lte (; 44 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#lte (; 44 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3275,7 +3276,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/asset/Asset#gt (; 45 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#gt (; 45 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3290,7 +3291,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/asset/Asset#gte (; 46 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#gte (; 46 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3305,7 +3306,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/asset/Asset#eq (; 47 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#eq (; 47 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3320,7 +3321,7 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $../../src/asset/Asset#uq (; 48 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $src/asset/Asset#uq (; 48 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   call $~lib/rt/stub/__retain
@@ -3335,65 +3336,65 @@
   call $~lib/rt/stub/__release
   local.get $2
  )
- (func $asset/AssetTest#compareTest (; 49 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $test/asset/asset/AssetTest#compareTest (; 49 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   i32.load offset=16
   local.get $0
   i32.load offset=24
-  call $../../src/asset/Asset#lt
+  call $src/asset/Asset#lt
   i32.const 2752
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=16
   local.get $0
   i32.load offset=24
-  call $../../src/asset/Asset#lte
+  call $src/asset/Asset#lte
   i32.const 2784
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=24
   local.get $0
   i32.load offset=24
-  call $../../src/asset/Asset#lte
+  call $src/asset/Asset#lte
   i32.const 2784
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=32
   local.get $0
   i32.load offset=24
-  call $../../src/asset/Asset#gt
+  call $src/asset/Asset#gt
   i32.const 2816
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=32
   local.get $0
   i32.load offset=24
-  call $../../src/asset/Asset#gte
+  call $src/asset/Asset#gte
   i32.const 2848
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=32
   local.get $0
   i32.load offset=32
-  call $../../src/asset/Asset#gte
+  call $src/asset/Asset#gte
   i32.const 2848
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=16
   local.get $0
   i32.load offset=16
-  call $../../src/asset/Asset#eq
+  call $src/asset/Asset#eq
   i32.const 2880
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=24
   local.get $0
   i32.load offset=32
-  call $../../src/asset/Asset#uq
+  call $src/asset/Asset#uq
   i32.const 2912
-  call $../../src/system/Assert
+  call $src/system/Assert
  )
- (func $../../lib/safeMath/SafeMath.add (; 50 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
+ (func $lib/safeMath/SafeMath.add (; 50 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
   (local $2 i64)
   local.get $0
   local.get $1
@@ -3403,58 +3404,69 @@
   local.get $0
   i64.ge_u
   i32.const 2976
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $2
  )
- (func $../../src/asset/Asset#add (; 51 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
+ (func $src/asset/Asset#add (; 51 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i64)
+  (local $3 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
   local.get $0
-  local.get $0
   i64.load
   local.get $1
   i64.load
-  call $../../lib/safeMath/SafeMath.add
-  i64.store
-  local.get $0
-  call $~lib/rt/stub/__retain
+  call $lib/safeMath/SafeMath.add
   local.set $2
+  i32.const 0
+  local.get $2
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
+  local.set $3
   local.get $1
   call $~lib/rt/stub/__release
-  local.get $2
+  local.get $3
  )
- (func $../../lib/safeMath/SafeMath.sub (; 52 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
+ (func $lib/safeMath/SafeMath.sub (; 52 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
   local.get $1
   local.get $0
   i64.le_u
-  i32.const 3072
-  call $../../src/system/Assert
+  i32.const 3136
+  call $src/system/Assert
   local.get $0
   local.get $1
   i64.sub
  )
- (func $../../src/asset/Asset#sub (; 53 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
+ (func $src/asset/Asset#sub (; 53 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i64)
+  (local $3 i32)
   local.get $1
   call $~lib/rt/stub/__retain
   drop
+  local.get $1
+  i64.load
   local.get $0
+  i64.load
+  i64.le_u
+  i32.const 3072
+  call $src/system/Assert
   local.get $0
   i64.load
   local.get $1
   i64.load
-  call $../../lib/safeMath/SafeMath.sub
-  i64.store
-  local.get $0
-  call $~lib/rt/stub/__retain
+  call $lib/safeMath/SafeMath.sub
   local.set $2
+  i32.const 0
+  local.get $2
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
+  local.set $3
   local.get $1
   call $~lib/rt/stub/__release
-  local.get $2
+  local.get $3
  )
- (func $../../lib/safeMath/SafeMath.mul (; 54 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
+ (func $lib/safeMath/SafeMath.mul (; 54 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
   (local $2 i64)
   local.get $0
   i64.const 0
@@ -3472,41 +3484,45 @@
   i64.div_u
   local.get $1
   i64.eq
-  i32.const 3200
-  call $../../src/system/Assert
+  i32.const 3264
+  call $src/system/Assert
   local.get $2
  )
- (func $../../src/asset/Asset#multi (; 55 ;) (type $FUNCSIG$iij) (param $0 i32) (param $1 i64) (result i32)
-  local.get $0
+ (func $src/asset/Asset#multi (; 55 ;) (type $FUNCSIG$iij) (param $0 i32) (param $1 i64) (result i32)
+  (local $2 i64)
   local.get $0
   i64.load
   local.get $1
-  call $../../lib/safeMath/SafeMath.mul
-  i64.store
-  local.get $0
-  call $~lib/rt/stub/__retain
+  call $lib/safeMath/SafeMath.mul
+  local.set $2
+  i32.const 0
+  local.get $2
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
  )
- (func $../../lib/safeMath/SafeMath.div (; 56 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
+ (func $lib/safeMath/SafeMath.div (; 56 ;) (type $FUNCSIG$jjj) (param $0 i64) (param $1 i64) (result i64)
   local.get $1
   i64.const 0
   i64.ne
-  i32.const 3312
-  call $../../src/system/Assert
+  i32.const 3376
+  call $src/system/Assert
   local.get $0
   local.get $1
   i64.div_u
  )
- (func $../../src/asset/Asset#divide (; 57 ;) (type $FUNCSIG$iij) (param $0 i32) (param $1 i64) (result i32)
-  local.get $0
+ (func $src/asset/Asset#divide (; 57 ;) (type $FUNCSIG$iij) (param $0 i32) (param $1 i64) (result i32)
+  (local $2 i64)
   local.get $0
   i64.load
   local.get $1
-  call $../../lib/safeMath/SafeMath.div
-  i64.store
-  local.get $0
-  call $~lib/rt/stub/__retain
+  call $lib/safeMath/SafeMath.div
+  local.set $2
+  i32.const 0
+  local.get $2
+  global.get $src/asset/UNIT
+  call $src/asset/Asset#constructor
  )
- (func $asset/AssetTest#mathTest (; 58 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $test/asset/asset/AssetTest#mathTest (; 58 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3516,47 +3532,47 @@
   i32.load offset=16
   local.get $0
   i32.load offset=16
-  call $../../src/asset/Asset#add
+  call $src/asset/Asset#add
   local.tee $1
   local.get $0
   i32.load offset=20
-  call $../../src/asset/Asset#eq
+  call $src/asset/Asset#eq
   i32.const 3032
-  call $../../src/system/Assert
+  call $src/system/Assert
   local.get $0
   i32.load offset=20
   local.get $0
   i32.load offset=16
-  call $../../src/asset/Asset#sub
+  call $src/asset/Asset#sub
   local.tee $2
   local.get $0
   i32.load offset=16
-  call $../../src/asset/Asset#eq
-  i32.const 3160
-  call $../../src/system/Assert
+  call $src/asset/Asset#eq
+  i32.const 3224
+  call $src/system/Assert
   local.get $0
   i32.load offset=20
   i64.const 100
-  call $../../src/asset/Asset#multi
+  call $src/asset/Asset#multi
   local.tee $3
   local.get $0
   i32.load offset=28
   i64.const 1
-  call $../../src/asset/Asset#multi
+  call $src/asset/Asset#multi
   local.tee $4
-  call $../../src/asset/Asset#eq
-  i32.const 3272
-  call $../../src/system/Assert
+  call $src/asset/Asset#eq
+  i32.const 3336
+  call $src/system/Assert
   local.get $0
   i32.load offset=28
   i64.const 100
-  call $../../src/asset/Asset#divide
+  call $src/asset/Asset#divide
   local.tee $5
   local.get $0
   i32.load offset=20
-  call $../../src/asset/Asset#eq
-  i32.const 3368
-  call $../../src/system/Assert
+  call $src/asset/Asset#eq
+  i32.const 3432
+  call $src/system/Assert
   local.get $1
   call $~lib/rt/stub/__release
   local.get $2
@@ -3568,28 +3584,28 @@
   local.get $5
   call $~lib/rt/stub/__release
  )
- (func $asset/apply (; 59 ;) (type $FUNCSIG$v)
+ (func $test/asset/asset/apply (; 59 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   i32.const 0
-  call $asset/AssetTest#constructor
+  call $test/asset/asset/AssetTest#constructor
   local.set $0
   local.get $0
-  call $../../src/contract/Contract#getDataStream
+  call $src/contract/Contract#getDataStream
   local.set $1
   local.get $0
   i32.const 2712
-  call $../../src/contract/Contract#isAction
+  call $src/contract/Contract#isAction
   if
    local.get $0
-   call $asset/AssetTest#compareTest
+   call $test/asset/asset/AssetTest#compareTest
   end
   local.get $0
   i32.const 2944
-  call $../../src/contract/Contract#isAction
+  call $src/contract/Contract#isAction
   if
    local.get $0
-   call $asset/AssetTest#mathTest
+   call $test/asset/asset/AssetTest#mathTest
   end
   local.get $0
   call $~lib/rt/stub/__release

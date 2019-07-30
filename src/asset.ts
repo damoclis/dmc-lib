@@ -1,5 +1,6 @@
 import { Builtin } from "./action";
 import { SafeMath } from "../lib/safeMath";
+import { Assert } from "./system";
 
 export const UNIT: u8 = 0x0
 export const KUNIT: u8 = 0x1
@@ -64,27 +65,27 @@ export class Asset implements Serializable {
 
     @operator("+")
     add(r: Asset): Asset {
-        this.amount = SafeMath.add(this.amount, r.amount);
-        return this;
+        const amount = SafeMath.add(this.amount, r.amount);
+        return new Asset(amount);
     }
 
     @operator("-")
     sub(r: Asset): Asset {
-        assert(r.amount <= this.amount, "Asset amount not enough!");
-        this.amount = SafeMath.sub(this.amount, r.amount);
-        return this;
+        Assert(r.amount <= this.amount, "Asset amount not enough!");
+        const amount = SafeMath.sub(this.amount, r.amount);
+        return new Asset(amount);
     }
 
     @operator("*")
     multi(r: u64): Asset {
-        this.amount = SafeMath.mul(this.amount, r);
-        return this;
+        const amount = SafeMath.mul(this.amount, r);
+        return new Asset(amount);
     }
 
     @operator("/")
     divide(r: u64): Asset {
-        this.amount = SafeMath.div(this.amount, r);
-        return this;
+        const amount = SafeMath.div(this.amount, r);
+        return new Asset(amount);
     }
 
 

@@ -1,6 +1,6 @@
 import { Contract } from "../../src/contract";
 import { Asset } from "../../src/asset";
-import {Assert} from "../../src/system"
+import { Assert } from "../../src/system"
 
 class AssetTest extends Contract {
     asset1: Asset = new Asset(1);
@@ -10,7 +10,7 @@ class AssetTest extends Contract {
     asset1000: Asset = new Asset(1000);
 
     @action
-    compareTest(): void{
+    compareTest(): void {
         Assert(this.asset1 < this.asset100, "< wrong");
         Assert(this.asset1 <= this.asset100, "<= wrong");
         Assert(this.asset100 <= this.asset100, "<= wrong");
@@ -24,11 +24,11 @@ class AssetTest extends Contract {
     }
 
     @action
-    mathTest(): void{
+    mathTest(): void {
         Assert(this.asset1 + this.asset1 == this.asset2, "add wrong");
         Assert(this.asset2 - this.asset1 == this.asset1, "sub wrong");
-        Assert(this.asset2 * 100 == this.asset200*1, "mul wrong");
-        Assert(this.asset200 / 100==this.asset2, "div wrong");
+        Assert(this.asset2 * 100 == this.asset200 * 1, "mul wrong");
+        Assert(this.asset200 / 100 == this.asset2, "div wrong");
     }
 
 }
