@@ -2,11 +2,11 @@ import { Contract } from "../../src/contract";
 import { Address } from "../../src/address";
 import { Asset } from "../../src/asset";
 import { Database } from "../../src/database";
-import { getBlockHeight } from "../../internal/chain";
 import { RequireAuth } from "../../src/action";
 import { Chain } from "../../src/chain";
 import { Assert } from "../../src/system";
 
+@database("pool")
 class Deposit implements Serializable {
   @key
   address: Address
@@ -16,7 +16,7 @@ class Deposit implements Serializable {
 }
 
 class DepositManager extends Contract {
-  _table = "pool"
+  _table: string = "pool"
   _db: Database<Deposit>
 
   constructor() {
