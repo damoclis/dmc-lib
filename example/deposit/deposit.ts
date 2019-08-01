@@ -29,7 +29,7 @@ class DepositManager extends Contract {
     const currHeight = Chain.getBlockHeight();
     const deposit = this._db.get(addr.toString());
     if (deposit.address == null) {
-      return Asset.zero();
+      return Asset.zero;
     }
 
     if (deposit.latestHeight <= currHeight) {
@@ -44,7 +44,7 @@ class DepositManager extends Contract {
     RequireAuth(addr);
     const deposit = this._db.get(addr.toString());
     if (deposit.address == null) {
-      return Asset.zero();
+      return;
     }
 
     if (money != deposit.money) {

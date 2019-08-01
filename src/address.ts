@@ -31,7 +31,7 @@ export class Address implements Serializable {
 
 	@operator("==")
 	equal(t: Address): bool {
-		for (let i = 0; i < this._len; i++) {
+		for (let i: u32 = 0; i < this._len; i++) {
 			if (this._value[i] !== t._value[i]) {
 				return false
 			}

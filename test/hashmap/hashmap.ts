@@ -2,9 +2,9 @@ import { Contract } from "../../src/contract";
 import { HashMap } from "../../lib/hashmap";
 import { Database } from "../../src/database";
 import { Assert } from "../../src/system";
+import { CreateDataStream } from "../../lib/helper";
 
 class Person implements Serializable {
-  @key
   name: string;
 
   constructor(name?: string) {
@@ -12,7 +12,7 @@ class Person implements Serializable {
   }
 }
 
-@database("halibote")
+@database("book")
 class Book implements Serializable {
   @key
   name: string
@@ -41,7 +41,7 @@ class HashMapTest extends Contract {
     let p2 = new Person("lowes");
 
     let book = this._db.get(this._book);
-    if (book.name == "") {
+    if (!book) {
       book = new Book(this._book);
     }
     book.pages.set(1, "hi")

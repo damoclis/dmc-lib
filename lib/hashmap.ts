@@ -16,11 +16,11 @@ export class HashMap<K, V> extends Map<K, V> implements Serializable {
   }
 
   writeVal<T>(v: T, ds: DataStream): void {
-    if (isInteger<V>(v)) {
-      ds.write<V>(v);
-    } else if (isString<V>(v)) {
+    if (isInteger<T>(v)) {
+      ds.write<T>(v);
+    } else if (isString<T>(v)) {
       ds.writeString(v);
-    } else if (isReference<V>(v)) {
+    } else if (isReference<T>(v)) {
       v.serialize(ds);
     } else {
       Assert(false, "value type is not support when writing");

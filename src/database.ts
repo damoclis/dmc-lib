@@ -43,7 +43,7 @@ export class Database<T extends Serializable> {
 	get(key: string): T {
 		const size = dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, 0, 0);
 		if (size == 0) {
-			return {} as T;
+			return null;
 		}
 		const ds = CreateDataStream(size)
 		dbGet(this._contract.buffer, StringToUsize(this._table), this._table.length, StringToUsize(key), key.length, ds.buffer, size);

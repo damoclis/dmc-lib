@@ -1,0 +1,125 @@
+{
+  "version": "Damoclis VM:1.0",
+  "types": [
+    {
+      "new_type_name": "Address",
+      "type": "address"
+    },
+    {
+      "new_type_name": "Bytes",
+      "type": "bytes"
+    },
+    {
+      "new_type_name": "u32",
+      "type": "uint32"
+    },
+    {
+      "new_type_name": "Asset",
+      "type": "asset"
+    },
+    {
+      "new_type_name": "u64",
+      "type": "uint64"
+    }
+  ],
+  "structs": [
+    {
+      "fields": [],
+      "name": "Bytes",
+      "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "_value",
+          "type": "Bytes"
+        },
+        {
+          "name": "_len",
+          "type": "u32"
+        }
+      ],
+      "name": "Address",
+      "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "name": "Asset",
+      "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "address",
+          "type": "Address"
+        },
+        {
+          "name": "prevMoney",
+          "type": "Asset"
+        },
+        {
+          "name": "money",
+          "type": "Asset"
+        },
+        {
+          "name": "latestHeight",
+          "type": "u64"
+        }
+      ],
+      "name": "Deposit",
+      "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "addr",
+          "type": "Address"
+        }
+      ],
+      "name": "getDeposit",
+      "base": ""
+    },
+    {
+      "fields": [
+        {
+          "name": "addr",
+          "type": "Address"
+        },
+        {
+          "name": "money",
+          "type": "Asset"
+        }
+      ],
+      "name": "deposit",
+      "base": ""
+    }
+  ],
+  "actions": [
+    {
+      "name": "getDeposit",
+      "type": "getDeposit"
+    },
+    {
+      "name": "deposit",
+      "type": "deposit"
+    }
+  ],
+  "tables": [
+    {
+      "index_type": "i64",
+      "keys_names": [
+        "address"
+      ],
+      "keys_types": [
+        "string"
+      ],
+      "name": "pool",
+      "type": "Deposit"
+    }
+  ]
+}
