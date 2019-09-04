@@ -1,6 +1,6 @@
-import { Contract } from "../../src/contract";
-import { SafeMath } from "../../lib/safeMath";
-import { Assert } from "../../src/system";
+import { Contract } from "dmc-lib";
+import { SafeMath } from "dmc-lib";
+import { Assert } from "dmc-lib";
 
 class InlineActionTest extends Contract {
   @action
@@ -14,7 +14,7 @@ class InlineActionTest extends Contract {
     // a = 1, b = [2,3,4]
     let result = a;
     for (let i = 0; i < b.length; i++) {
-      result = SafeMath.add(a, b[i]);
+      result = SafeMath.add(result, b[i]);
     }
     Assert(result == 10, "wrong result from addWithArray action");
   }
