@@ -17,6 +17,7 @@ export class Iterator<T extends Serializable> {
 		const size = dbRetrieve(this._db._contract.buffer, StringToUsize(this._db._table), this._db._table.length, this._itr, 0, 0);
 		const bytes = new Bytes(size);
 		const ds = new DataStream(changetype<usize>(bytes.buffer), size);
+		dbRetrieve(this._db._contract.buffer, StringToUsize(this._db._table), this._db._table.length, this._itr, ds.buffer, size);
 		let obj = {} as T;
 		obj.deserialize(ds);
 		return obj;
