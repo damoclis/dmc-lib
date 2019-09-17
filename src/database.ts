@@ -27,7 +27,7 @@ export class Iterator<T extends Serializable> {
 	}
 
 	end(): bool {
-		return this._itr != -1;
+		return this._itr == -1;
 	}
 }
 
