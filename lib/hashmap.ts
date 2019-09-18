@@ -37,7 +37,7 @@ export class HashMap<K, V> extends Map<K, V> implements Serializable {
     for (let i = 0; i < keys.length; i++) {
       const k = keys[i];
       const v = this.get(k);
-      ds.write<K>(k);
+      this.writeVal<K>(k, ds);
       this.writeVal<V>(v, ds);
     }
   }
@@ -45,7 +45,7 @@ export class HashMap<K, V> extends Map<K, V> implements Serializable {
   deserialize(ds: DataStream): void {
     let keysLen = ds.readVarint32();
     while (keysLen > 0) {
-      const k = ds.read<K>();
+      const k = this.readVal<K>(ds);
       const v = this.readVal<V>(ds);
       this.set(k, v);
       keysLen--;

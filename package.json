@@ -1,6 +1,6 @@
 {
   "name": "dmc-lib",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Damoclis smart contract library",
   "main": "index.ts",
   "directories": {
