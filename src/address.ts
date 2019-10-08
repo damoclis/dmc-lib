@@ -45,7 +45,8 @@ export class Address implements Serializable {
 	}
 
 	get bytes(): Bytes {
-		return this._value;
+		let byte = Bytes.fromHex("0x14");
+		return byte.concat(this._value);
 	}
 
 	get buffer(): usize {

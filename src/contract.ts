@@ -3,6 +3,7 @@ import { getSelf, getSender, getReceiver } from "../internal/account.d";
 import { Action } from "./action";
 import { returnData, returnU64 } from "../internal/action.d";
 import { StringToUsize } from "../lib/codec";
+import { Builtin } from "dmc-lib";
 
 export class Contract {
     sender: Address;
@@ -49,7 +50,8 @@ export class Contract {
      * @param str - a string
      */
     ReturnString(str: string): void {
-        returnData(StringToUsize(str), str.length);
+        const ds = Builtin.fromString(str)
+        returnData(changetype<usize>(ds.datastream.buffer), ds.bytesLen);
     }
 
     /**
